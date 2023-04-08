@@ -12,7 +12,14 @@ public class PageViewModel extends ViewModel {
     private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
         @Override
         public String apply(Integer input) {
-            return "Hello world from section: " + input;
+            switch (input)
+            {
+                case 1: return "Bine ai venit pe pagina principala!!";
+                case 2: return "Bine ai venit pe pagina de challenge!!";
+                case 3: return "Bine ai venit pe pagina profilului tau!!";
+                default: return "404 - Nu avem nimic sa-ti aratam :<<";
+            }
+            //return "Hello world from section: " + input;
         }
     });
 
