@@ -4,42 +4,216 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/purple_500"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.Pedometer.AppBarOverlay">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/title"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="?actionBarSize"
-            android:padding="@dimen/appbar_padding"
-            android:text="@string/app_name"
-            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+            android:theme="@style/Theme.Pedometer.AppBarOverlay">
+            <!--Titlu-->
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="?actionBarSize"
+                android:padding="@dimen/appbar_padding"
+                android:text="Pedometer"
+                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+            <!--Tabs-->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:contentDescription="@string/app_name"
-        android:layout_width="89dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        <!--adaugare data actuala in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/currentDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="115dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+
+        <!--adaugare text pasi in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/textSteps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/currentDate"
+            android:layout_marginLeft="20dp"
+            android:text="Steps"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+        <!--adaugare icon pasi in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgSteps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textSteps"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/steps" />
+        <!--adaugare nr.pasi in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/steps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textSteps"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="60dp"
+            android:textColor="@color/white"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <!--adaugare progress bar in tab-ul My Activity-->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgSteps"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <!--adaugare informatii pt progress bar in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/infoProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <!--adaugare icon calorii in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgCalories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/calories" />
+        <!--adaugare calorii in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/Calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/imgCalories"
+            android:layout_alignTop="@id/imgCalories"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="25dp" />
+
+        <!--adaugare icon distanta in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgCalories"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/distance" />
+        <!--adaugare distanta in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/Distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/imgDistance"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/imgDistance"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="25dp"/>
+
+        <!--adaugare icon time in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgDistance"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/time" />
+        <!--adaugare time in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/imgTime"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/imgTime"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="25dp"/>
+
+        <!--adaugare icon speed in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgTime"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/speed" />
+        <!--adaugare speed in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/Speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/imgSpeed"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/imgSpeed"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
+
+        <!--adaugare daily average in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/dailyAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgSpeed"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+
+        <!--adaugare Monday in tab-ul My Activity-->
+        <!--<ProgressBar
+            android:id="@+id/monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dailyAverage"
+            android:progress="50"
+            />-->
+    </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+

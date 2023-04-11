@@ -14,7 +14,7 @@ public class PageViewModel extends ViewModel {
         public String apply(Integer input) {
             switch (input)
             {
-                case 1: return "Bine ai venit pe pagina principala!!";
+                case 1: return "Tab1";
                 case 2: return "Bine ai venit pe pagina de challenge!!";
                 case 3: return "Bine ai venit pe pagina profilului tau!!";
                 default: return "404 - Nu avem nimic sa-ti aratam :<<";

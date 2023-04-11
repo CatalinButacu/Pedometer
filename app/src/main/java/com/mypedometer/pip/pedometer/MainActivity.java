@@ -12,14 +12,40 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.mypedometer.pip.pedometer.ui.main.SectionsPagerAdapter;
 import com.mypedometer.pip.pedometer.databinding.ActivityMainBinding;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private final int STEPS = 5000;
 
+    private final double CALORIES = 10.3;
+    private String MSGCALORIES = CALORIES + "  Kcal";
+
+    private final double DISTANCE = 39;
+    private String MSGDISTANCE = DISTANCE + "  m";
+
+    private final int TIME = 3;
+    private String MSGTIME = TIME + "  min";
+
+    private final int SPEED = 1;
+    private String MSGSPEED = SPEED + "  Km/h";
+
+    private final int DAILYAVERAGE = 3000;
+    private String MSGDAILYAVERAGE = "Daily average: " + DAILYAVERAGE;
+
+    Calendar calendar = Calendar.getInstance();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");
+    String Date = dateFormat.format(calendar.getTime());
+
+    private final int GOAL = 8000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,14 +58,43 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = binding.fab;
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Ai apasat butonul! Bravo!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //afisez data curenta dateFormat
+        TextView textData = findViewById(R.id.currentDate);
+        textData.setText(Date);
+
+        // afisez pasii in textView-ul pt steps
+        TextView textPasi = findViewById(R.id.steps);
+        textPasi.setText(Integer.toString(STEPS));
+
+        //detalii progress bar
+        ProgressBar pBar = findViewById(R.id.progressBar);
+        pBar.setProgress(STEPS/100);
+        pBar.setMax(GOAL/100);
+
+        //afisare detalii progress bar
+        TextView infoPBar = findViewById(R.id.infoProgressBar);
+        infoPBar.setText(STEPS + "/" + GOAL);
+
+
+        // afisez in textView-ul pt calorii mesajul MSGCALORIES
+        TextView textCalories = findViewById(R.id.Calories);
+        textCalories.setText(MSGCALORIES);
+
+        // afisez in textView-ul pt distanta mesajul MSGDISTANCE
+        TextView textDistancce = findViewById(R.id.Distance);
+        textDistancce.setText(MSGDISTANCE);
+
+        // afisez in textView-ul pt timp mesajul MSGTIME
+        TextView textTime = findViewById(R.id.Time);
+        textTime.setText(MSGTIME);
+
+        // afisez in textView-ul pt speed mesajul MSGSPEED
+        TextView textSpeed = findViewById(R.id.Speed);
+        textSpeed.setText(MSGSPEED);
+
+        // afisez in textView-ul pt daile average mesajul MSGDAILYAVERAGE
+        TextView textDailyAverage = findViewById(R.id.dailyAverage);
+        textDailyAverage.setText(MSGDAILYAVERAGE);
     }
 }
