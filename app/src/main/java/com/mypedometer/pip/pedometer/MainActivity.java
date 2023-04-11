@@ -44,8 +44,15 @@ public class MainActivity extends AppCompatActivity {
     Calendar calendar = Calendar.getInstance();
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");
     String Date = dateFormat.format(calendar.getTime());
+    private final int GOAL = 10000;
+    private final int MONDAY = 10;
+    private final int TUESDAY = 60;
+    private final int WEDNESDAY = 80;
+    private final int THURSDAY = 30;
+    private final int FRIDAY = 50;
+    private final int SATURDAY = 50;
+    private final int SUNDAY = 100;
 
-    private final int GOAL = 8000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         //detalii progress bar
         ProgressBar pBar = findViewById(R.id.progressBar);
-        pBar.setProgress(STEPS/100);
-        pBar.setMax(GOAL/100);
+        pBar.setProgress(STEPS*100/GOAL);
 
         //afisare detalii progress bar
         TextView infoPBar = findViewById(R.id.infoProgressBar);
@@ -96,5 +102,27 @@ public class MainActivity extends AppCompatActivity {
         // afisez in textView-ul pt daile average mesajul MSGDAILYAVERAGE
         TextView textDailyAverage = findViewById(R.id.dailyAverage);
         textDailyAverage.setText(MSGDAILYAVERAGE);
+
+        //setez progresul pentru fiecare zi
+        ProgressBar mon = findViewById(R.id.monday);
+        mon.setProgress(MONDAY);
+
+        ProgressBar tue = findViewById(R.id.tuesday);
+        tue.setProgress(TUESDAY);
+
+        ProgressBar wed = findViewById(R.id.wednesday);
+        wed.setProgress(WEDNESDAY);
+
+        ProgressBar thu = findViewById(R.id.thursday);
+        thu.setProgress(THURSDAY);
+
+        ProgressBar fri = findViewById(R.id.friday);
+        fri.setProgress(FRIDAY);
+
+        ProgressBar sat = findViewById(R.id.saturday);
+        sat.setProgress(SATURDAY);
+
+        ProgressBar sun = findViewById(R.id.sunday);
+        sun.setProgress(SUNDAY);
     }
 }
