@@ -137,16 +137,16 @@
         android:layout_marginRight="20dp"
         android:src="@drawable/time" />
     <!--adaugare time in tab-ul My Activity-->
-    <TextView
-        android:id="@+id/Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/imgTime"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/imgTime"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="25dp"/>
+        <TextView
+            android:id="@+id/Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/imgTime"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/imgTime"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
     <!--adaugare icon speed in tab-ul My Activity-->
     <ImageView
@@ -159,16 +159,16 @@
         android:layout_marginRight="20dp"
         android:src="@drawable/speed" />
     <!--adaugare speed in tab-ul My Activity-->
-    <TextView
-        android:id="@+id/Speed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/imgSpeed"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/imgSpeed"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/Speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/imgSpeed"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/imgSpeed"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
 
     <!--adaugare linie delimitare-->
     <View
@@ -180,15 +180,15 @@
         android:background="@android:color/black" />
 
     <!--adaugare daily average in tab-ul My Activity-->
-    <TextView
-        android:id="@+id/dailyAverage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line2"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/white"
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/dailyAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
     <!--adaugare Monday in tab-ul My Activity-->
     <ProgressBar
@@ -263,94 +263,94 @@
         android:layout_marginRight="6dp"/>
 
     <!--adaugare text Monday-->
-    <TextView
-        android:id="@+id/textMonday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/monday"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/white"
-        android:text="M"
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/textMonday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/monday"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="20dp"
+            android:text="M"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
     <!--adaugare text Tuesday-->
-    <TextView
-        android:id="@+id/textTuesday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textMonday"
-        android:layout_toRightOf="@id/textMonday"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/white"
-        android:text="T"
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/textTuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textMonday"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/textMonday"
+            android:text="T"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
     <!--adaugare text Wednesday-->
-    <TextView
-        android:id="@+id/textWednesday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textTuesday"
-        android:layout_toRightOf="@id/textTuesday"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/white"
-        android:text="W"
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/textWednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textTuesday"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/textTuesday"
+            android:text="W"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
     <!--adaugare text Thursday-->
-    <TextView
-        android:id="@+id/textThursday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textWednesday"
-        android:layout_toRightOf="@id/textWednesday"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/white"
-        android:text="T"
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/textThursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textWednesday"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/textWednesday"
+            android:text="T"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
     <!--adaugare text Friday-->
-    <TextView
-        android:id="@+id/textFriday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textThursday"
-        android:layout_toRightOf="@id/textThursday"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/white"
-        android:text="F"
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/textFriday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textThursday"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/textThursday"
+            android:text="F"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
     <!--adaugare text Saturday-->
-    <TextView
-        android:id="@+id/textSaturday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textFriday"
-        android:layout_toRightOf="@id/textFriday"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/white"
-        android:text="S"
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/textSaturday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textFriday"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/textFriday"
+            android:text="S"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
     <!--adaugare text Sunday-->
-    <TextView
-        android:id="@+id/textSunday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/textSaturday"
-        android:layout_toRightOf="@id/textSaturday"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:textColor="@color/white"
-        android:text="S"
-        android:textSize="25dp" />
+        <TextView
+            android:id="@+id/textSunday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/textSaturday"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toRightOf="@id/textSaturday"
+            android:text="S"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

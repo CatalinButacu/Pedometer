@@ -16,12 +16,4 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
-
-    <!-- app color palette-->
-    <color name="dark_blue">#001D3A</color>
-    <color name="light_dark_blue">#1C354F</color>
-    <color name="gray_blue">#365168</color>
-    <color name="cyan">#04BDC3</color>
-    <color name="light_blue">#77E5D7</color>
-
 </resources>
