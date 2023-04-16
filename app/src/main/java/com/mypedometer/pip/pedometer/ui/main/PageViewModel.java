@@ -1,6 +1,6 @@
 package com.mypedometer.pip.pedometer.ui.main;
 
-import androidx.arch.core.util.Function;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -8,18 +8,12 @@ import androidx.lifecycle.ViewModel;
 
 public class PageViewModel extends ViewModel {
 
-    private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
-    private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
-        @Override
-        public String apply(Integer input) {
-            switch (input)
-            {
-                case 1: return "Tab1";
-                case 2: return "Bine ai venit pe pagina de challenge!!";
-                case 3: return "Bine ai venit pe pagina profilului tau!!";
-                default: return "404 - Nu avem nimic sa-ti aratam :<<";
-            }
-            //return "Hello world from section: " + input;
+    private final MutableLiveData<Integer> mIndex = new MutableLiveData<>();
+    private final LiveData<Fragment> mFragment = Transformations.switchMap(mIndex, input -> {
+        switch (input) {
+            case 1:   return new MutableLiveData<>(new StatusFragment());
+            case 2:   return new MutableLiveData<>(new ChallengeFragment());
+            default:  return new MutableLiveData<>(new ProfileFragment());
         }
     });
 
@@ -27,7 +21,7 @@ public class PageViewModel extends ViewModel {
         mIndex.setValue(index);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<Fragment> getFragment() {
+        return mFragment;
     }
 }
