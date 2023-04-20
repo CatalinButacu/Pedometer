@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/page1">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <!--adaugare data actuala in tab-ul My Activity-->
+        <!--adaugare data actuala in tab-ul My Activity-->
         <TextView
             android:id="@+id/currentDate"
             android:layout_width="match_parent"
@@ -19,168 +18,173 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-    <!--adaugare linie delimitare-->
-    <View
-        android:id="@+id/line1"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@id/currentDate"
-        android:layout_margin="20dp"
-        android:background="@android:color/black" />
+        <!--adaugare linie delimitare-->
+        <View
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/currentDate"
+            android:layout_margin="20dp"
+            android:background="@android:color/black" />
 
-    <!--adaugare text pasi in tab-ul My Activity-->
+        <!--adaugare text pasi in tab-ul My Activity-->
         <TextView
             android:id="@+id/textSteps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/line1"
-            android:layout_marginLeft="20dp"
-            android:text="Steps"
+            android:layout_marginStart="20dp"
+            android:text="@string/steps"
             android:textColor="@color/white"
             android:textSize="25sp" />
-    <!--adaugare icon pasi in tab-ul My Activity-->
-    <ImageView
-        android:id="@+id/imgSteps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textSteps"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/steps" />
-    <!--adaugare nr.pasi in tab-ul My Activity-->
+        <!--adaugare icon pasi in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgSteps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textSteps"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/steps"
+            android:contentDescription="@string/descrSteps"/>
+        <!--adaugare nr.pasi in tab-ul My Activity-->
         <TextView
             android:id="@+id/steps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textSteps"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="25dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginEnd="60dp"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold" />
 
-    <!--adaugare progress bar in tab-ul My Activity-->
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgSteps"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"/>
+        <!--adaugare progress bar in tab-ul My Activity-->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgSteps"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"/>
 
-    <!--adaugare informatii pt progress bar in tab-ul My Activity-->
+        <!--adaugare informatii pt progress bar in tab-ul My Activity-->
         <TextView
             android:id="@+id/infoProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/progressBar"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
-    <!--adaugare icon calorii in tab-ul My Activity-->
-    <ImageView
-        android:id="@+id/imgCalories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/progressBar"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/calories" />
-    <!--adaugare calorii in tab-ul My Activity-->
+        <!--adaugare icon calorii in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgCalories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/calories"
+            android:contentDescription="@string/descrCalories"/>
+        <!--adaugare calorii in tab-ul My Activity-->
         <TextView
             android:id="@+id/Calories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/imgCalories"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/imgCalories"
+            android:layout_toEndOf="@id/imgCalories"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
 
-    <!--adaugare icon distanta in tab-ul My Activity-->
-    <ImageView
-        android:id="@+id/imgDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgCalories"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/distance" />
-    <!--adaugare distanta in tab-ul My Activity-->
+        <!--adaugare icon distanta in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgCalories"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/distance"
+            android:contentDescription="@string/descrDistance"/>
+        <!--adaugare distanta in tab-ul My Activity-->
         <TextView
             android:id="@+id/Distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/imgDistance"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/imgDistance"
+            android:layout_toEndOf="@id/imgDistance"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold" />
 
-    <!--adaugare icon time in tab-ul My Activity-->
-    <ImageView
-        android:id="@+id/imgTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgDistance"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/time" />
-    <!--adaugare time in tab-ul My Activity-->
+        <!--adaugare icon time in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgDistance"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/time"
+            android:contentDescription="@string/descrTime"/>
+        <!--adaugare time in tab-ul My Activity-->
         <TextView
             android:id="@+id/Time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/imgTime"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/imgTime"
+            android:layout_toEndOf="@id/imgTime"
             android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textSize="25sp"/>
 
-    <!--adaugare icon speed in tab-ul My Activity-->
-    <ImageView
-        android:id="@+id/imgSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgTime"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/speed" />
-    <!--adaugare speed in tab-ul My Activity-->
+        <!--adaugare icon speed in tab-ul My Activity-->
+        <ImageView
+            android:id="@+id/imgSpeed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgTime"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/speed"
+            android:contentDescription="@string/descrSpeed"/>
+        <!--adaugare speed in tab-ul My Activity-->
         <TextView
             android:id="@+id/Speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/imgSpeed"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/imgSpeed"
+            android:layout_toEndOf="@id/imgSpeed"
             android:textColor="@color/white"
             android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
-    <!--adaugare linie delimitare-->
-    <View
-        android:id="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@id/imgSpeed"
-        android:layout_margin="20dp"
-        android:background="@android:color/black" />
+        <!--adaugare linie delimitare-->
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/imgSpeed"
+            android:layout_margin="20dp"
+            android:background="@android:color/black" />
 
-    <!--adaugare daily average in tab-ul My Activity-->
+        <!--adaugare daily average in tab-ul My Activity-->
         <TextView
             android:id="@+id/dailyAverage"
             android:layout_width="wrap_content"
@@ -191,166 +195,167 @@
             android:textColor="@color/white"
             android:textSize="25sp" />
 
-    <!--adaugare Monday in tab-ul My Activity-->
-    <ProgressBar
-        android:id="@+id/monday"
-        style="@style/CircularDeterminateProgressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/dailyAverage"
-        android:layout_marginRight="6dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"/>
+        <!--adaugare Monday in tab-ul My Activity-->
+        <ProgressBar
+            android:id="@+id/monday"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/dailyAverage"
+            android:layout_marginEnd="6dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"/>
 
-    <!--adaugare Tuesday in tab-ul My Activity-->
-    <ProgressBar
-        android:id="@+id/tuesday"
-        style="@style/CircularDeterminateProgressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignTop="@id/monday"
-        android:layout_toRightOf="@id/monday"
-        android:layout_marginRight="6dp"/>
+        <!--adaugare Tuesday in tab-ul My Activity-->
+        <ProgressBar
+            android:id="@+id/tuesday"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@id/monday"
+            android:layout_toEndOf="@id/monday"
+            android:layout_marginEnd="6dp"/>
 
-    <!--adaugare Wednesday in tab-ul My Activity-->
-    <ProgressBar
-        android:id="@+id/wednesday"
-        style="@style/CircularDeterminateProgressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignTop="@id/tuesday"
-        android:layout_toRightOf="@id/tuesday"
-        android:layout_marginRight="6dp"/>
+        <!--adaugare Wednesday in tab-ul My Activity-->
+        <ProgressBar
+            android:id="@+id/wednesday"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@id/tuesday"
+            android:layout_toEndOf="@id/tuesday"
+            android:layout_marginEnd="6dp"/>
 
-    <!--adaugare Thursday in tab-ul My Activity-->
-    <ProgressBar
-        android:id="@+id/thursday"
-        style="@style/CircularDeterminateProgressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignTop="@id/wednesday"
-        android:layout_toRightOf="@id/wednesday"
-        android:layout_marginRight="6dp"/>
+        <!--adaugare Thursday in tab-ul My Activity-->
+        <ProgressBar
+            android:id="@+id/thursday"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@id/wednesday"
+            android:layout_toEndOf="@id/wednesday"
+            android:layout_marginEnd="6dp"/>
 
-    <!--adaugare Friday in tab-ul My Activity-->
-    <ProgressBar
-        android:id="@+id/friday"
-        style="@style/CircularDeterminateProgressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignTop="@id/thursday"
-        android:layout_toRightOf="@id/thursday"
-        android:layout_marginRight="6dp"/>
+        <!--adaugare Friday in tab-ul My Activity-->
+        <ProgressBar
+            android:id="@+id/friday"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@id/thursday"
+            android:layout_toEndOf="@id/thursday"
+            android:layout_marginEnd="6dp"/>
 
-    <!--adaugare Saturaday in tab-ul My Activity-->
-    <ProgressBar
-        android:id="@+id/saturday"
-        style="@style/CircularDeterminateProgressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignTop="@id/friday"
-        android:layout_toRightOf="@id/friday"
-        android:layout_marginRight="6dp"/>
+        <!--adaugare Saturaday in tab-ul My Activity-->
+        <ProgressBar
+            android:id="@+id/saturday"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@id/friday"
+            android:layout_toEndOf="@id/friday"
+            android:layout_marginEnd="6dp"/>
 
-    <!--adaugare Sunday in tab-ul My Activity-->
-    <ProgressBar
-        android:id="@+id/sunday"
-        style="@style/CircularDeterminateProgressBar"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignTop="@id/saturday"
-        android:layout_toRightOf="@id/saturday"
-        android:layout_marginRight="6dp"/>
+        <!--adaugare Sunday in tab-ul My Activity-->
+        <ProgressBar
+            android:id="@+id/sunday"
+            style="@style/CircularDeterminateProgressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@id/saturday"
+            android:layout_toEndOf="@id/saturday"
+            android:layout_marginEnd="6dp"/>
 
-    <!--adaugare text Monday-->
+        <!--adaugare text Monday-->
         <TextView
             android:id="@+id/textMonday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/monday"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="20dp"
-            android:text="M"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
+            android:text="@string/monday"
             android:textSize="25sp" />
 
-    <!--adaugare text Tuesday-->
+        <!--adaugare text Tuesday-->
         <TextView
             android:id="@+id/textTuesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textMonday"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@id/textMonday"
-            android:text="T"
+            android:layout_toEndOf="@id/textMonday"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
+            android:text="@string/tuesday"
             android:textSize="25sp" />
 
-    <!--adaugare text Wednesday-->
+        <!--adaugare text Wednesday-->
         <TextView
             android:id="@+id/textWednesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textTuesday"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@id/textTuesday"
-            android:text="W"
+            android:layout_toEndOf="@id/textTuesday"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
+            android:text="@string/wednesday"
             android:textSize="25sp" />
 
-    <!--adaugare text Thursday-->
+        <!--adaugare text Thursday-->
         <TextView
             android:id="@+id/textThursday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textWednesday"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@id/textWednesday"
-            android:text="T"
+            android:layout_toEndOf="@id/textWednesday"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
+            android:text="@string/thursday"
             android:textSize="25sp" />
 
-    <!--adaugare text Friday-->
+        <!--adaugare text Friday-->
         <TextView
             android:id="@+id/textFriday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textThursday"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@id/textThursday"
-            android:text="F"
+            android:layout_toEndOf="@id/textThursday"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
+            android:text="@string/friday"
             android:textSize="25sp" />
 
-    <!--adaugare text Saturday-->
+        <!--adaugare text Saturday-->
         <TextView
             android:id="@+id/textSaturday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textFriday"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@id/textFriday"
-            android:text="S"
+            android:layout_toEndOf="@id/textFriday"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
+            android:text="@string/saturday"
             android:textSize="25sp" />
 
-    <!--adaugare text Sunday-->
+        <!--adaugare text Sunday-->
         <TextView
             android:id="@+id/textSunday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textSaturday"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_toRightOf="@id/textSaturday"
-            android:text="S"
+            android:layout_toEndOf="@id/textSaturday"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:textColor="@color/white"
+            android:text="@string/sunday"
             android:textSize="25sp" />
 
     </RelativeLayout>

@@ -39,7 +39,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 fragment = new ChallengeFragment();
                 break;
             case 2:
-                fragment = new ProfileFragment();
+                fragment = new LoginFragment();
                 break;
         }
         return fragment;

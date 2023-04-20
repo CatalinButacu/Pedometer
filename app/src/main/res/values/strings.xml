@@ -1,6 +1,23 @@
 <resources>
-    <string name="app_name">StepUp</string>
+    <string name="app_name">Walk Assistent</string>
     <string name="tab_text_1">My Activity</string>
     <string name="tab_text_2">Challenges</string>
     <string name="tab_text_3">Profile</string>
+    <!--text-->
+    <string name="steps">Steps</string>
+    <string name="monday">M</string>
+    <string name="tuesday">T</string>
+    <string name="wednesday">W</string>
+    <string name="thursday">T</string>
+    <string name="friday">F</string>
+    <string name="saturday">S</string>
+    <string name="sunday">S</string>
+    <!--descriptions-->
+    <string name="descrSteps">Image with steps</string>
+    <string name="descrCalories">Image with fire(calories)</string>
+    <string name="descrDistance">Image with distance</string>
+    <string name="descrTime">Image with timer</string>
+    <string name="descrSpeed">Image with speed</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
