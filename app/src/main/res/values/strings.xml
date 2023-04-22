@@ -21,5 +21,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <!--notification text-->
-    <string name="notification_login">Logarea s-a realizat cu succes!</string>
+    <string name="notification_login_success">Logarea s-a realizat cu succes!</string>
+    <string name="notification_login_failure">Logarea nu s-a putut realiza!</string>
 </resources>

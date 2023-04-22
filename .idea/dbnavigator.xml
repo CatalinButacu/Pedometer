@@ -42,6 +42,7 @@ insert into user_stats(stats_id,total_steps) values (5003,20510);
 insert into users values (1001,'me.test1@db.com','0721-000-000','pArOl4MeA',5001);
 insert into users values (1002,'me.test2@db.com','0721-000-001','pArOl4MEa',5002);
 insert into users values (1003,'me.test3@db.com','0721-000-002','pArOl4Me4',5003);
+insert into Users values (1004,'admin','0721-000-002','admin',5003);
 
 
 --DROP TABLE users;
@@ -94,6 +95,9 @@ CREATE TABLE User_Stats (
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/app/src/main/java/com/mypedometer/pip/pedometer" connection-id="b6025b45-e1f4-4017-8045-8c7688f86d57" session-id="MAIN" current-schema="postgres" />
+  </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
@@ -116,7 +120,7 @@ CREATE TABLE User_Stats (
           <url-type value="DATABASE" />
           <host value="europe-central2.864cfdd1-12ac-4ced-b28d-ae03cbeb2101.gcp.ybdb.io" />
           <port value="5433" />
-          <database value="postgres" />
+          <database value="yugabyte" />
           <type value="USER_PASSWORD" />
           <user value="admin" />
           <deprecated-pwd value="a1M1bGtHNDE2UGZSMUk5Sy16MEFmanpicmVIalpu" />
