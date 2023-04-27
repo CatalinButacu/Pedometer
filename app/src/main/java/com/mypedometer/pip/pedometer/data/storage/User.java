@@ -108,11 +108,15 @@ public class User {
     }
 
     protected Boolean addFriend(User user){
-        return true;
+        return m_lFriends.add(user);
     }
 
     protected Boolean deleteFriend(User user){
-        return true;
+        for (User u:m_lFriends){
+            if(u==user)
+                return m_lFriends.remove(u);
+        }
+        return false;
     }
     //
 }
