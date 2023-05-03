@@ -6,37 +6,45 @@ import java.util.List;
 
 public class User {
 
-    public class DataStats {
-        protected Integer m_iTotalSteps;
-        protected Integer m_iTotalDistance;
-        protected Integer m_iTotalCalories;
-        protected Integer[] m_iDailySteps;
-        protected Integer[] m_iDailyDistance;
-        protected Integer[] m_iDailyCalories;
-        private Integer m_iGoalDailySteps;
-        private Integer m_iGoalDailyCalories;
-        private Integer m_iGoalDailyDistance;
-        public Integer[] m_iChallengeSteps;
-        public Integer[] m_iChallengeCalories;
-        public Integer[] m_iChallengeDistance;
+    User(String s){
+        if(s=="TEST"){
+            m_sNume = "Popa";
+            m_sPrenume = "Andrei";
+            m_iVarsta = 20;
+            //...
+        }
     }
 
 
     // Members
 
-    public String m_sUserID;
-    protected String m_sNume;
-    protected String m_sPrenume;
-    protected Integer m_iVarsta;
-    protected Float m_fGreutate;
-    protected Float m_fInaltime;
-    protected List<User> m_lFriends;
-    private String m_sEmail;
-    private String m_sPhone;
-    private String m_sPassword;
-    public Boolean m_bPrivateProfile;
+    public String m_sUserID = "100";
+    protected String m_sNume = "";
+    protected String m_sPrenume = "";
+    protected Integer m_iVarsta = 0;
+    protected Float m_fGreutate = 0f;
+    protected Float m_fInaltime = 0f;
+    protected List<User> m_lFriends = null;
+    private String m_sEmail = "";
+    private String m_sPhone = "";
+    private String m_sPassword = "";
+    public Boolean m_bPrivateProfile = false;
     public DataStats m_cUserStats;
-    //
+
+    public class DataStats {
+        protected Integer m_iTotalSteps = 0;
+        protected Integer m_iTotalDistance = 0;
+        protected Integer m_iTotalCalories = 0;
+        protected Integer[] m_iDailySteps = new Integer[6];
+        protected Integer[] m_iDailyDistance = new Integer[6];
+        protected Integer[] m_iDailyCalories = new Integer[6];
+        private Integer m_iGoalDailySteps = 0;
+        private Integer m_iGoalDailyCalories = 0;
+        private Integer m_iGoalDailyDistance = 0;
+        public Integer[] m_iChallengeSteps = new Integer[6];
+        public Integer[] m_iChallengeCalories = new Integer[6];
+        public Integer[] m_iChallengeDistance = new Integer[6];
+    }
 
     // Getters / Setters
 

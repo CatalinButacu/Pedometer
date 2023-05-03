@@ -3,12 +3,23 @@ package com.mypedometer.pip.pedometer.ui.main;
 import android.content.Context;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
+import com.mypedometer.pip.pedometer.ui.fragments.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -23,6 +34,21 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     private final Context mContext;
 
+    public static final List<Fragment> FRAGMENTS = new ArrayList<Fragment>(Arrays.asList(
+            new StatusFragment(),
+            new ChallengeFragment(),
+            new LoginFragment()
+    ))
+    {
+        @Override
+        public Fragment set(int index, Fragment element) {
+            Fragment fragment = super.set(index, element);
+            SectionsPagerAdapter adapter = (SectionsPagerAdapter) MainActivity.binding.viewPager.getAdapter();
+            adapter.notifyDataSetChanged();
+            return fragment;
+        }
+    };
+
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
@@ -30,20 +56,22 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new StatusFragment();
-                break;
-            case 1:
-                fragment = new ChallengeFragment();
-                break;
-            case 2:
-                fragment = new LoginFragment();
-                break;
+        try {
+            return FRAGMENTS.get(position);
         }
-        return fragment;
-        //return PlaceholderFragment.newInstance(LAYOUT_IDS[position]);
+        catch (IllegalArgumentException e) {
+                throw new IllegalArgumentException("Invalid position: " + position);
+        }
+        catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Invalid position: " + position);
+        }
+        catch (Exception e) {
+            try {
+                throw new Exception("Invalid position: " + position);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
 
     @Override

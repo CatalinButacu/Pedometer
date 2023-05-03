@@ -6,6 +6,10 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.mypedometer.pip.pedometer.ui.fragments.ChallengeFragment;
+import com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment;
+import com.mypedometer.pip.pedometer.ui.fragments.StatusFragment;
+
 public class PageViewModel extends ViewModel {
 
     private final MutableLiveData<Integer> mIndex = new MutableLiveData<>();

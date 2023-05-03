@@ -1,4 +1,4 @@
-package com.mypedometer.pip.pedometer.ui.main;
+package com.mypedometer.pip.pedometer.ui.fragments;
 
 import android.os.Bundle;
 

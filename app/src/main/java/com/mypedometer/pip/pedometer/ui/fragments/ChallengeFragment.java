@@ -1,4 +1,4 @@
-package com.mypedometer.pip.pedometer.ui.main;
+package com.mypedometer.pip.pedometer.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,8 +16,7 @@ public class ChallengeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.challenge_layout, container, false);
         // TODO: initialize views and data

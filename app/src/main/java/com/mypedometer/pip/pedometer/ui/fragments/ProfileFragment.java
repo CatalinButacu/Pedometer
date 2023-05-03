@@ -1,4 +1,4 @@
-package com.mypedometer.pip.pedometer.ui.main;
+package com.mypedometer.pip.pedometer.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.mypedometer.pip.pedometer.R;
+import com.mypedometer.pip.pedometer.data.storage.User;
 
 import java.text.DecimalFormat;
 
@@ -51,11 +52,11 @@ public class ProfileFragment extends Fragment {
 
         //afisez greutate
         TextView textWeight = profileView.findViewById(R.id.weight);
-        textWeight.setText(Double.toString(WEIGHT) + " kg");
+        textWeight.setText(WEIGHT + " kg");
 
         //afisez inaltime
         TextView textHeight = profileView.findViewById(R.id.height);
-        textHeight.setText(Integer.toString(HEIGHT) + " cm");
+        textHeight.setText(HEIGHT + " cm");
 
         //afisez lungimea pasului
         TextView textStepLength = profileView.findViewById(R.id.stepLength);
