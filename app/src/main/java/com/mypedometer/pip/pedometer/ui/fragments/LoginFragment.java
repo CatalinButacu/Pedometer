@@ -92,15 +92,14 @@ public class LoginFragment extends Fragment {
                         valid = false;
                     }
                 }
+                //LOGIN -> PROFILE
 
-
-                //TODO:: MAKE THE LOGIN WORK
-
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.remove(FRAGMENTS.get(2));
-                fragmentTransaction.commitNow();
-
+                LoginView.setVisibility(View.GONE);
+                ProfileFragment pf = new ProfileFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setReorderingAllowed(true);
+                transaction.replace(R.id.fragment_container, pf);
+                transaction.commit();
 
                 //TRIMITERE NOTIFICARE SYSTEM LOGARE
                 try {
@@ -124,5 +123,4 @@ public class LoginFragment extends Fragment {
         NotificationManagerCompat managerNotification = NotificationManagerCompat.from(getActivity());
         managerNotification.notify(0, mBuilder.build());
     }
-
 }
