@@ -44,8 +44,6 @@ public class LoginFragment extends Fragment {
         emailEditText = (EditText) LoginView.findViewById(R.id.email_input);
         passwordEditText = (EditText) LoginView.findViewById(R.id.password_input);
 
-        //TODO:: de implementat actionListener la login si sing up care sa duca la celelalte pagini
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +106,18 @@ public class LoginFragment extends Fragment {
                     System.out.println("Ascultatorul pe butonul de login nu a putut fi stabilit!");
                 }
 
+            }
+        });
+
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginView.setVisibility(View.GONE);
+                CreateAccountFragment caf = new CreateAccountFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.setReorderingAllowed(true);
+                transaction.replace(R.id.fragment_container, caf);
+                transaction.commit();
             }
         });
         return LoginView;

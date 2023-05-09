@@ -36,7 +36,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="481dp"
+            android:layout_height="700dp"
             android:orientation="vertical"
             android:padding="16dp">
 
@@ -56,92 +56,80 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="423dp">
+                android:layout_height="400dp"
+                android:background="@drawable/input_round">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/input_round"
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/friend1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Age:"
-                        android:textSize="16sp" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/button_round_edges"
+                        android:padding="10dp"
+                        android:text="FRIEND_1" />
 
-                    <TextView
-                        android:id="@+id/age"
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/friend2"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="16sp" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/button_round_edges"
+                        android:padding="10dp"
+                        android:text="FRIEND_2" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/friend3"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Gender:"
-                        android:textSize="16sp" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/button_round_edges"
+                        android:padding="10dp"
+                        android:text="FRIEND_3" />
 
-                    <TextView
-                        android:id="@+id/gender"
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/friend4"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="16sp" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/button_round_edges"
+                        android:padding="10dp"
+                        android:text="FRIEND_4" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/friend5"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Weight:"
-                        android:textSize="16sp" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/button_round_edges"
+                        android:padding="10dp"
+                        android:text="FRIEND_5" />
 
-                    <TextView
-                        android:id="@+id/weight"
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/friend6"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Height:"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/height"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Step length:"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/stepLength"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Step goal"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/stepGoal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:textSize="16sp" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@drawable/button_round_edges"
+                        android:padding="10dp"
+                        android:text="FRIEND_6" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

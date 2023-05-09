@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.mypedometer.pip.pedometer.R;
 
 public class CreateChallengeFragment extends Fragment {
-
+    
     public CreateChallengeFragment() {
         // Required empty public constructor
     }
