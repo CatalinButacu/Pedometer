@@ -2,6 +2,8 @@ package com.mypedometer.pip.pedometer;
 
 import android.content.Context;
 
+import com.yugabyte.ysql.YBClusterAwareDataSource;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -39,16 +41,14 @@ public class ConnectionDB {
 
     public Connection getConnection() {
         try {
-            System.out.println("Loading PostgreSQL JDBC driver...");
-            Class.forName("org.postgresql.Driver");
+            System.out.println("Loading driver...");
+            Class.forName("com.yugabyte.ysql.YBClusterAwareDataSource");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         try {
             System.out.println("Connecting to database...");
-            //m_Connection = DriverManager.getConnection(url, user, password);
-            //m_Connection = DriverManager.getConnection(url);// getConnection(urlShield, user, password);
-            m_Connection = DriverManager.getConnection("jdbc:yugabytedb://"+host+":"+port+"/"+database+"?user="+user+"&password="+password);
+            m_Connection = DriverManager.getConnection(url);//"jdbc:yugabytedb://"+host+":"+port+"/"+database+"?user="+user+"&password="+password);
 
         } catch (SQLException e) {
             e.printStackTrace();

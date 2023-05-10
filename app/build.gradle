@@ -1,6 +1,24 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.0'
+    }
+}
+
 plugins {
     id 'com.android.application'
+    id 'jacoco'
+    id 'checkstyle'
+    id 'pmd'
+    id 'maven-publish'
 }
+
+group 'pip'
+version '0.0.1'
+description '2023'
 
 android {
     namespace 'com.mypedometer.pip.pedometer'
@@ -12,7 +30,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.1"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -38,11 +55,87 @@ android {
         exclude 'META-INF/licenses/client-2.1.jar/LICENSE'
         exclude 'META-INF/licenses/stringprep-1.1.jar/LICENSE'
     }
+
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+}
+
+
+checkstyle {
+    toolVersion = '8.39'
+    configFile = rootProject.file('checkstyle.xml')
+    showViolations = true
+    ignoreFailures = false
+    sourceSets = sourceSets.matching {
+        it.name == 'main' || it.name == 'test'
+    }
+    sourceSets {
+        main {
+            java {
+                srcDirs = ['src/main/java']
+            }
+        }
+    }
+}
+
+task myJavadoc(type: Javadoc) {
+    failOnError = false
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        links "https://docs.oracle.com/en/java/javase/17/docs/api"
+        linkSource(true)
+        author(true)
+    }
+}
+
+pmd {
+    toolVersion = '6.38.0'
+    ruleSets = [
+            'java/bestpractices.xml',
+            'java/codestyle.xml',
+            'java/documentation.xml',
+            'java/errorprone.xml',
+            'java/performance.xml'
+    ]
+    ignoreFailures = false
+    //linkXRef = true
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    jacoco.excludes = ['jdk.internal.*']
+}
+
+task codeCoverageReport(type: JacocoReport) {
+    group = "Reporting"
+    description = "Generates Jacoco code coverage report"
+
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+
+    def javaClasses = fileTree(
+            dir: project.sourceSets.main.output.classesDirs.files,
+            includes: ['**/*.class']
+    )
+    classDirectories.setFrom(files(javaClasses))
+
+    executionData.setFrom(
+            files("${buildDir}/jacoco/test.exec", "${buildDir}/jacoco/testIntegrationTest.exec")
+    )
+
+    doLast {
+        println "See report at file://${projectDir}/build/reports/jacoco/codeCoverageReport/html/index.html"
+    }
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'org.postgresql:postgresql:42.3.1'
     implementation 'com.yugabyte:jdbc-yugabytedb:42.3.0'
     implementation 'com.zaxxer:HikariCP:4.0.3'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -54,3 +147,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
+
+// Path: app\src\main\AndroidManifest.xml
