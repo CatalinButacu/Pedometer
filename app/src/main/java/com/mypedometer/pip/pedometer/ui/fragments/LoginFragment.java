@@ -27,8 +27,8 @@ public class LoginFragment extends Fragment {
     private Button loginButton;
     private Button signupButton;
 
-    EditText emailEditText;
-    EditText passwordEditText;
+    private EditText emailEditText;
+    private EditText passwordEditText;
 
     public LoginFragment() {
         // Required empty public constructor

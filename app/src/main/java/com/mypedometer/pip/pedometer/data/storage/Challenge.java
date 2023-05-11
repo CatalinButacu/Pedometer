@@ -19,11 +19,18 @@ public class Challenge {
         public Integer[] m_iChallengeDistance;
     }
 
+    public enum Status{
+        Created,
+        Started,
+        Finished,
+        Deleted
+    };
+
 
     public String m_sChallengeID;
     public String m_sCreatorID;
     public String m_sNameChallenge;
-    public Enum m_sStatusChallenge;
+    public Status m_sStatusChallenge;
     public String m_sDateStart;
     public String m_sDateEnd;
     public List<User> m_lCandidates;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class User {
 
-    User(String s){
+    public User(String s){
         if(s=="TEST"){
             m_sNume = "Popa";
             m_sPrenume = "Andrei";
