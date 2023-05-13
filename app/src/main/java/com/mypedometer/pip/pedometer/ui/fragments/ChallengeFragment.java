@@ -8,11 +8,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
+import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
 
 public class ChallengeFragment extends Fragment {
+    ChallengeFragment cf = this;
     Button createCh;
     public ChallengeFragment() {
         // Required empty public constructor
@@ -28,36 +29,24 @@ public class ChallengeFragment extends Fragment {
         ch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChallengeView.setVisibility(View.GONE);
-                ViewChallengeFragment vcf = new ViewChallengeFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setReorderingAllowed(true);
-                transaction.replace(R.id.fragment_container, vcf);
-                transaction.commit();
+               MainActivity mainActivity = new MainActivity();
+               mainActivity.changeFragment(cf,new ViewChallengeFragment());
             }
         });
 
         ch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChallengeView.setVisibility(View.GONE);
-                ViewChallengeFragment vcf = new ViewChallengeFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setReorderingAllowed(true);
-                transaction.replace(R.id.fragment_container, vcf);
-                transaction.commit();
+               MainActivity mainActivity = new MainActivity();
+               mainActivity.changeFragment(cf,new ViewChallengeFragment());
             }
         });
 
         createCh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChallengeView.setVisibility(View.GONE);
-                CreateChallengeFragment ccf = new CreateChallengeFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setReorderingAllowed(true);
-                transaction.replace(R.id.fragment_container, ccf);
-                transaction.commit();
+                MainActivity mainActivity = new MainActivity();
+                mainActivity.changeFragment(cf,new CreateChallengeFragment());
             }
         });
         return ChallengeView;

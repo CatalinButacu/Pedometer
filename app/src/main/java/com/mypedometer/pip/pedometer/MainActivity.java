@@ -1,5 +1,9 @@
 package com.mypedometer.pip.pedometer;
 
+
+
+import androidx.fragment.app.FragmentManager;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
@@ -7,6 +11,9 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +21,8 @@ import com.mypedometer.pip.pedometer.ui.main.SectionsPagerAdapter;
 import com.mypedometer.pip.pedometer.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
+    static boolean fragmentChanged = false;
+    static FragmentManager fragmentManager;
     static public ActivityMainBinding binding;
     static public ViewPager viewPager;
     static public SectionsPagerAdapter sectionsPagerAdapter;
@@ -22,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        fragmentManager = getSupportFragmentManager();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -32,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
-
         try {
             //creare canal notifcare
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -45,7 +52,45 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println("CANALUL NU A PUTUT FI CREAT");
         }
+        //TRANZITIE DINTRE TAB-URI
+        binding.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
 
+            @Override
+            public void onPageSelected(int position) {
+                Fragment fragment = new Fragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
+                if(position == 0){
+                    Fragment fragment1 = ((SectionsPagerAdapter) viewPager.getAdapter()).getItem(0);
+                    getSupportFragmentManager().beginTransaction().show(fragment1).commit();
+                }
+                if(position == 1){
+                    Fragment fragment2 = ((SectionsPagerAdapter) viewPager.getAdapter()).getItem(1);
+                    getSupportFragmentManager().beginTransaction().show(fragment2).commit();
+                }
+                if (position == 2) {
+                    Fragment fragment3 = ((SectionsPagerAdapter) viewPager.getAdapter()).getItem(2);
+                    getSupportFragmentManager().beginTransaction().show(fragment3).commit();
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+    }
+
+    public static void changeFragment(Fragment fragment, Fragment newFragment) {
+        fragmentChanged = true;
+        FragmentTransaction ft = fragment.getActivity().getSupportFragmentManager().beginTransaction();
+        //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.hide(fragment);
+        ft.replace(R.id.fragment_container, newFragment);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 }
 

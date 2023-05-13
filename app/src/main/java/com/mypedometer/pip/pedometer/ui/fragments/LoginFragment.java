@@ -1,14 +1,10 @@
 package com.mypedometer.pip.pedometer.ui.fragments;
 
-import static com.mypedometer.pip.pedometer.ui.main.SectionsPagerAdapter.FRAGMENTS;
-
 import android.os.Bundle;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.mypedometer.pip.pedometer.ConnectionDB;
+import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class LoginFragment extends Fragment {
+    LoginFragment lf = this;
 
     private Button loginButton;
     private Button signupButton;
@@ -50,7 +48,6 @@ public class LoginFragment extends Fragment {
                 boolean valid = true;
                 String email = "";
                 String password = "";
-
 
                 //TODO:: DE IMPLEMENTAT VALIDAREA CU BAZA DE DATE
                 try {
@@ -91,13 +88,9 @@ public class LoginFragment extends Fragment {
                     }
                 }
                 //LOGIN -> PROFILE
+                MainActivity mainActivity = new MainActivity();
+                mainActivity.changeFragment(lf,new ProfileFragment());
 
-                LoginView.setVisibility(View.GONE);
-                ProfileFragment pf = new ProfileFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setReorderingAllowed(true);
-                transaction.replace(R.id.fragment_container, pf);
-                transaction.commit();
 
                 //TRIMITERE NOTIFICARE SYSTEM LOGARE
                 try {
@@ -112,12 +105,8 @@ public class LoginFragment extends Fragment {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginView.setVisibility(View.GONE);
-                CreateAccountFragment caf = new CreateAccountFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setReorderingAllowed(true);
-                transaction.replace(R.id.fragment_container, caf);
-                transaction.commit();
+                MainActivity mainActivity = new MainActivity();
+                mainActivity.changeFragment(lf,new CreateAccountFragment());
             }
         });
         return LoginView;

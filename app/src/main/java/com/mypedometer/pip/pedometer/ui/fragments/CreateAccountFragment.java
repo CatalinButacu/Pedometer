@@ -3,17 +3,17 @@ package com.mypedometer.pip.pedometer.ui.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
+import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
 
 public class CreateAccountFragment extends Fragment {
+    CreateAccountFragment caf = this;
     Button createAcc;
     public CreateAccountFragment() {
         // Required empty public constructor
@@ -26,12 +26,8 @@ public class CreateAccountFragment extends Fragment {
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createAccountView.setVisibility(View.GONE);
-                ProfileFragment pf = new ProfileFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.setReorderingAllowed(true);
-                transaction.replace(R.id.fragment_container, pf);
-                transaction.commit();
+                MainActivity mainActivity = new MainActivity();
+                mainActivity.changeFragment(caf,new ProfileFragment());
             }
         });
 

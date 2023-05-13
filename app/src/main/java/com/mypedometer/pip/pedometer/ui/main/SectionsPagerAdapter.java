@@ -1,6 +1,8 @@
 package com.mypedometer.pip.pedometer.ui.main;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -26,7 +28,7 @@ import java.util.ListIterator;
  * one of the sections/tabs/pages.
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
+    View fragmentContainer;
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2,R.string.tab_text_3};
     @LayoutRes
