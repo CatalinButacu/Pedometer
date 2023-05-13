@@ -22,7 +22,6 @@ public class EditProfileFragment extends Fragment {
     private EditText edit_Greutate;
     private EditText edit_Email;
     private EditText edit_Phone;
-    private Button edit_profile_button;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -30,9 +29,7 @@ public class EditProfileFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View editProfileView = inflater.inflate(R.layout.edit_profile_fragment, container, false);
-
-        edit_profile_button = (Button) editProfileView.findViewById(R.id.editProfileButton);
+        View editProfileView = inflater.inflate(R.layout.edit_profile_layout, container, false);
 
         edit_Nume = (EditText) editProfileView.findViewById(R.id.editNume);
         edit_Prenume = (EditText) editProfileView.findViewById(R.id.editPrenume);
@@ -41,7 +38,7 @@ public class EditProfileFragment extends Fragment {
         edit_Greutate = (EditText) editProfileView.findViewById(R.id.editGreutate);
         edit_Email = (EditText) editProfileView.findViewById(R.id.editEmail);
         edit_Phone = (EditText) editProfileView.findViewById(R.id.editPhone);
-
+/*
         edit_profile_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +76,7 @@ public class EditProfileFragment extends Fragment {
                     //update profile
                 }
             }
-        });
+        });*/
         return editProfileView;
     }
     //public User updateUser(){
