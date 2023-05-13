@@ -4,7 +4,7 @@ package com.mypedometer.pip.pedometer.sensors;
  * Calculates and displays the distance walked.
  */
 
-public class DistanceNotifier implements StepListener, SpeakingTimer.Listener {
+public class ManagerDistance implements StepListener, SpeakingTimer.Listener {
 
     public interface Listener {
         public void valueChanged(float value);
@@ -20,7 +20,7 @@ public class DistanceNotifier implements StepListener, SpeakingTimer.Listener {
     boolean mIsMetric;
     float mStepLength;
 
-    public DistanceNotifier(Listener listener, PedometerSettings settings, Utils utils) {
+    public ManagerDistance(Listener listener, PedometerSettings settings, Utils utils) {
         mListener = listener;
         mUtils = utils;
         mSettings = settings;

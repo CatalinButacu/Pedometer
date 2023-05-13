@@ -22,18 +22,6 @@ import android.widget.Toast;
 
 import com.mypedometer.pip.pedometer.R;
 
-
-/**
- * This is an example of implementing an application service that runs locally
- * in the same process as the application.  The {@link StepServiceController}
- * and {@link StepServiceBinding} classes show how to interact with the
- * service.
- *
- * <p>Notice the use of the {@link NotificationManager} when interesting things
- * happen in the service.  This is generally how background services should
- * interact with the user, rather than doing something more disruptive such as
- * calling startActivity().
- */
 public class StepService extends Service {
 	private static final String TAG = "name.bagi.levente.pedometer.StepService";
     private SharedPreferences mSettings;
@@ -46,10 +34,10 @@ public class StepService extends Service {
     private StepDetector mStepDetector;
     // private StepBuzzer mStepBuzzer; // used for debugging
     private StepDisplayer mStepDisplayer;
-    private PaceNotifier mPaceNotifier;
-    private DistanceNotifier mDistanceNotifier;
-    private SpeedNotifier mSpeedNotifier;
-    private CaloriesNotifier mCaloriesNotifier;
+    private ManagerStatus mPaceNotifier;
+    private ManagerDistance mDistanceNotifier;
+    private ManagerSpeed mSpeedNotifier;
+    private ManagerCalories mCaloriesNotifier;
     private SpeakingTimer mSpeakingTimer;
     
     private PowerManager.WakeLock wakeLock;
@@ -106,20 +94,20 @@ public class StepService extends Service {
         mStepDisplayer.addListener(mStepListener);
         mStepDetector.addStepListener(mStepDisplayer);
 
-        mPaceNotifier     = new PaceNotifier(mPedometerSettings, mUtils);
+        mPaceNotifier     = new ManagerStatus(mPedometerSettings, mUtils);
         mPaceNotifier.setPace(mPace = mState.getInt("pace", 0));
         mPaceNotifier.addListener(mPaceListener);
         mStepDetector.addStepListener(mPaceNotifier);
 
-        mDistanceNotifier = new DistanceNotifier(mDistanceListener, mPedometerSettings, mUtils);
+        mDistanceNotifier = new ManagerDistance(mDistanceListener, mPedometerSettings, mUtils);
         mDistanceNotifier.setDistance(mDistance = mState.getFloat("distance", 0));
         mStepDetector.addStepListener(mDistanceNotifier);
         
-        mSpeedNotifier    = new SpeedNotifier(mSpeedListener,    mPedometerSettings, mUtils);
+        mSpeedNotifier    = new ManagerSpeed(mSpeedListener,    mPedometerSettings, mUtils);
         mSpeedNotifier.setSpeed(mSpeed = mState.getFloat("speed", 0));
         mPaceNotifier.addListener(mSpeedNotifier);
         
-        mCaloriesNotifier = new CaloriesNotifier(mCaloriesListener, mPedometerSettings, mUtils);
+        mCaloriesNotifier = new ManagerCalories(mCaloriesListener, mPedometerSettings, mUtils);
         mCaloriesNotifier.setCalories(mCalories = mState.getFloat("calories", 0));
         mStepDetector.addStepListener(mCaloriesNotifier);
         
@@ -139,7 +127,7 @@ public class StepService extends Service {
         reloadSettings();
 
         // Tell the user we started.
-        Toast.makeText(this, getText(R.string.started), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getText(R.string.app_name), Toast.LENGTH_SHORT).show();
     }
     
     @Override
@@ -175,7 +163,7 @@ public class StepService extends Service {
         mSensorManager.unregisterListener(mStepDetector);
 
         // Tell the user we stopped.
-        Toast.makeText(this, getText(R.string.stopped), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getText(R.string.app_name), Toast.LENGTH_SHORT).show();
     }
 
     private void registerDetector() {
@@ -287,7 +275,7 @@ public class StepService extends Service {
     /**
      * Forwards pace values from PaceNotifier to the activity. 
      */
-    private PaceNotifier.Listener mPaceListener = new PaceNotifier.Listener() {
+    private ManagerStatus.Listener mPaceListener = new ManagerStatus.Listener() {
         public void paceChanged(int value) {
             mPace = value;
             passValue();
@@ -301,7 +289,7 @@ public class StepService extends Service {
     /**
      * Forwards distance values from DistanceNotifier to the activity. 
      */
-    private DistanceNotifier.Listener mDistanceListener = new DistanceNotifier.Listener() {
+    private ManagerDistance.Listener mDistanceListener = new ManagerDistance.Listener() {
         public void valueChanged(float value) {
             mDistance = value;
             passValue();
@@ -315,7 +303,7 @@ public class StepService extends Service {
     /**
      * Forwards speed values from SpeedNotifier to the activity. 
      */
-    private SpeedNotifier.Listener mSpeedListener = new SpeedNotifier.Listener() {
+    private ManagerSpeed.Listener mSpeedListener = new ManagerSpeed.Listener() {
         public void valueChanged(float value) {
             mSpeed = value;
             passValue();
@@ -329,7 +317,7 @@ public class StepService extends Service {
     /**
      * Forwards calories values from CaloriesNotifier to the activity. 
      */
-    private CaloriesNotifier.Listener mCaloriesListener = new CaloriesNotifier.Listener() {
+    private ManagerCalories.Listener mCaloriesListener = new ManagerCalories.Listener() {
         public void valueChanged(float value) {
             mCalories = value;
             passValue();
@@ -345,19 +333,19 @@ public class StepService extends Service {
      * Show a notification while this service is running.
      */
     private void showNotification() {
-        CharSequence text = getText(R.string.app_name);
-        Notification notification = new Notification(R.drawable.ic_notification, null,
-                System.currentTimeMillis());
-        notification.flags = Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
-        Intent pedometerIntent = new Intent();
-        pedometerIntent.setComponent(new ComponentName(this, Pedometer.class));
-        pedometerIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                pedometerIntent, 0);
-        notification.setLatestEventInfo(this, text,
-                getText(R.string.notification_subtitle), contentIntent);
-
-        mNM.notify(R.string.app_name, notification);
+//        CharSequence text = getText(R.string.app_name);
+//        Notification notification = new Notification(R.drawable.ic_notification, null,
+//                System.currentTimeMillis());
+//        notification.flags = Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
+//        Intent pedometerIntent = new Intent();
+//        pedometerIntent.setComponent(new ComponentName(this, Pedometer.class));
+//        pedometerIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
+//                pedometerIntent, 0);
+//        notification.setLatestEventInfo(this, text,
+//                getText(R.string.notification_subtitle), contentIntent);
+//
+//        mNM.notify(R.string.app_name, notification);
     }
 
 

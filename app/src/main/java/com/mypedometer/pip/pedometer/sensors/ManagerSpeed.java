@@ -5,10 +5,10 @@ package com.mypedometer.pip.pedometer.sensors;
  * Calculates and displays pace (steps / minute), handles input of desired pace,
  * notifies user if he/she has to go faster or slower.
  * 
- * Uses {@link PaceNotifier}, calculates speed as product of pace and step length.
+ * Uses {@link ManagerStatus}, calculates speed as product of pace and step length.
  *
  */
-public class SpeedNotifier implements PaceNotifier.Listener, SpeakingTimer.Listener {
+public class ManagerSpeed implements ManagerStatus.Listener, SpeakingTimer.Listener {
 
     public interface Listener {
         public void valueChanged(float value);
@@ -35,7 +35,7 @@ public class SpeedNotifier implements PaceNotifier.Listener, SpeakingTimer.Liste
     /** When did the TTS speak last time */
     private long mSpokenAt = 0;
     
-    public SpeedNotifier(Listener listener, PedometerSettings settings, Utils utils) {
+    public ManagerSpeed(Listener listener, PedometerSettings settings, Utils utils) {
         mListener = listener;
         mUtils = utils;
         mSettings = settings;

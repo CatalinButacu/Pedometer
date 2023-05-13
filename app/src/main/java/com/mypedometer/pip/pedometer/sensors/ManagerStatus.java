@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * notifies user if he/she has to go faster or slower.
  */
 
-public class PaceNotifier implements StepListener, SpeakingTimer.Listener {
+public class ManagerStatus implements StepListener, SpeakingTimer.Listener {
 
     public interface Listener {
         public void paceChanged(int value);
@@ -34,7 +34,7 @@ public class PaceNotifier implements StepListener, SpeakingTimer.Listener {
     /** When did the TTS speak last time */
     private long mSpokenAt = 0;
 
-    public PaceNotifier(PedometerSettings settings, Utils utils) {
+    public ManagerStatus(PedometerSettings settings, Utils utils) {
         mUtils = utils;
         mSettings = settings;
         mDesiredPace = mSettings.getDesiredPace();

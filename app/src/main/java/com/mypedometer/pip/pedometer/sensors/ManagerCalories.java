@@ -4,7 +4,7 @@ package com.mypedometer.pip.pedometer.sensors;
  * Calculates and displays the approximate calories.
  */
 
-public class CaloriesNotifier implements StepListener, SpeakingTimer.Listener {
+public class ManagerCalories implements StepListener, SpeakingTimer.Listener {
 
     public interface Listener {
         public void valueChanged(float value);
@@ -28,7 +28,7 @@ public class CaloriesNotifier implements StepListener, SpeakingTimer.Listener {
     float mStepLength;
     float mBodyWeight;
 
-    public CaloriesNotifier(Listener listener, PedometerSettings settings, Utils utils) {
+    public ManagerCalories(Listener listener, PedometerSettings settings, Utils utils) {
         mListener = listener;
         mUtils = utils;
         mSettings = settings;
