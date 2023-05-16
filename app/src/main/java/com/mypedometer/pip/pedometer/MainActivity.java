@@ -4,6 +4,7 @@ package com.mypedometer.pip.pedometer;
 
 import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
@@ -20,11 +21,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mypedometer.pip.pedometer.ui.main.SectionsPagerAdapter;
 import com.mypedometer.pip.pedometer.databinding.ActivityMainBinding;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     static boolean fragmentChanged = false;
     static FragmentManager fragmentManager;
+    @SuppressLint("StaticFieldLeak")
     static public ActivityMainBinding binding;
     static public ViewPager viewPager;
+    @SuppressLint("StaticFieldLeak")
     static public SectionsPagerAdapter sectionsPagerAdapter;
 
     @Override
@@ -63,15 +68,15 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment = new Fragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
                 if(position == 0){
-                    Fragment fragment1 = ((SectionsPagerAdapter) viewPager.getAdapter()).getItem(0);
+                    Fragment fragment1 = ((SectionsPagerAdapter) Objects.requireNonNull(viewPager.getAdapter())).getItem(0);
                     getSupportFragmentManager().beginTransaction().show(fragment1).commit();
                 }
                 if(position == 1){
-                    Fragment fragment2 = ((SectionsPagerAdapter) viewPager.getAdapter()).getItem(1);
+                    Fragment fragment2 = ((SectionsPagerAdapter) Objects.requireNonNull(viewPager.getAdapter())).getItem(1);
                     getSupportFragmentManager().beginTransaction().show(fragment2).commit();
                 }
                 if (position == 2) {
-                    Fragment fragment3 = ((SectionsPagerAdapter) viewPager.getAdapter()).getItem(2);
+                    Fragment fragment3 = ((SectionsPagerAdapter) Objects.requireNonNull(viewPager.getAdapter())).getItem(2);
                     getSupportFragmentManager().beginTransaction().show(fragment3).commit();
                 }
             }
