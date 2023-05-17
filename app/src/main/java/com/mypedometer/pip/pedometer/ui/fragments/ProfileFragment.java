@@ -4,17 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
-import com.mypedometer.pip.pedometer.data.storage.User;
-
 import java.text.DecimalFormat;
 
 public class ProfileFragment extends Fragment {
-
+    ProfileFragment pf = this;
+    private Button edit_profile_button;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -24,6 +25,14 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View profileView = inflater.inflate(R.layout.profile_layout, container, false);
+        edit_profile_button = (Button) profileView.findViewById(R.id.edit_profile_button);
+        edit_profile_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = new MainActivity();
+                mainActivity.changeFragment(pf,new EditProfileFragment());
+            }
+        });
 
         final String NAME = "Popescu Ion";
         final String EMAIL = "popescu.ion@gmail.com";

@@ -8,22 +8,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
 import com.mypedometer.pip.pedometer.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class StatusFragment extends Fragment {
-
     public StatusFragment() {
         // Required empty public constructor
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.status_layout, container, false);
+        View StatusView = inflater.inflate(R.layout.status_layout, container, false);
 
         final int STEPS = 5000;
 
@@ -58,64 +57,64 @@ public class StatusFragment extends Fragment {
 
 
         //afisez data curenta dateFormat
-        TextView textData = view.findViewById(R.id.currentDate);
+        TextView textData = StatusView.findViewById(R.id.currentDate);
         textData.setText(Date);
 
         // afisez pasii in textView-ul pt steps
-        TextView textPasi = view.findViewById(R.id.steps);
+        TextView textPasi = StatusView.findViewById(R.id.steps);
         textPasi.setText(Integer.toString(STEPS));
 
         //detalii progress bar
-        ProgressBar pBar = view.findViewById(R.id.progressBar);
+        ProgressBar pBar = StatusView.findViewById(R.id.progressBar);
         pBar.setProgress(STEPS*100/GOAL);
 
         //afisare detalii progress bar
-        TextView infoPBar = view.findViewById(R.id.infoProgressBar);
+        TextView infoPBar = StatusView.findViewById(R.id.infoProgressBar);
         infoPBar.setText(STEPS + "/" + GOAL);
 
 
         // afisez in textView-ul pt calorii mesajul MSGCALORIES
-        TextView textCalories = view.findViewById(R.id.Calories);
+        TextView textCalories = StatusView.findViewById(R.id.Calories);
         textCalories.setText(MSGCALORIES);
 
         // afisez in textView-ul pt distanta mesajul MSGDISTANCE
-        TextView textDistancce = view.findViewById(R.id.Distance);
+        TextView textDistancce = StatusView.findViewById(R.id.Distance);
         textDistancce.setText(MSGDISTANCE);
 
         // afisez in textView-ul pt timp mesajul MSGTIME
-        TextView textTime = view.findViewById(R.id.Time);
+        TextView textTime = StatusView.findViewById(R.id.Time);
         textTime.setText(MSGTIME);
 
         // afisez in textView-ul pt speed mesajul MSGSPEED
-        TextView textSpeed = view.findViewById(R.id.Speed);
+        TextView textSpeed = StatusView.findViewById(R.id.Speed);
         textSpeed.setText(MSGSPEED);
 
         // afisez in textView-ul pt daile average mesajul MSGDAILYAVERAGE
-        TextView textDailyAverage = view.findViewById(R.id.dailyAverage);
+        TextView textDailyAverage = StatusView.findViewById(R.id.dailyAverage);
         textDailyAverage.setText(MSGDAILYAVERAGE);
 
         //setez progresul pentru fiecare zi
-        ProgressBar mon = view.findViewById(R.id.monday);
+        ProgressBar mon = StatusView.findViewById(R.id.monday);
         mon.setProgress(MONDAY);
 
-        ProgressBar tue = view.findViewById(R.id.tuesday);
+        ProgressBar tue = StatusView.findViewById(R.id.tuesday);
         tue.setProgress(TUESDAY);
 
-        ProgressBar wed = view.findViewById(R.id.wednesday);
+        ProgressBar wed = StatusView.findViewById(R.id.wednesday);
         wed.setProgress(WEDNESDAY);
 
-        ProgressBar thu = view.findViewById(R.id.thursday);
+        ProgressBar thu = StatusView.findViewById(R.id.thursday);
         thu.setProgress(THURSDAY);
 
-        ProgressBar fri = view.findViewById(R.id.friday);
+        ProgressBar fri = StatusView.findViewById(R.id.friday);
         fri.setProgress(FRIDAY);
 
-        ProgressBar sat = view.findViewById(R.id.saturday);
+        ProgressBar sat = StatusView.findViewById(R.id.saturday);
         sat.setProgress(SATURDAY);
 
-        ProgressBar sun = view.findViewById(R.id.sunday);
+        ProgressBar sun = StatusView.findViewById(R.id.sunday);
         sun.setProgress(SUNDAY);
 
-        return view;
+        return StatusView;
     }
 }

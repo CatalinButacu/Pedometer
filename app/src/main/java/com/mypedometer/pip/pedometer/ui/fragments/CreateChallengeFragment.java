@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateChallengeFragment extends Fragment {
-
     private EditText createChallengeName;
     private EditText challengeStartDate;
     private EditText challengeEndDate;

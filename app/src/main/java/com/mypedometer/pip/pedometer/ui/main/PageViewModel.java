@@ -1,17 +1,21 @@
 package com.mypedometer.pip.pedometer.ui.main;
 
+import android.util.Log;
+import android.view.View;
+
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.mypedometer.pip.pedometer.R;
 import com.mypedometer.pip.pedometer.ui.fragments.ChallengeFragment;
 import com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment;
 import com.mypedometer.pip.pedometer.ui.fragments.StatusFragment;
 
 public class PageViewModel extends ViewModel {
-
     private final MutableLiveData<Integer> mIndex = new MutableLiveData<>();
     private final LiveData<Fragment> mFragment = Transformations.switchMap(mIndex, input -> {
         switch (input) {

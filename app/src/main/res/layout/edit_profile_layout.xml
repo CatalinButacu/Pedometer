@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundd"
+    tools:context=".ui.main.">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="0mm"
+            android:text="Edit Profile"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/editNume"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Name"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/input_round"
+            android:inputType="text"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/editPrenume"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Prenume"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/input_round"
+            android:inputType="text"
+            android:textSize="20sp"/>
+
+
+        <EditText
+            android:id="@+id/editVarsta"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Varsta"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/input_round"
+            android:inputType="text"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/editInaltime"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Inaltime"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/input_round"
+            android:inputType="text"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/editGreutate"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Greutate"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/input_round"
+            android:inputType="text"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Email"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/input_round"
+            android:inputType="text"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/editPhone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Phone Number"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/input_round"
+            android:inputType="text"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/editProfileButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="20dp"
+            android:background="@drawable/button_round_edges"
+            android:text="UPDATE PROFILE"/>
+    </LinearLayout>
+</FrameLayout>
