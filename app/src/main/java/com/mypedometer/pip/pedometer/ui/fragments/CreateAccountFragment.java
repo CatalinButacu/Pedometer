@@ -27,7 +27,7 @@ public class CreateAccountFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity mainActivity = new MainActivity();
-                mainActivity.changeFragment(caf,new ProfileFragment());
+                mainActivity.changeProfileFragment(caf,new ProfileFragment());
             }
         });
 

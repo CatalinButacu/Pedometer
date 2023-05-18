@@ -9,6 +9,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -18,13 +19,20 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.mypedometer.pip.pedometer.ui.fragments.ChallengeFragment;
+import com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment;
+import com.mypedometer.pip.pedometer.ui.fragments.StatusFragment;
+import com.mypedometer.pip.pedometer.ui.fragments.ViewChallengeFragment;
 import com.mypedometer.pip.pedometer.ui.main.SectionsPagerAdapter;
 import com.mypedometer.pip.pedometer.databinding.ActivityMainBinding;
 
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    static boolean fragmentChanged = false;
+    static Fragment fragmentChallenge = new Fragment();
+    static Fragment fragmentProfile = new Fragment();
+    static boolean fragmentChangedChallenge = false;
+    static boolean fragmentChangedProfile = false;
     static FragmentManager fragmentManager;
     @SuppressLint("StaticFieldLeak")
     static public ActivityMainBinding binding;
@@ -71,13 +79,11 @@ public class MainActivity extends AppCompatActivity {
                     Fragment fragment1 = ((SectionsPagerAdapter) Objects.requireNonNull(viewPager.getAdapter())).getItem(0);
                     getSupportFragmentManager().beginTransaction().show(fragment1).commit();
                 }
-                if(position == 1){
-                    Fragment fragment2 = ((SectionsPagerAdapter) Objects.requireNonNull(viewPager.getAdapter())).getItem(1);
-                    getSupportFragmentManager().beginTransaction().show(fragment2).commit();
+                if(position == 1 && fragmentChangedChallenge){
+                    getSupportFragmentManager().beginTransaction().add(fragmentChallenge,"").commit();
                 }
-                if (position == 2) {
-                    Fragment fragment3 = ((SectionsPagerAdapter) Objects.requireNonNull(viewPager.getAdapter())).getItem(2);
-                    getSupportFragmentManager().beginTransaction().show(fragment3).commit();
+                if (position == 2 && fragmentChangedProfile) {
+                    getSupportFragmentManager().beginTransaction().add(fragmentProfile,"").commit();
                 }
             }
 
@@ -88,10 +94,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static void changeFragment(Fragment fragment, Fragment newFragment) {
-        fragmentChanged = true;
+    public static void changeChallengeFragment(Fragment fragment, Fragment newFragment) {
+        fragmentChallenge = newFragment;
+        fragmentChangedChallenge = true;
         FragmentTransaction ft = fragment.getActivity().getSupportFragmentManager().beginTransaction();
-        //ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.hide(fragment);
+        ft.replace(R.id.fragment_container, newFragment);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+    public static void changeProfileFragment(Fragment fragment, Fragment newFragment) {
+        fragmentProfile = newFragment;
+        fragmentChangedProfile = true;
+        FragmentTransaction ft = fragment.getActivity().getSupportFragmentManager().beginTransaction();
         ft.hide(fragment);
         ft.replace(R.id.fragment_container, newFragment);
         ft.addToBackStack(null);

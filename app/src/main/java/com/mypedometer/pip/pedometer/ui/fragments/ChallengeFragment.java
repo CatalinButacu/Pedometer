@@ -30,7 +30,7 @@ public class ChallengeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                MainActivity mainActivity = new MainActivity();
-               mainActivity.changeFragment(cf,new ViewChallengeFragment());
+               mainActivity.changeChallengeFragment(cf,new ViewChallengeFragment());
             }
         });
 
@@ -38,7 +38,7 @@ public class ChallengeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                MainActivity mainActivity = new MainActivity();
-               mainActivity.changeFragment(cf,new ViewChallengeFragment());
+               mainActivity.changeChallengeFragment(cf,new ViewChallengeFragment());
             }
         });
 
@@ -46,7 +46,7 @@ public class ChallengeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity mainActivity = new MainActivity();
-                mainActivity.changeFragment(cf,new CreateChallengeFragment());
+                mainActivity.changeChallengeFragment(cf,new CreateChallengeFragment());
             }
         });
         return ChallengeView;

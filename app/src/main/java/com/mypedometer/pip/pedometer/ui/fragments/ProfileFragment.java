@@ -30,7 +30,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity mainActivity = new MainActivity();
-                mainActivity.changeFragment(pf,new EditProfileFragment());
+                mainActivity.changeProfileFragment(pf,new EditProfileFragment());
             }
         });
 

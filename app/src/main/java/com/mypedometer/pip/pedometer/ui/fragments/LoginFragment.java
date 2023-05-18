@@ -89,7 +89,7 @@ public class LoginFragment extends Fragment {
                 }
                 //LOGIN -> PROFILE
                 MainActivity mainActivity = new MainActivity();
-                mainActivity.changeFragment(lf,new ProfileFragment());
+                mainActivity.changeProfileFragment(lf,new ProfileFragment());
 
 
                 //TRIMITERE NOTIFICARE SYSTEM LOGARE
@@ -106,7 +106,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity mainActivity = new MainActivity();
-                mainActivity.changeFragment(lf,new CreateAccountFragment());
+                mainActivity.changeProfileFragment(lf,new CreateAccountFragment());
             }
         });
         return LoginView;
