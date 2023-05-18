@@ -101,6 +101,7 @@ public class CreateChallengeFragment extends Fragment {
         challenge.m_sCreatorID = "1000";    //user.ID;
         challenge.m_sStatusChallenge = Challenge.Status.Created;
         challenge.m_sNameChallenge = ChallengeName;
+        //challenge.m_sDecription = ChallengeDescription;
         challenge.m_sDateStart = Ch_StartDate;
         challenge.m_sDateEnd = Ch_EndDate;
         challenge.m_lCandidates = initFriendsToChallenge(Ch_Friends);
