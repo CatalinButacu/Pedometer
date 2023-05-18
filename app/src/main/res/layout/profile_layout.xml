@@ -67,7 +67,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/personalInfo"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:color="@color/black"/>
 
             <View
                 android:layout_width="match_parent"
@@ -87,79 +89,103 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/age"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:id="@+id/age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/gender"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:id="@+id/gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/weight"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:id="@+id/weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/height"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:id="@+id/height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stepLength"
-                    android:textSize="16sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:id="@+id/stepLength"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/stepGoal"
-                    android:textSize="16sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
 
                 <TextView
                     android:id="@+id/stepGoal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:textSize="16sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:color="@color/black"/>
                 </LinearLayout>
             </ScrollView>
             <Button

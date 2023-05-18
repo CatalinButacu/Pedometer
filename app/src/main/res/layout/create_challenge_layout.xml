@@ -15,9 +15,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:text="Create your challenge"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/light_dark_blue" />
 

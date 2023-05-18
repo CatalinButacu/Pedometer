@@ -19,12 +19,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="Challenge-uri cu prietenii"
-            android:textSize="24sp"
+            android:textSize="24dp"
             android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="3dp"
             android:layout_marginBottom="16dp"
             android:background="@android:color/darker_gray" />
 
@@ -50,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Challenge 1"
-                    android:textSize="18sp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Concurează cu prietenii tăi pentru a vedea cine face cei mai mulți pași într-o săptămână!"
-                    android:textSize="16sp" />
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
@@ -66,7 +66,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="3dp"
             android:layout_marginBottom="16dp"
             android:background="@android:color/darker_gray" />
 
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Challenge 2"
-                    android:textSize="18sp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Alege un prieten și încercați să ajungeți împreună la 10.000 de pași într-o zi!"
-                    android:textSize="16sp" />
+                    android:textSize="18dp" />
 
             </LinearLayout>
 
