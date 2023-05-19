@@ -9,10 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mypedometer.pip.pedometer.R;
-import com.mypedometer.pip.pedometer.data.storage.Challenge;
-import com.mypedometer.pip.pedometer.data.storage.User;
+import com.mypedometer.pip.pedometer.data.model.ChallengeModel;
+import com.mypedometer.pip.pedometer.data.model.UserModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class CreateChallengeFragment extends Fragment {
     private EditText challengeEndDate;
     private EditText challengeInviteFriends;
 
-    private Button create_account_button;
+    private Button createChallengeButton;
 
     public CreateChallengeFragment() {
         // Required empty public constructor
@@ -33,14 +34,14 @@ public class CreateChallengeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View createChallengeView = inflater.inflate(R.layout.create_challenge_layout, container, false);
 
-        create_account_button = (Button) createChallengeView.findViewById(R.id.create_account_button);
+        createChallengeButton = (Button) createChallengeView.findViewById(R.id.create_account_button);
 
         createChallengeName = (EditText) createChallengeView.findViewById(R.id.createChallengeName);
         challengeStartDate = (EditText) createChallengeView.findViewById(R.id.challengeStartDate);
         challengeEndDate = (EditText) createChallengeView.findViewById(R.id.challengeEndDate);
         challengeInviteFriends = (EditText) createChallengeView.findViewById(R.id.challengeInviteFriends);
 
-        create_account_button.setOnClickListener(new View.OnClickListener() {
+        createChallengeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean valid = true;
@@ -76,19 +77,21 @@ public class CreateChallengeFragment extends Fragment {
                 if (valid)
                 {
                     //create challenge
+
                 }
+                Toast.makeText(getActivity(), "Challenge created!", Toast.LENGTH_SHORT).show();
             }
         });
         //Test
-        List<User> ss = initFriendsToChallenge("{1,3,2,5}");
+        List<UserModel> ss = initFriendsToChallenge("{1,3,2,5}");
 
         return createChallengeView;
     }
 
-    public Challenge createChallenge(){
+    public ChallengeModel createChallenge(){
 
         //creaza un obiect de tipul challenge
-        Challenge challenge = new Challenge();
+        ChallengeModel challenge = new ChallengeModel();
 
         //extragerea inputului din UI
         String ChallengeName = createChallengeName.getText().toString();
@@ -97,21 +100,21 @@ public class CreateChallengeFragment extends Fragment {
         String Ch_Friends = challengeInviteFriends.getText().toString();
 
         //atribuie campurilor obiectului inputul
-        challenge.m_sChallengeID = "5000";
-        challenge.m_sCreatorID = "1000";    //user.ID;
-        challenge.m_sStatusChallenge = Challenge.Status.Created;
-        challenge.m_sNameChallenge = ChallengeName;
-        challenge.m_sDateStart = Ch_StartDate;
-        challenge.m_sDateEnd = Ch_EndDate;
+        challenge.setChallengeID("5000");
+        challenge.setCreatorID("1000");
+        challenge.setStatusChallenge(ChallengeModel.Status.Created);
+        challenge.setNameChallenge(ChallengeName);
+        challenge.setDateStart(Ch_StartDate);
+        challenge.setDateEnd(Ch_EndDate);
         challenge.m_lCandidates = initFriendsToChallenge(Ch_Friends);
 
         //returneaza obiectul
         return challenge;
     }
     //***************************************************************************************
-    List<User> initFriendsToChallenge(String s){
+    List<UserModel> initFriendsToChallenge(String s){
 
-        List<User> listFriendsID = new ArrayList<>();
+        List<UserModel> listFriendsID = new ArrayList<>();
         String[] FriendsArrayID = s.split(",");
         String ss = "";
         for (String id:FriendsArrayID) {
@@ -121,7 +124,8 @@ public class CreateChallengeFragment extends Fragment {
             if(id.matches(".*[^0-9].*"))
                 ss = id.replaceAll("\\D+", "");
 
-            User friend = new User(ss);
+            UserModel friend = new UserModel();
+            friend.setUserID(ss);
             listFriendsID.add(friend);
         }
         return listFriendsID;
