@@ -51,9 +51,11 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
                 android:background="@drawable/input_round"
                 android:inputType="textEmailAddress"
-                android:hint="->"
+                android:hint="type here..."
                 android:textSize="20sp"/>
 
             <TextView
@@ -71,9 +73,11 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
                 android:background="@drawable/input_round"
                 android:inputType="textPassword"
-                android:hint="->"
+                android:hint="type here..."
                 android:textSize="20sp"/>
         </LinearLayout>
 

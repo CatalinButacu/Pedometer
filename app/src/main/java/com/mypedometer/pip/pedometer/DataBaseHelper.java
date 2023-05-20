@@ -79,6 +79,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             cv.put("UserID", user.getUserID());
             cv.put("Nume", user.getNume());
             cv.put("Prenume", user.getPrenume());
+            cv.put("Gen", user.getGen());
             cv.put("Varsta", user.getVarsta());
             cv.put("Greutate", user.getGreutate());
             cv.put("Inaltime", user.getInaltime());
@@ -214,6 +215,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                         "  UserID TEXT PRIMARY KEY,\n" +
                         "  Nume TEXT,\n" +
                         "  Prenume TEXT,\n" +
+                        "  Gen TEXT,\n" +
                         "  Varsta INTEGER,\n" +
                         "  Greutate REAL,\n" +
                         "  Inaltime REAL,\n" +
@@ -361,12 +363,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 user.setPhone(cursor.getString(2));
                 user.setPassword(cursor.getString(3));
 
-                user.setNume(cursorInfo.getString(1));
+                user.setFirstName(cursorInfo.getString(1));
                 user.setPrenume(cursorInfo.getString(2));
-                user.setVarsta(Integer.parseInt(cursorInfo.getString(3)));
-                user.setGreutate(Float.parseFloat(cursorInfo.getString(4)));
-                user.setInaltime(Float.parseFloat(cursorInfo.getString(5)));
-                user.setIsPrivateProfile(Boolean.parseBoolean(cursorInfo.getString(6)));
+                user.setGender(cursorInfo.getString(3));
+                user.setVarsta(Integer.parseInt(cursorInfo.getString(4)));
+                user.setGreutate(Float.parseFloat(cursorInfo.getString(5)));
+                user.setInaltime(Float.parseFloat(cursorInfo.getString(6)));
+                user.setIsPrivateProfile(Boolean.parseBoolean(cursorInfo.getString(7)));
 
                 user.setTotalSteps(Integer.parseInt(cursorStats.getString(1)));
                 user.setTotalDistance(Integer.parseInt(cursorStats.getString(2)));

@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
+import com.mypedometer.pip.pedometer.data.model.UserModel;
+
 import java.text.DecimalFormat;
 
 public class ProfileFragment extends Fragment {
@@ -19,6 +21,10 @@ public class ProfileFragment extends Fragment {
     public ProfileFragment() {
         // Required empty public constructor
     }
+    public ProfileFragment(UserModel userModel) {
+        user = userModel;
+    }
+    static UserModel user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,48 +40,39 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        final String NAME = "Popescu Ion";
-        final String EMAIL = "popescu.ion@gmail.com";
-        final int AGE = 27;
-        final String GENDER = "Male";
-        final double WEIGHT = 72.6;
-        final int HEIGHT = 186;
-        final double STEPLENGTH = 0.4 * HEIGHT;
-        final int STEPGOAL = 7000;
-
         //afisez nume
         TextView textName = profileView.findViewById(R.id.name);
-        textName.setText(NAME);
+        textName.setText(user.getNume() + " " + user.getPrenume());
 
         //afisez email
         TextView textEmail= profileView.findViewById(R.id.email);
-        textEmail.setText(EMAIL);
+        textEmail.setText(user.getEmail());
 
         //afisez varsta
         TextView textAge = profileView.findViewById(R.id.age);
-        textAge.setText(Integer.toString(AGE));
+        textAge.setText(Integer.toString(user.getVarsta()));
 
         //afisez gen
         TextView textGender = profileView.findViewById(R.id.gender);
-        textGender.setText(GENDER);
+        textGender.setText(user.getGen());
 
         //afisez greutate
         TextView textWeight = profileView.findViewById(R.id.weight);
-        textWeight.setText(WEIGHT + " kg");
+        textWeight.setText(user.getGreutate() + " kg");
 
         //afisez inaltime
         TextView textHeight = profileView.findViewById(R.id.height);
-        textHeight.setText(HEIGHT + " cm");
+        textHeight.setText(user.getInaltime() + " cm");
 
         //afisez lungimea pasului
         TextView textStepLength = profileView.findViewById(R.id.stepLength);
         DecimalFormat df = new DecimalFormat("##.##");
-        String stepL = df.format(STEPLENGTH);
+        String stepL = df.format(0.415 * user.getInaltime());
         textStepLength.setText(stepL + " cm");
 
         //afisez step goal
         TextView textStepGoal = profileView.findViewById(R.id.stepGoal);
-        textStepGoal.setText(Integer.toString(STEPGOAL));
+        textStepGoal.setText(Integer.toString(user.getGoalDailySteps()));
 
         return profileView;
     }

@@ -1,5 +1,7 @@
 package com.mypedometer.pip.pedometer.ui.fragments;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.core.app.NotificationCompat;
@@ -11,13 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 //import com.mypedometer.pip.pedometer.ConnectionDB;
+import com.mypedometer.pip.pedometer.DataBaseHelper;
 import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
+import com.mypedometer.pip.pedometer.data.model.UserModel;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.regex.Pattern;
 
 public class LoginFragment extends Fragment {
     LoginFragment lf = this;
@@ -49,7 +55,6 @@ public class LoginFragment extends Fragment {
                 String email = "";
                 String password = "";
 
-                //TODO:: DE IMPLEMENTAT VALIDAREA CU BAZA DE DATE
                 try {
                     email = emailEditText.getText().toString();
                     password = passwordEditText.getText().toString();
@@ -60,38 +65,45 @@ public class LoginFragment extends Fragment {
                     if (email.isEmpty() || password.isEmpty()) {
                         valid = false;
                     }
+
+                    if(!checkToValidEmail(email)){
+                        Toast.makeText(getContext(), "Email-ul nu este valid!", Toast.LENGTH_SHORT).show();
+                        valid = false;
+                    }
+
                 } catch (Exception e) {
                     valid = false;
                 }
 
-
                 if (valid) {
                     try {
-                        /*
-                        ConnectionDB db = new ConnectionDB();
-                        String query = "SELECT Email, Password FROM Users WHERE Email = ? AND Password = ?";
-                        PreparedStatement statement = db.getConnection().prepareStatement(query);
-                        statement.setString(1, email); // Set the value of the first placeholder to the username
-                        statement.setString(2, password); // Set the value of the second placeholder to the password
-                        ResultSet resultSet = statement.executeQuery();
+                        DataBaseHelper db = new DataBaseHelper(getContext(), "PedometerDB.sqlite", null, 1);
+                        SQLiteDatabase database = db.getReadableDatabase();
 
-                        if (resultSet.next()) {
-                            // Credentials are valid, proceed with login
+                        String query = "SELECT * FROM USERS_ESSENTIALS WHERE Email = ? AND Password = ?";
+                        String[] selectionArgs = {email, password};
+
+                        Cursor cursor = database.rawQuery(query, selectionArgs);
+
+                        if (cursor.moveToNext()) {
+                            valid = true;
                         } else {
-                            // Credentials are invalid, show an error message
+                            valid = false;
                         }
 
-                        statement.close();
-                        resultSet.close();
-                        db.close();
-                         */
+                        cursor.close();
                     } catch (Exception e) {
                         valid = false;
                     }
                 }
+
                 //LOGIN -> PROFILE
-                MainActivity mainActivity = new MainActivity();
-                mainActivity.changeProfileFragment(lf,new ProfileFragment());
+                if (valid) {
+                    MainActivity mainActivity = new MainActivity();
+                    mainActivity.changeProfileFragment(lf,new ProfileFragment());
+                }
+                else
+                    Toast.makeText(getContext(), "Email-ul sau parola sunt gresite!", Toast.LENGTH_SHORT).show();
 
 
                 //TRIMITERE NOTIFICARE SYSTEM LOGARE
@@ -114,6 +126,12 @@ public class LoginFragment extends Fragment {
         return LoginView;
     }
 
+    static boolean checkToValidEmail(String email){
+        String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        Pattern pattern = Pattern.compile(emailPattern);
+        return pattern.matcher(email).matches();
+    }
+
     void SentNotificatrion(boolean success) {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getActivity(), "Login Notification");
         mBuilder.setContentTitle(getResources().getString(R.string.app_name));
@@ -122,6 +140,6 @@ public class LoginFragment extends Fragment {
         mBuilder.setAutoCancel(true);
 
         NotificationManagerCompat managerNotification = NotificationManagerCompat.from(getActivity());
-        managerNotification.notify(0, mBuilder.build());
+        managerNotification.notify(1, mBuilder.build());
     }
 }

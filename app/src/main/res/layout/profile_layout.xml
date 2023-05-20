@@ -7,8 +7,6 @@
     android:background="@drawable/backgroundd"
     android:id="@+id/profileLayout">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -17,8 +15,8 @@
             android:padding="16dp">
 
             <ImageView
-                android:layout_width="97dp"
-                android:layout_height="109dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/profile"
                 android:contentDescription="@string/descrProfilePicture"/>
 
@@ -56,149 +54,153 @@
             android:layout_height="1dp"
             android:background="#E5E5E5" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:color="@color/black"
+            android:text="@string/personalInfo"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/personalInfo"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:color="@color/black"/>
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"/>
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="300dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:color="@color/black"
                     android:text="@string/age"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:color="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:color="@color/black"
                     android:text="@string/gender"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:color="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:color="@color/black"
                     android:text="@string/weight"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:color="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:color="@color/black"
                     android:text="@string/height"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/height"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:color="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:color="@color/black"
                     android:text="@string/stepLength"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/stepLength"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:color="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:color="@color/black"
                     android:text="@string/stepGoal"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/stepGoal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:color="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:color="@color/black"/>
-                </LinearLayout>
-            </ScrollView>
-            <Button
-                android:id="@+id/see_friends_button"
-                android:layout_width="340dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/button_round_edges2"
-                android:padding="20dp"
-                android:color="@color/white"
-                android:text="SeeFrinds"
-                />
-        </LinearLayout>
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/see_friends_button"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/button_round_edges2"
+            android:color="@color/white"
+            android:padding="20dp"
+            android:text="See Friends" />
+    </LinearLayout>
 </RelativeLayout>

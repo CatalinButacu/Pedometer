@@ -10,36 +10,42 @@ public class UserModel {
     // Constructors
     public UserModel(){
         this.m_sUserID = Integer.toString(1000+usersCreated);
+        this.m_sEmail = "";
+        this.m_sPhone = "";
+        this.m_sPassword = "";
+
         this.m_sNume = "";
         this.m_sPrenume = "";
+        this.m_sGen = "not set";
         this.m_iVarsta = 0;
         this.m_fGreutate = 0f;
         this.m_fInaltime = 0f;
         this.m_lFriends = null;
-        this.m_sEmail = "";
-        this.m_sPhone = "";
-        this.m_sPassword = "";
         this.m_bPrivateProfile = false;
+        this.m_lChallenges = null;
+
         this.m_cUserStats = new DataStats();
         usersCreated++;
     }
     //----------------------------------------------------------------------------------------------
-    // UserInfo
+    // UserEssentials
     private String m_sUserID;
-    private String m_sNume;
-    private String m_sPrenume;
     private String m_sEmail;
     private String m_sPhone;
     private String m_sPassword;
-    private Boolean m_bPrivateProfile;
-    private List<UserModel> m_lFriends;
-    private List<ChallengeModel> m_lChallenges;
 
     //----------------------------------------------------------------------------------------------
-    // DataStats
+    // UserInfo
+    private String m_sNume;
+    private String m_sPrenume;
+    private String m_sGen;
     private Integer m_iVarsta;
     private Float m_fGreutate;
     private Float m_fInaltime;
+    private Boolean m_bPrivateProfile;
+
+    //----------------------------------------------------------------------------------------------
+    // DataStats
     private DataStats m_cUserStats;
     public class DataStats {
         protected Integer m_iTotalSteps = 0;
@@ -55,6 +61,12 @@ public class UserModel {
         public Integer[] m_iChallengeCalories = new Integer[6];
         public Integer[] m_iChallengeDistance = new Integer[6];
     }
+
+    //----------------------------------------------------------------------------------------------
+    // Extra Data
+    private List<UserModel> m_lFriends;
+    private List<ChallengeModel> m_lChallenges;
+
     //----------------------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------------------
     @Override
@@ -63,6 +75,7 @@ public class UserModel {
                 "m_sUserID='" + m_sUserID + '\'' +
                 ", m_sNume='" + m_sNume + '\'' +
                 ", m_sPrenume='" + m_sPrenume + '\'' +
+                ", m_sGen='" + m_sGen + '\'' +
                 ", m_sEmail='" + m_sEmail + '\'' +
                 ", m_sPhone='" + m_sPhone + '\'' +
                 ", m_sPassword='" + m_sPassword + '\'' +
@@ -86,6 +99,10 @@ public class UserModel {
     //----------------------------------------------------------------------------------------------
     public String getPrenume(){
         return this.m_sPrenume;
+    }
+    //----------------------------------------------------------------------------------------------
+    public String getGen(){
+        return this.m_sGen;
     }
     //----------------------------------------------------------------------------------------------
     public Integer getVarsta(){
@@ -200,12 +217,20 @@ public class UserModel {
         this.m_sUserID = s;
     }
     //----------------------------------------------------------------------------------------------
-    public void setNume(String s){
+    public void setFirstName(String s){
+        this.m_sPrenume = s;
+    }
+    //----------------------------------------------------------------------------------------------
+    public void setLastName(String s){
         this.m_sNume = s;
     }
     //----------------------------------------------------------------------------------------------
     public void setPrenume(String s){
         this.m_sPrenume = s;
+    }
+    //----------------------------------------------------------------------------------------------
+    public void setGender(String s){
+        this.m_sGen = s;
     }
     //----------------------------------------------------------------------------------------------
     public void setVarsta(Integer i){

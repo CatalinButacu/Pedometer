@@ -16,18 +16,42 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/username"
+            android:text="@string/firstname"
             android:textSize="20sp"
             android:textStyle="bold"/>
         <EditText
-            android:id="@+id/createUsername"
+            android:id="@+id/inputFirstName"
             android:layout_width="370dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:background="@drawable/input_round"
             android:inputType="text"
-            android:hint="->"
+            android:hint="type here..."
+            android:textSize="20sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/lastname"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+        <EditText
+            android:id="@+id/inputLastName"
+            android:layout_width="370dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:background="@drawable/input_round"
+            android:inputType="text"
+            android:hint="type here..."
             android:textSize="20sp"/>
 
         <TextView
@@ -40,14 +64,16 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
         <EditText
-            android:id="@+id/createEmail"
+            android:id="@+id/inputEmail"
             android:layout_width="370dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:background="@drawable/input_round"
             android:inputType="textEmailAddress"
-            android:hint="->"
+            android:hint="type here..."
             android:textSize="20sp"/>
 
         <TextView
@@ -60,14 +86,16 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
         <EditText
-            android:id="@+id/createPhone"
+            android:id="@+id/inputPhone"
             android:layout_width="370dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:background="@drawable/input_round"
             android:inputType="phone"
-            android:hint="->"
+            android:hint="type here..."
             android:textSize="20sp"/>
 
         <TextView
@@ -80,14 +108,16 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
         <EditText
-            android:id="@+id/createPassword"
+            android:id="@+id/inputPassword"
             android:layout_width="370dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:background="@drawable/input_round"
             android:inputType="textPassword"
-            android:hint="->"
+            android:hint="type here..."
             android:textSize="20sp"/>
 
         <Button

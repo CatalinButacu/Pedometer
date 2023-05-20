@@ -9,7 +9,8 @@
     <string name="createAccount">CREATE ACCOUNT</string>
     <string name="email">E-mail</string>
     <string name="password">Password</string>
-    <string name="username">Username</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
     <string name="phone">Phone number</string>
     <string name="personalInfo">Personal information</string>
     <string name="age">Age</string>
