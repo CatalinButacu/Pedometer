@@ -27,8 +27,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // Constructors
     public DataBaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
-        this.updateDataUsers(this.getReadableDatabase());
-        this.updateDataChallenges(this.getReadableDatabase());
+        //this.updateDataUsers(this.getReadableDatabase());
+        //this.updateDataChallenges(this.getReadableDatabase());
     }
     //----------------------------------------------------------------------------------------------
     @Override
@@ -374,9 +374,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 user.setDailySteps(cursorStats.getString(4));
                 user.setDailyDistance(cursorStats.getString(5));
                 user.setDailyCalories(cursorStats.getString(6));
-                //user.setGoalDailySteps(cursorStats.getString(7));
-                //user.setGoalDailyDistance(cursorStats.getString(8));
-                //user.setGoalCalories(cursorStats.getString(9));
+                user.setGoalDailySteps(Integer.valueOf(cursorStats.getString(7)));
+                user.setGoalDailyDistance(Integer.valueOf(cursorStats.getString(8)));
+                user.setGoalDailyCalories(Integer.valueOf(cursorStats.getString(9)));
+                user.setChallengeSteps(cursorStats.getString(10));
+                user.setChallengeDistance(cursorStats.getString(11));
+                user.setChallengeCalories(cursorStats.getString(12));
 
                 //insert user into app
                 users.add(user);

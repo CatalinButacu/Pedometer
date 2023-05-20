@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         initDatabase();
-        //dropAllTables(db.getWritableDatabase());
+        dropAllTables(db.getWritableDatabase());
     }
 
     public static void changeChallengeFragment(Fragment fragment, Fragment newFragment) {
