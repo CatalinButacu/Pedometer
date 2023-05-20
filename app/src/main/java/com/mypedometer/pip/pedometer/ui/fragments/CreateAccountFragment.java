@@ -34,7 +34,7 @@ public class CreateAccountFragment extends Fragment {
             public void onClick(View v) {
                 MainActivity mainActivity = new MainActivity();
                 mainActivity.changeProfileFragment(caf,new ProfileFragment());
-                mainActivity.changeFragment(caf,new ProfileFragment());
+                //mainActivity.changeFragment(caf,new ProfileFragment());
 
                 UserModel user = new UserModel();
 
