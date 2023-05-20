@@ -260,11 +260,40 @@ public class UserModel {
         this.m_cUserStats.m_iDailySteps = i;
     }
     //----------------------------------------------------------------------------------------------
+    public void setDailySteps(String s){
+        String[] sSplit = s.split(",");
+        Integer[] i = new Integer[sSplit.length];
+        for(int j = 0; j < sSplit.length; j++){
+            i[j] = Integer.parseInt(sSplit[j]);
+        }
+        this.m_cUserStats.m_iDailySteps = i;
+    }
+    //----------------------------------------------------------------------------------------------
     public void setDailyDistance(Integer[] i){
+        this.m_cUserStats.m_iDailyDistance = i;
+    }
+
+    //----------------------------------------------------------------------------------------------
+    public void setDailyDistance(String s){
+        String[] sSplit = s.split(",");
+        Integer[] i = new Integer[sSplit.length];
+        for(int j = 0; j < sSplit.length; j++){
+            i[j] = Integer.parseInt(sSplit[j]);
+        }
         this.m_cUserStats.m_iDailyDistance = i;
     }
     //----------------------------------------------------------------------------------------------
     public void setDailyCalories(Integer[] i){
+        this.m_cUserStats.m_iDailyCalories = i;
+    }
+
+    //----------------------------------------------------------------------------------------------
+    public void setDailyCalories(String s){
+        String[] sSplit = s.split(",");
+        Integer[] i = new Integer[sSplit.length];
+        for(int j = 0; j < sSplit.length; j++){
+            i[j] = Integer.parseInt(sSplit[j]);
+        }
         this.m_cUserStats.m_iDailyCalories = i;
     }
     //----------------------------------------------------------------------------------------------
@@ -283,12 +312,42 @@ public class UserModel {
     public void setChallengeSteps(Integer[] i){
         this.m_cUserStats.m_iChallengeSteps = i;
     }
+
+    //----------------------------------------------------------------------------------------------
+    public void setChallengeSteps(String s){
+        String[] sSplit = s.split(",");
+        Integer[] i = new Integer[sSplit.length];
+        for(int j = 0; j < sSplit.length; j++){
+            i[j] = Integer.parseInt(sSplit[j]);
+        }
+        this.m_cUserStats.m_iChallengeSteps = i;
+    }
     //----------------------------------------------------------------------------------------------
     public void setChallengeCalories(Integer[] i){
         this.m_cUserStats.m_iChallengeCalories = i;
     }
+
+    //----------------------------------------------------------------------------------------------
+    public void setChallengeCalories(String s){
+        String[] sSplit = s.split(",");
+        Integer[] i = new Integer[sSplit.length];
+        for(int j = 0; j < sSplit.length; j++){
+            i[j] = Integer.parseInt(sSplit[j]);
+        }
+        this.m_cUserStats.m_iChallengeCalories = i;
+    }
     //----------------------------------------------------------------------------------------------
     public void setChallengeDistance(Integer[] i){
+        this.m_cUserStats.m_iChallengeDistance = i;
+    }
+
+    //----------------------------------------------------------------------------------------------
+    public void setChallengeDistance(String s){
+        String[] sSplit = s.split(",");
+        Integer[] i = new Integer[sSplit.length];
+        for(int j = 0; j < sSplit.length; j++){
+            i[j] = Integer.parseInt(sSplit[j]);
+        }
         this.m_cUserStats.m_iChallengeDistance = i;
     }
     //----------------------------------------------------------------------------------------------

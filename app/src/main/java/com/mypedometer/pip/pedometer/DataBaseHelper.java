@@ -12,10 +12,11 @@ import androidx.annotation.Nullable;
 import com.mypedometer.pip.pedometer.data.model.ChallengeModel;
 import com.mypedometer.pip.pedometer.data.model.UserModel;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-
     enum DBTypes{
         USER_ESSENTIALS,
         USER_INFO,
@@ -26,6 +27,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // Constructors
     public DataBaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
+        this.updateDataUsers(this.getReadableDatabase());
+        this.updateDataChallenges(this.getReadableDatabase());
     }
     //----------------------------------------------------------------------------------------------
     @Override
@@ -305,4 +308,112 @@ public class DataBaseHelper extends SQLiteOpenHelper {
        sqLiteDatabase.execSQL(dropTableStatement);
    }
    //----------------------------------------------------------------------------------------------
+    public boolean updateDataUsers(SQLiteDatabase sqLiteDatabase){
+        String updateStatement = "";
+
+
+
+
+        sqLiteDatabase.execSQL(updateStatement);
+        return true;
+    }
+   //----------------------------------------------------------------------------------------------
+    public boolean updateDataChallenges(SQLiteDatabase sqLiteDatabase){
+        String updateStatement = "";
+
+
+
+
+        sqLiteDatabase.execSQL(updateStatement);
+        return true;
+    }
+    //----------------------------------------------------------------------------------------------
+    public List<UserModel> getUsers(SQLiteDatabase sqLiteDatabase){
+        boolean tableExists = ensureTableExist(DBTypes.USER_ESSENTIALS);
+        if(!tableExists)
+            return null;
+
+        tableExists = ensureTableExist(DBTypes.USER_INFO);
+        if(!tableExists)
+            return null;
+
+        tableExists = ensureTableExist(DBTypes.USER_STATS);
+        if(!tableExists)
+            return null;
+
+        Boolean iterator = true;
+        List<UserModel> users = new ArrayList<>();
+
+        String selectStatementUserEssentials = "SELECT * FROM USER_ESSENTIALS";
+        String selectStatementUserInfo       = "SELECT * FROM USER_INFO";
+        String selectStatementUserStats      = "SELECT * FROM USER_STATS";
+
+        Cursor cursor = sqLiteDatabase.rawQuery(selectStatementUserEssentials, null);
+        Cursor cursorInfo = sqLiteDatabase.rawQuery(selectStatementUserInfo, null);
+        Cursor cursorStats = sqLiteDatabase.rawQuery(selectStatementUserStats, null);
+
+        if(cursor.moveToFirst()){
+            do{
+                UserModel user = new UserModel();
+
+                user.setUserID(cursor.getString(0));
+                user.setEmail(cursor.getString(1));
+                user.setPhone(cursor.getString(2));
+                user.setPassword(cursor.getString(3));
+
+                user.setNume(cursorInfo.getString(1));
+                user.setPrenume(cursorInfo.getString(2));
+                user.setVarsta(Integer.parseInt(cursorInfo.getString(3)));
+                user.setGreutate(Float.parseFloat(cursorInfo.getString(4)));
+                user.setInaltime(Float.parseFloat(cursorInfo.getString(5)));
+                user.setIsPrivateProfile(Boolean.parseBoolean(cursorInfo.getString(6)));
+
+                user.setTotalSteps(Integer.parseInt(cursorStats.getString(1)));
+                user.setTotalDistance(Integer.parseInt(cursorStats.getString(2)));
+                user.setTotalCalories(Integer.parseInt(cursorStats.getString(3)));
+                user.setDailySteps(cursorStats.getString(4));
+                user.setDailyDistance(cursorStats.getString(5));
+                user.setDailyCalories(cursorStats.getString(6));
+                //user.setGoalDailySteps(cursorStats.getString(7));
+                //user.setGoalDailyDistance(cursorStats.getString(8));
+                //user.setGoalCalories(cursorStats.getString(9));
+
+                //insert user into app
+                users.add(user);
+
+                //update cursor and iterator
+                if(cursor.isLast())
+                    iterator = false;
+                else{
+                    cursor.moveToNext();
+                    cursorInfo.moveToNext();
+                    cursorStats.moveToNext();
+                }
+            }while(iterator);
+        }
+        cursor.close();
+        return users;
+    }
+    //----------------------------------------------------------------------------------------------
+    public List<ChallengeModel> getChallanges(SQLiteDatabase sqLiteDatabase){
+        List<ChallengeModel> challenges = new ArrayList<>();
+        String selectStatement = "SELECT * FROM CHALLENGE";
+        Cursor cursor = sqLiteDatabase.rawQuery(selectStatement, null);
+        if(cursor.moveToFirst()){
+            do{
+                ChallengeModel challenge = new ChallengeModel();
+                challenge.setChallengeID(cursor.getString(0));
+                challenge.setCreatorID(cursor.getString(1));
+                challenge.setNameChallenge(cursor.getString(2));
+                challenge.setStatusChallenge(cursor.getString(3));
+                challenge.setDateStart(cursor.getString(4));
+                challenge.setDateEnd(cursor.getString(5));
+                challenge.setCandidatesID(cursor.getString(6));
+                challenges.add(challenge);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        return challenges;
+    }
+    //----------------------------------------------------------------------------------------------
 }

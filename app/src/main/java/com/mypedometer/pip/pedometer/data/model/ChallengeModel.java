@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChallengeModel {
-
     static int challengesCreated = 0;
 
     //----------------------------------------------------------------------------------------------
@@ -117,6 +116,26 @@ public class ChallengeModel {
         m_sChallengeName = sNameChallenge;
     }
     //----------------------------------------------------------------------------------------------
+    public void setStatusChallenge(String status) {
+        switch (status) {
+            case "Created":
+                m_sChallengeStatus = Status.Created;
+                break;
+            case "Started":
+                m_sChallengeStatus = Status.Started;
+                break;
+            case "Finished":
+                m_sChallengeStatus = Status.Finished;
+                break;
+            case "Deleted":
+                m_sChallengeStatus = Status.Deleted;
+                break;
+            default:
+                m_sChallengeStatus = Status.Created;
+                break;
+        }
+    }
+    //----------------------------------------------------------------------------------------------
     public void setStatusChallenge(Status sStatusChallenge){
         m_sChallengeStatus = sStatusChallenge;
     }
@@ -139,6 +158,22 @@ public class ChallengeModel {
         }
         else{
             m_sDateEnd = sDateEnd;
+        }
+        return OK;
+    }
+    //----------------------------------------------------------------------------------------------
+    public boolean setCandidatesID(String sCandidatesID){
+        boolean OK = true;
+        if (sCandidatesID.isEmpty()){
+            OK = false;
+        }
+        else{
+            String[] sCandidates = sCandidatesID.split(",");
+            for (String sCandidate : sCandidates) {
+                UserModel user = new UserModel();
+                user.setUserID(sCandidate);
+                m_lCandidates.add(user);
+            }
         }
         return OK;
     }
