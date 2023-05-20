@@ -4,15 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 
 import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
-import com.mypedometer.pip.pedometer.data.storage.Challenge;
-import com.mypedometer.pip.pedometer.data.storage.User;
 
 public class EditProfileFragment extends Fragment {
     EditProfileFragment epf = this;
@@ -51,7 +48,7 @@ public class EditProfileFragment extends Fragment {
         });
         return editProfileView;
     }
-    //public User updateUser(){
+    //public UserModel updateUser(){
         //creaza un obiect de tipul challenge
         //extragerea inputului din UI
         //atribuie campurilor obiectului inputul

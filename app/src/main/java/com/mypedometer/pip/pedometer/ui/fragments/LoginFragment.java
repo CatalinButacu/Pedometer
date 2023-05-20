@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.mypedometer.pip.pedometer.ConnectionDB;
+//import com.mypedometer.pip.pedometer.ConnectionDB;
 import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
 
@@ -67,6 +67,7 @@ public class LoginFragment extends Fragment {
 
                 if (valid) {
                     try {
+                        /*
                         ConnectionDB db = new ConnectionDB();
                         String query = "SELECT Email, Password FROM Users WHERE Email = ? AND Password = ?";
                         PreparedStatement statement = db.getConnection().prepareStatement(query);
@@ -83,6 +84,7 @@ public class LoginFragment extends Fragment {
                         statement.close();
                         resultSet.close();
                         db.close();
+                         */
                     } catch (Exception e) {
                         valid = false;
                     }
