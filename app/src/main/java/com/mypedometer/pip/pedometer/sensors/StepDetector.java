@@ -8,6 +8,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 /**
  * Detects steps and notifies all listeners (that implement StepListener).
  * @todo REFACTOR: SensorListener is deprecated
@@ -43,7 +45,7 @@ public class StepDetector implements SensorEventListener
     }
     
     //public void onSensorChanged(int sensor, float[] values) {
-    public void onSensorChanged(SensorEvent event) {
+    public void onSensorChanged(@NonNull SensorEvent event) {
         Sensor sensor = event.sensor; 
         synchronized (this) {
             if (sensor.getType() == Sensor.TYPE_ORIENTATION) {
@@ -59,7 +61,7 @@ public class StepDetector implements SensorEventListener
                     int k = 0;
                     float v = vSum / 3;
                     
-                    float direction = (v > mLastValues[k] ? 1 : (v < mLastValues[k] ? -1 : 0));
+                    float direction = (Float.compare(v, mLastValues[k]));
                     if (direction == - mLastDirections[k]) {
                         // Direction changed
                         int extType = (direction > 0 ? 0 : 1); // minumum or maximum?

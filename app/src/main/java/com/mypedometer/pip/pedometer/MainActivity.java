@@ -1,6 +1,6 @@
 package com.mypedometer.pip.pedometer;
 
-
+import static com.mypedometer.pip.pedometer.DataBaseHelper.dropAllTables;
 
 import androidx.fragment.app.FragmentManager;
 
@@ -9,15 +9,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
-
 import com.google.android.material.tabs.TabLayout;
-
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.mypedometer.pip.pedometer.ui.main.SectionsPagerAdapter;
 import com.mypedometer.pip.pedometer.databinding.ActivityMainBinding;
 
@@ -32,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     static public SectionsPagerAdapter sectionsPagerAdapter;
 
+    static public DataBaseHelper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        initDatabase();
+        //dropAllTables(db.getWritableDatabase());
     }
 
     public static void changeFragment(Fragment fragment, Fragment newFragment) {
@@ -96,6 +95,11 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.fragment_container, newFragment);
         ft.addToBackStack(null);
         ft.commit();
+    }
+
+    void initDatabase() {
+        db = new DataBaseHelper(MainActivity.this, "PedometerDB.sqlite", null, 1);
+        //db.createTable(Database);
     }
 }
 

@@ -1,12 +1,9 @@
 package com.mypedometer.pip.pedometer.sensors;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -20,7 +17,12 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.mypedometer.pip.pedometer.PedometerSettings;
 import com.mypedometer.pip.pedometer.R;
+import com.mypedometer.pip.pedometer.data.storage.CaloriesManager;
+import com.mypedometer.pip.pedometer.data.storage.DistanceManager;
+import com.mypedometer.pip.pedometer.data.storage.SpeedManager;
+import com.mypedometer.pip.pedometer.data.storage.StatusManager;
 
 public class StepService extends Service {
 	private static final String TAG = "name.bagi.levente.pedometer.StepService";
@@ -34,10 +36,10 @@ public class StepService extends Service {
     private StepDetector mStepDetector;
     // private StepBuzzer mStepBuzzer; // used for debugging
     private StepDisplayer mStepDisplayer;
-    private ManagerStatus mPaceNotifier;
-    private ManagerDistance mDistanceNotifier;
-    private ManagerSpeed mSpeedNotifier;
-    private ManagerCalories mCaloriesNotifier;
+    private StatusManager mPaceNotifier;
+    private DistanceManager mDistanceNotifier;
+    private SpeedManager mSpeedNotifier;
+    private CaloriesManager mCaloriesNotifier;
     private SpeakingTimer mSpeakingTimer;
     
     private PowerManager.WakeLock wakeLock;
@@ -94,20 +96,20 @@ public class StepService extends Service {
         mStepDisplayer.addListener(mStepListener);
         mStepDetector.addStepListener(mStepDisplayer);
 
-        mPaceNotifier     = new ManagerStatus(mPedometerSettings, mUtils);
+        mPaceNotifier     = new StatusManager(mPedometerSettings, mUtils);
         mPaceNotifier.setPace(mPace = mState.getInt("pace", 0));
         mPaceNotifier.addListener(mPaceListener);
         mStepDetector.addStepListener(mPaceNotifier);
 
-        mDistanceNotifier = new ManagerDistance(mDistanceListener, mPedometerSettings, mUtils);
+        mDistanceNotifier = new DistanceManager(mDistanceListener, mPedometerSettings, mUtils);
         mDistanceNotifier.setDistance(mDistance = mState.getFloat("distance", 0));
         mStepDetector.addStepListener(mDistanceNotifier);
         
-        mSpeedNotifier    = new ManagerSpeed(mSpeedListener,    mPedometerSettings, mUtils);
+        mSpeedNotifier    = new SpeedManager(mSpeedListener,    mPedometerSettings, mUtils);
         mSpeedNotifier.setSpeed(mSpeed = mState.getFloat("speed", 0));
         mPaceNotifier.addListener(mSpeedNotifier);
         
-        mCaloriesNotifier = new ManagerCalories(mCaloriesListener, mPedometerSettings, mUtils);
+        mCaloriesNotifier = new CaloriesManager(mCaloriesListener, mPedometerSettings, mUtils);
         mCaloriesNotifier.setCalories(mCalories = mState.getFloat("calories", 0));
         mStepDetector.addStepListener(mCaloriesNotifier);
         
@@ -275,7 +277,7 @@ public class StepService extends Service {
     /**
      * Forwards pace values from PaceNotifier to the activity. 
      */
-    private ManagerStatus.Listener mPaceListener = new ManagerStatus.Listener() {
+    private StatusManager.Listener mPaceListener = new StatusManager.Listener() {
         public void paceChanged(int value) {
             mPace = value;
             passValue();
@@ -289,7 +291,7 @@ public class StepService extends Service {
     /**
      * Forwards distance values from DistanceNotifier to the activity. 
      */
-    private ManagerDistance.Listener mDistanceListener = new ManagerDistance.Listener() {
+    private DistanceManager.Listener mDistanceListener = new DistanceManager.Listener() {
         public void valueChanged(float value) {
             mDistance = value;
             passValue();
@@ -303,7 +305,7 @@ public class StepService extends Service {
     /**
      * Forwards speed values from SpeedNotifier to the activity. 
      */
-    private ManagerSpeed.Listener mSpeedListener = new ManagerSpeed.Listener() {
+    private SpeedManager.Listener mSpeedListener = new SpeedManager.Listener() {
         public void valueChanged(float value) {
             mSpeed = value;
             passValue();
@@ -317,7 +319,7 @@ public class StepService extends Service {
     /**
      * Forwards calories values from CaloriesNotifier to the activity. 
      */
-    private ManagerCalories.Listener mCaloriesListener = new ManagerCalories.Listener() {
+    private CaloriesManager.Listener mCaloriesListener = new CaloriesManager.Listener() {
         public void valueChanged(float value) {
             mCalories = value;
             passValue();

@@ -1,6 +1,8 @@
-package com.mypedometer.pip.pedometer.sensors;
+package com.mypedometer.pip.pedometer;
 
 import android.content.SharedPreferences;
+
+import com.mypedometer.pip.pedometer.sensors.Utils;
 
 /**
  * Wrapper for {@link SharedPreferences}, handles preferences-related tasks.

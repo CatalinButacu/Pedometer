@@ -1,14 +1,18 @@
-package com.mypedometer.pip.pedometer.sensors;
+package com.mypedometer.pip.pedometer.data.storage;
 
+
+import com.mypedometer.pip.pedometer.PedometerSettings;
+import com.mypedometer.pip.pedometer.sensors.SpeakingTimer;
+import com.mypedometer.pip.pedometer.sensors.Utils;
 
 /**
  * Calculates and displays pace (steps / minute), handles input of desired pace,
  * notifies user if he/she has to go faster or slower.
  * 
- * Uses {@link ManagerStatus}, calculates speed as product of pace and step length.
+ * Uses {@link StatusManager}, calculates speed as product of pace and step length.
  *
  */
-public class ManagerSpeed implements ManagerStatus.Listener, SpeakingTimer.Listener {
+public class SpeedManager implements StatusManager.Listener, SpeakingTimer.Listener {
 
     public interface Listener {
         public void valueChanged(float value);
@@ -35,7 +39,7 @@ public class ManagerSpeed implements ManagerStatus.Listener, SpeakingTimer.Liste
     /** When did the TTS speak last time */
     private long mSpokenAt = 0;
     
-    public ManagerSpeed(Listener listener, PedometerSettings settings, Utils utils) {
+    public SpeedManager(Listener listener, PedometerSettings settings, Utils utils) {
         mListener = listener;
         mUtils = utils;
         mSettings = settings;

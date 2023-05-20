@@ -160,6 +160,18 @@ public class UserModel {
         return this.m_cUserStats.m_iDailyCalories;
     }
     //----------------------------------------------------------------------------------------------
+    public Integer[] getDailySteps(int i){
+        return this.m_cUserStats.m_iDailySteps;
+    }
+    //----------------------------------------------------------------------------------------------
+    public Integer[] getDailyDistance(int i){
+        return this.m_cUserStats.m_iDailyDistance;
+    }
+    //----------------------------------------------------------------------------------------------
+    public Integer[] getDailyCalories(int i){
+        return this.m_cUserStats.m_iDailyCalories;
+    }
+    //----------------------------------------------------------------------------------------------
     public Integer getGoalDailySteps(){
         return this.m_cUserStats.m_iGoalDailySteps;
     }
@@ -304,8 +316,6 @@ public class UserModel {
         this.m_cUserStats.m_iDailyDistance[i] = j;
     }
     //----------------------------------------------------------------------------------------------
-
-
     public Boolean joinChallenge(){
         return true;
     }

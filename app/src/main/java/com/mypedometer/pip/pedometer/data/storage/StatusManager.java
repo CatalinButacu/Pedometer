@@ -1,4 +1,9 @@
-package com.mypedometer.pip.pedometer.sensors;
+package com.mypedometer.pip.pedometer.data.storage;
+
+import com.mypedometer.pip.pedometer.PedometerSettings;
+import com.mypedometer.pip.pedometer.sensors.SpeakingTimer;
+import com.mypedometer.pip.pedometer.sensors.StepListener;
+import com.mypedometer.pip.pedometer.sensors.Utils;
 
 import java.util.ArrayList;
 
@@ -7,7 +12,7 @@ import java.util.ArrayList;
  * notifies user if he/she has to go faster or slower.
  */
 
-public class ManagerStatus implements StepListener, SpeakingTimer.Listener {
+public class StatusManager implements StepListener, SpeakingTimer.Listener {
 
     public interface Listener {
         public void paceChanged(int value);
@@ -34,7 +39,7 @@ public class ManagerStatus implements StepListener, SpeakingTimer.Listener {
     /** When did the TTS speak last time */
     private long mSpokenAt = 0;
 
-    public ManagerStatus(PedometerSettings settings, Utils utils) {
+    public StatusManager(PedometerSettings settings, Utils utils) {
         mUtils = utils;
         mSettings = settings;
         mDesiredPace = mSettings.getDesiredPace();

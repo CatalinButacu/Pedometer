@@ -83,6 +83,14 @@ public class ChallengeModel {
         return m_sDateEnd;
     }
     //----------------------------------------------------------------------------------------------
+    public String getCandidatesID(){
+        String sCandidatesID = "";
+        for (UserModel user : m_lCandidates) {
+            sCandidatesID += user.getUserID() + ",";
+        }
+        return sCandidatesID;
+    }
+    //----------------------------------------------------------------------------------------------
     public boolean setChallengeID(String sChallengeID){
         boolean OK = true;
         if (sChallengeID.isEmpty()){

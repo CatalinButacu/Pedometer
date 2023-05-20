@@ -1,10 +1,15 @@
-package com.mypedometer.pip.pedometer.sensors;
+package com.mypedometer.pip.pedometer.data.storage;
+
+import com.mypedometer.pip.pedometer.PedometerSettings;
+import com.mypedometer.pip.pedometer.sensors.SpeakingTimer;
+import com.mypedometer.pip.pedometer.sensors.StepListener;
+import com.mypedometer.pip.pedometer.sensors.Utils;
 
 /**
  * Calculates and displays the distance walked.
  */
 
-public class ManagerDistance implements StepListener, SpeakingTimer.Listener {
+public class DistanceManager implements StepListener, SpeakingTimer.Listener {
 
     public interface Listener {
         public void valueChanged(float value);
@@ -20,7 +25,7 @@ public class ManagerDistance implements StepListener, SpeakingTimer.Listener {
     boolean mIsMetric;
     float mStepLength;
 
-    public ManagerDistance(Listener listener, PedometerSettings settings, Utils utils) {
+    public DistanceManager(Listener listener, PedometerSettings settings, Utils utils) {
         mListener = listener;
         mUtils = utils;
         mSettings = settings;

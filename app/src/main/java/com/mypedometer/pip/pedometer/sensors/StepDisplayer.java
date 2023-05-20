@@ -1,5 +1,7 @@
 package com.mypedometer.pip.pedometer.sensors;
 
+import com.mypedometer.pip.pedometer.PedometerSettings;
+
 import java.util.ArrayList;
 
 /**

@@ -1,17 +1,21 @@
-package com.mypedometer.pip.pedometer.sensors;
+package com.mypedometer.pip.pedometer.data.storage;
+
+import com.mypedometer.pip.pedometer.PedometerSettings;
+import com.mypedometer.pip.pedometer.sensors.SpeakingTimer;
+import com.mypedometer.pip.pedometer.sensors.StepListener;
+import com.mypedometer.pip.pedometer.sensors.Utils;
 
 /**
  * Calculates and displays the approximate calories.
  */
 
-public class ManagerCalories implements StepListener, SpeakingTimer.Listener {
+public class CaloriesManager implements StepListener, SpeakingTimer.Listener {
 
     public interface Listener {
         public void valueChanged(float value);
         public void passValue();
     }
     private Listener mListener;
-    
     private static double METRIC_RUNNING_FACTOR = 1.02784823;
     private static double IMPERIAL_RUNNING_FACTOR = 0.75031498;
 
@@ -28,7 +32,7 @@ public class ManagerCalories implements StepListener, SpeakingTimer.Listener {
     float mStepLength;
     float mBodyWeight;
 
-    public ManagerCalories(Listener listener, PedometerSettings settings, Utils utils) {
+    public CaloriesManager(Listener listener, PedometerSettings settings, Utils utils) {
         mListener = listener;
         mUtils = utils;
         mSettings = settings;
