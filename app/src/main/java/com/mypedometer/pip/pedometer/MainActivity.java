@@ -9,7 +9,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -20,8 +19,11 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mypedometer.pip.pedometer.ui.fragments.ChallengeFragment;
+import com.mypedometer.pip.pedometer.ui.fragments.CreateAccountFragment;
+import com.mypedometer.pip.pedometer.ui.fragments.CreateChallengeFragment;
+import com.mypedometer.pip.pedometer.ui.fragments.EditProfileFragment;
+import com.mypedometer.pip.pedometer.ui.fragments.LoginFragment;
 import com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment;
-import com.mypedometer.pip.pedometer.ui.fragments.StatusFragment;
 import com.mypedometer.pip.pedometer.ui.fragments.ViewChallengeFragment;
 import com.mypedometer.pip.pedometer.ui.main.SectionsPagerAdapter;
 import com.mypedometer.pip.pedometer.databinding.ActivityMainBinding;
@@ -81,13 +83,20 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().show(fragment1).commit();
                 }
                 if(position == 1 && fragmentChangedChallenge){
-                    getSupportFragmentManager().beginTransaction().add(fragmentChallenge,"").commit();
+                    if(fragmentChallenge instanceof ChallengeFragment){
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ChallengeFragment()).commit();
+                    }else{
+                        getSupportFragmentManager().beginTransaction().add(fragmentChallenge,"").commit();
+                    }
                 }
                 if (position == 2 && fragmentChangedProfile) {
-                    getSupportFragmentManager().beginTransaction().add(fragmentProfile,"").commit();
+                    if(fragmentProfile instanceof ProfileFragment){
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+                    }else{
+                        getSupportFragmentManager().beginTransaction().add(fragmentProfile,"").commit();
+                    }
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
             }
@@ -101,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentChallenge = newFragment;
         fragmentChangedChallenge = true;
         FragmentTransaction ft = fragment.getActivity().getSupportFragmentManager().beginTransaction();
-        ft.hide(fragment);
+        ft.remove(fragment);
         ft.replace(R.id.fragment_container, newFragment);
         ft.addToBackStack(null);
         ft.commit();
@@ -110,12 +119,28 @@ public class MainActivity extends AppCompatActivity {
         fragmentProfile = newFragment;
         fragmentChangedProfile = true;
         FragmentTransaction ft = fragment.getActivity().getSupportFragmentManager().beginTransaction();
-        ft.hide(fragment);
+        ft.remove(fragment);
         ft.replace(R.id.fragment_container, newFragment);
         ft.addToBackStack(null);
         ft.commit();
     }
-
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment currentFragment = fragmentManager.findFragmentById(R.id.fragment_container);
+        if (currentFragment instanceof EditProfileFragment){
+            changeProfileFragment(currentFragment, new ProfileFragment());
+        }
+        if (currentFragment instanceof CreateAccountFragment){
+            changeProfileFragment(currentFragment, new LoginFragment());
+        }
+        if (currentFragment instanceof ViewChallengeFragment){
+            changeChallengeFragment(currentFragment, new ChallengeFragment());
+        }
+        if (currentFragment instanceof CreateChallengeFragment){
+            changeChallengeFragment(currentFragment, new ChallengeFragment());
+        }
+    }
     void initDatabase() {
         db = new DataBaseHelper(MainActivity.this, "PedometerDB.sqlite", null, 1);
         //db.createTable(Database);
