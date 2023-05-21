@@ -50,10 +50,19 @@ public class EditProfileFragment extends Fragment {
         edit_Greutate.setText(Float.toString(user.getGreutate()));
         edit_Email.setText(user.getEmail());
         edit_Phone.setText(user.getPhone());
-        
+
         update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                user.setLastName(String.valueOf(edit_Nume.getText()));
+                user.setFirstName(String.valueOf(edit_Prenume.getText()));
+                user.setVarsta(Integer.valueOf(String.valueOf(edit_Varsta.getText())));
+                user.setInaltime(Float.valueOf(String.valueOf(edit_Inaltime.getText())));
+                user.setGreutate(Float.valueOf(String.valueOf(edit_Greutate.getText())));
+                user.setEmail(String.valueOf(edit_Email.getText()));
+                user.setPhone(String.valueOf(edit_Phone.getText()));
+
                 MainActivity mainActivity = new MainActivity();
                 mainActivity.changeProfileFragment(epf,new ProfileFragment());
             }
