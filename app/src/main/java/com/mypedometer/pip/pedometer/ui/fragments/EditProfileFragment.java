@@ -1,5 +1,7 @@
 package com.mypedometer.pip.pedometer.ui.fragments;
 
+import static com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment.user;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,15 @@ public class EditProfileFragment extends Fragment {
         edit_Greutate = (EditText) editProfileView.findViewById(R.id.editGreutate);
         edit_Email = (EditText) editProfileView.findViewById(R.id.editEmail);
         edit_Phone = (EditText) editProfileView.findViewById(R.id.editPhone);
+
+        edit_Nume.setText(user.getNume());
+        edit_Prenume.setText(user.getPrenume());
+        edit_Varsta.setText(Integer.toString(user.getVarsta()));
+        edit_Inaltime.setText(Float.toString(user.getInaltime()));
+        edit_Greutate.setText(Float.toString(user.getGreutate()));
+        edit_Email.setText(user.getEmail());
+        edit_Phone.setText(user.getPhone());
+        
         update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
