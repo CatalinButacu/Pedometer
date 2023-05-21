@@ -3,11 +3,16 @@ package com.mypedometer.pip.pedometer.ui.fragments;
 import static com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment.user;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +29,11 @@ public class EditProfileFragment extends Fragment {
     private EditText edit_Greutate;
     private EditText edit_Email;
     private EditText edit_Phone;
+    private EditText edit_StepGoal;
+    private RadioGroup radioGroupGender;
+    private RadioButton radioButtonMale;
+    private RadioButton radioButtonFemale;
+    private String edit_gender;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -42,6 +52,10 @@ public class EditProfileFragment extends Fragment {
         edit_Greutate = (EditText) editProfileView.findViewById(R.id.editGreutate);
         edit_Email = (EditText) editProfileView.findViewById(R.id.editEmail);
         edit_Phone = (EditText) editProfileView.findViewById(R.id.editPhone);
+        edit_StepGoal = (EditText) editProfileView.findViewById(R.id.editStepGoal);
+        radioGroupGender = editProfileView.findViewById(R.id.editGender);
+        radioButtonMale = editProfileView.findViewById(R.id.radioMale);
+        radioButtonFemale = editProfileView.findViewById(R.id.radioFemale);
 
         edit_Nume.setText(user.getNume());
         edit_Prenume.setText(user.getPrenume());
@@ -50,11 +64,144 @@ public class EditProfileFragment extends Fragment {
         edit_Greutate.setText(Float.toString(user.getGreutate()));
         edit_Email.setText(user.getEmail());
         edit_Phone.setText(user.getPhone());
+        edit_StepGoal.setText(Integer.toString(user.getGoalDailySteps()));
 
+        //cand dai click pe text sa dispara, daca treci mai departe sa completezi o sa tina minte ce date ai pus
+        edit_Nume.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_Nume.getText().toString();
+                if (hasFocus) {
+                    edit_Nume.setText("");
+                }else if(!hasFocus){
+                    if(currentText.isEmpty()){
+                        edit_Nume.setText(user.getNume());
+                    }else{
+                        edit_Nume.setText(currentText);
+                    }
+                }
+            }
+        });
+        edit_Prenume.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_Prenume.getText().toString();
+                if (hasFocus) {
+                    edit_Prenume.setText("");
+                }else if(!hasFocus){
+                    if(currentText.isEmpty()){
+                        edit_Prenume.setText(user.getPrenume());
+                    }else{
+                        edit_Prenume.setText(currentText);
+                    }
+                }
+            }
+        });
+        edit_Email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_Email.getText().toString();
+                if (hasFocus) {
+                    edit_Email.setText("");
+                }else if(!hasFocus){
+                    if(currentText.isEmpty()){
+                        edit_Email.setText(user.getEmail());
+                    }else{
+                        edit_Email.setText(currentText);
+                    }
+                }
+            }
+        });
+        edit_Varsta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_Varsta.getText().toString();
+                if (hasFocus) {
+                    edit_Varsta.setText("");
+                } else if (!hasFocus) {
+                    if (TextUtils.isEmpty(currentText)) {
+                        edit_Varsta.setText(Integer.toString(user.getVarsta()));
+                    } else {
+                        edit_Varsta.setText(String.valueOf(Integer.parseInt(currentText)));
+                    }
+                }
+            }
+        });
+        edit_Inaltime.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_Inaltime.getText().toString();
+                if (hasFocus) {
+                    edit_Inaltime.setText("");
+                } else if (!hasFocus) {
+                    if (TextUtils.isEmpty(currentText)) {
+                        edit_Inaltime.setText(Float.toString(user.getInaltime()));
+                    } else {
+                        edit_Inaltime.setText(String.valueOf(Float.parseFloat(currentText)));
+                    }
+                }
+            }
+        });
+        edit_Greutate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_Greutate.getText().toString();
+                if (hasFocus) {
+                    edit_Greutate.setText("");
+                } else if (!hasFocus) {
+                    if (TextUtils.isEmpty(currentText)) {
+                        edit_Greutate.setText(Float.toString(user.getGreutate()));
+                    } else {
+                        edit_Greutate.setText(String.valueOf(Float.parseFloat(currentText)));
+                    }
+                }
+            }
+        });
+        edit_StepGoal.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_StepGoal.getText().toString();
+                if (hasFocus) {
+                    edit_StepGoal.setText("");
+                } else if (!hasFocus) {
+                    if (TextUtils.isEmpty(currentText)) {
+                        edit_StepGoal.setText(Integer.toString(user.getGoalDailySteps()));
+                    } else {
+                        edit_StepGoal.setText(String.valueOf(Integer.parseInt(currentText)));
+                    }
+                }
+            }
+        });
+        edit_Phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_Phone.getText().toString();
+                if (hasFocus) {
+                    edit_Phone.setText("");
+                }else if(!hasFocus){
+                    if(currentText.isEmpty()){
+                        edit_Phone.setText(user.getPhone());
+                    }else{
+                        edit_Phone.setText(currentText);
+                    }
+                }
+            }
+        });
+
+        //selectare gen
+        radioGroupGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == radioButtonMale.getId()) {
+                    edit_gender="Male";
+                } else if (checkedId == radioButtonFemale.getId()) {
+                    edit_gender="Female";
+                }
+            }
+        });
         update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 user.setLastName(String.valueOf(edit_Nume.getText()));
                 user.setFirstName(String.valueOf(edit_Prenume.getText()));
                 user.setVarsta(Integer.valueOf(String.valueOf(edit_Varsta.getText())));
@@ -62,6 +209,8 @@ public class EditProfileFragment extends Fragment {
                 user.setGreutate(Float.valueOf(String.valueOf(edit_Greutate.getText())));
                 user.setEmail(String.valueOf(edit_Email.getText()));
                 user.setPhone(String.valueOf(edit_Phone.getText()));
+                user.setGoalDailySteps(Integer.valueOf(String.valueOf(edit_StepGoal.getText())));
+                user.setGender(edit_gender);
 
                 MainActivity mainActivity = new MainActivity();
                 mainActivity.changeProfileFragment(epf,new ProfileFragment());
@@ -69,10 +218,4 @@ public class EditProfileFragment extends Fragment {
         });
         return editProfileView;
     }
-    //public UserModel updateUser(){
-        //creaza un obiect de tipul challenge
-        //extragerea inputului din UI
-        //atribuie campurilor obiectului inputul
-        //returneaza obiectul
-    //}
 }
