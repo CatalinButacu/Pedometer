@@ -47,7 +47,7 @@ public class UserModel {
     //----------------------------------------------------------------------------------------------
     // DataStats
     private DataStats m_cUserStats;
-    public class DataStats {
+    public static class DataStats {
         protected Integer m_iTotalSteps = 0;
         protected Integer m_iTotalDistance = 0;
         protected Integer m_iTotalCalories = 0;

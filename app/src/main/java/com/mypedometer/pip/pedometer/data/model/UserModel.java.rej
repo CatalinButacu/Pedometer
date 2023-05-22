@@ -1,0 +1,15 @@
+diff a/app/src/main/java/com/mypedometer/pip/pedometer/data/model/UserModel.java b/app/src/main/java/com/mypedometer/pip/pedometer/data/model/UserModel.java	(rejected hunks)
+@@ -42,12 +42,12 @@
+      private Integer m_iVarsta;
+      private Float m_fGreutate;
+      private Float m_fInaltime;
+ +    private Boolean m_bPrivateProfile;
+ +
+ +    //----------------------------------------------------------------------------------------------
+ +    // DataStats
+      private DataStats m_cUserStats;
+-     public class DataStats {
++     public static class DataStats {
+          protected Integer m_iTotalSteps = 0;
+          protected Integer m_iTotalDistance = 0;
+          protected Integer m_iTotalCalories = 0;

@@ -44,7 +44,11 @@ public class CreateAccountFragment extends Fragment {
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               UserModel user = new UserModel();
+                MainActivity mainActivity = new MainActivity();
+                mainActivity.changeProfileFragment(caf,new ProfileFragment());
+                //mainActivity.changeFragment(caf,new ProfileFragment());
+
+                UserModel user = new UserModel();
 
                 //TODO:: DE ADUS INFORMATIILE DIN BUTOANE
                 user.setFirstName(editTextFirstName.getText().toString());
