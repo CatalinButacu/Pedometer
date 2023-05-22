@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
 
         //afisez inaltime
         TextView textHeight = profileView.findViewById(R.id.height);
-        textHeight.setText(user.getInaltime() + " cm");
+        textHeight.setText(user.getInaltime() + " m");
 
         //afisez lungimea pasului
         TextView textStepLength = profileView.findViewById(R.id.stepLength);

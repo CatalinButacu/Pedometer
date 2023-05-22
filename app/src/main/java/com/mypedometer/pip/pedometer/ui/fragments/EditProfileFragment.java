@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -202,18 +203,32 @@ public class EditProfileFragment extends Fragment {
         update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user.setLastName(String.valueOf(edit_Nume.getText()));
-                user.setFirstName(String.valueOf(edit_Prenume.getText()));
-                user.setVarsta(Integer.valueOf(String.valueOf(edit_Varsta.getText())));
-                user.setInaltime(Float.valueOf(String.valueOf(edit_Inaltime.getText())));
-                user.setGreutate(Float.valueOf(String.valueOf(edit_Greutate.getText())));
-                user.setEmail(String.valueOf(edit_Email.getText()));
-                user.setPhone(String.valueOf(edit_Phone.getText()));
-                user.setGoalDailySteps(Integer.valueOf(String.valueOf(edit_StepGoal.getText())));
-                user.setGender(edit_gender);
+                String LastNameValid = String.valueOf(edit_Nume.getText());
+                String FirstNameValid = String.valueOf(edit_Prenume.getText());
+                Integer AgeValid = Integer.valueOf(String.valueOf(edit_Varsta.getText()));
+                Float HeightValid = Float.valueOf(String.valueOf(edit_Inaltime.getText()));
+                Float WeightValid = Float.valueOf(String.valueOf(edit_Greutate.getText()));
+                String EmailValid = String.valueOf(edit_Email.getText());
+                String PhoneValid = String.valueOf(edit_Phone.getText());
+                Integer GoalStepsValid = Integer.valueOf(String.valueOf(edit_StepGoal.getText()));
 
-                MainActivity mainActivity = new MainActivity();
-                mainActivity.changeProfileFragment(epf,new ProfileFragment());
+                boolean success = (LastNameValid.length() >=0 && LastNameValid.length() <=15 && FirstNameValid.length() >=0 && FirstNameValid.length() <=20 && AgeValid>0 && AgeValid<=120 && HeightValid>0.5 && HeightValid<=3 && WeightValid>5 && WeightValid<=400 && EmailValid.length() >=2 && EmailValid.length()<=30 && GoalStepsValid>0 && PhoneValid.length()==10);
+                    if(success){
+                    user.setLastName(LastNameValid);
+                    user.setFirstName(FirstNameValid);
+                    user.setVarsta(AgeValid);
+                    user.setInaltime(HeightValid);
+                    user.setGreutate(WeightValid);
+                    user.setEmail(EmailValid);
+                    user.setPhone(PhoneValid);
+                    user.setGoalDailySteps(GoalStepsValid);
+                    user.setGender(edit_gender);
+
+                    MainActivity mainActivity = new MainActivity();
+                    mainActivity.changeProfileFragment(epf,new ProfileFragment());
+
+                    }
+                Toast.makeText(getActivity(), success ? "Account edited successfully!":"Something is not correct!", Toast.LENGTH_SHORT).show();
             }
         });
         return editProfileView;
