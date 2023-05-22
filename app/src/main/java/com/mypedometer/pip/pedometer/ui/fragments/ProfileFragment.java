@@ -18,6 +18,8 @@ import java.text.DecimalFormat;
 public class ProfileFragment extends Fragment {
     ProfileFragment pf = this;
     private Button edit_profile_button;
+    private Button sing_out_button;
+    
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -32,11 +34,22 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View profileView = inflater.inflate(R.layout.profile_layout, container, false);
         edit_profile_button = (Button) profileView.findViewById(R.id.edit_profile_button);
+
         edit_profile_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity mainActivity = new MainActivity();
                 mainActivity.changeProfileFragment(pf,new EditProfileFragment());
+            }
+        });
+
+        sing_out_button = (Button) profileView.findViewById(R.id.sign_out_button);
+
+        sing_out_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = new MainActivity();
+                mainActivity.changeProfileFragment(pf,new LoginFragment());
             }
         });
 
