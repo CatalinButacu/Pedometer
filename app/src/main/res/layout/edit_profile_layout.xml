@@ -171,6 +171,35 @@
                             android:paddingEnd="15dp"
                             android:text="Female"/>
                     </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/editProfileType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textSize="20sp"
+                    android:background="@drawable/input_round">
+
+                    <RadioButton
+                        android:id="@+id/PrivateProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:text="Private Profile"/>
+
+                    <RadioButton
+                        android:id="@+id/PublicProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:text="Public Profile"/>
+                </RadioGroup>
             </LinearLayout>
         </ScrollView>
         <Button

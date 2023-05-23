@@ -35,6 +35,10 @@ public class EditProfileFragment extends Fragment {
     private RadioButton radioButtonMale;
     private RadioButton radioButtonFemale;
     private String edit_gender;
+    private RadioGroup radioProfileType;
+    private RadioButton radioButtonPrivateProfile;
+    private RadioButton radioButtonPublicProfile;
+    private boolean private_profile;
 
     public EditProfileFragment() {
         // Required empty public constructor
@@ -54,9 +58,14 @@ public class EditProfileFragment extends Fragment {
         edit_Email = (EditText) editProfileView.findViewById(R.id.editEmail);
         edit_Phone = (EditText) editProfileView.findViewById(R.id.editPhone);
         edit_StepGoal = (EditText) editProfileView.findViewById(R.id.editStepGoal);
+
         radioGroupGender = editProfileView.findViewById(R.id.editGender);
         radioButtonMale = editProfileView.findViewById(R.id.radioMale);
         radioButtonFemale = editProfileView.findViewById(R.id.radioFemale);
+
+        radioProfileType = editProfileView.findViewById(R.id.editProfileType);
+        radioButtonPrivateProfile = editProfileView.findViewById(R.id.PrivateProfile);
+        radioButtonPublicProfile = editProfileView.findViewById(R.id.PublicProfile);
 
         edit_Nume.setText(user.getNume());
         edit_Prenume.setText(user.getPrenume());
@@ -200,6 +209,18 @@ public class EditProfileFragment extends Fragment {
                 }
             }
         });
+
+        //selectare tip profil
+        radioProfileType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == radioButtonPrivateProfile.getId()) {
+                    private_profile=true;
+                } else if (checkedId == radioButtonPublicProfile.getId()) {
+                    private_profile=false;
+                }
+            }
+        });
         update_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -223,6 +244,7 @@ public class EditProfileFragment extends Fragment {
                     user.setPhone(PhoneValid);
                     user.setGoalDailySteps(GoalStepsValid);
                     user.setGender(edit_gender);
+                    user.setIsPrivateProfile(private_profile);
 
                     MainActivity mainActivity = new MainActivity();
                     mainActivity.changeProfileFragment(epf,new ProfileFragment());
