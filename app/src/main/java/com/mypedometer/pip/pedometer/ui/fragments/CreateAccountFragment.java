@@ -44,25 +44,28 @@ public class CreateAccountFragment extends Fragment {
         createAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity mainActivity = new MainActivity();
-                mainActivity.changeProfileFragment(caf,new ProfileFragment());
-                //mainActivity.changeFragment(caf,new ProfileFragment());
-
                 UserModel user = new UserModel();
 
                 //TODO:: DE ADUS INFORMATIILE DIN BUTOANE
-                user.setFirstName(editTextFirstName.getText().toString());
-                user.setLastName(editTextLastName.getText().toString());
-                user.setEmail(editTextEmail.getText().toString());
-                user.setPhone(editTextPhone.getText().toString());
-                user.setPassword(editTextPassword.getText().toString());
+
+                String firstName = editTextFirstName.getText().toString();
+                String lastName = editTextLastName.getText().toString();
+                String email = editTextEmail.getText().toString();
+                String phoneNr = editTextPhone.getText().toString();
+                String password = editTextPassword.getText().toString();
+
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setEmail(email);
+                user.setPhone(phoneNr);
+                user.setPassword(password);
 
                 boolean succes = db.insertDataUser(user);
-
-                if(succes) {
+                boolean valid = (succes && firstName.length()>=0 && firstName.length()<=25 && lastName.length()>=0 && lastName.length()<=25 && email.length()>=2 && email.length()<=30 && phoneNr.length()==10 && password.length()>=3);
+                if(valid){
                     MainActivity mainActivity = new MainActivity();
                     mainActivity.changeProfileFragment(caf,new ProfileFragment(user));
-                }
+                }/*
                 else
                 {
                     editTextFirstName.getText().clear();
@@ -71,8 +74,8 @@ public class CreateAccountFragment extends Fragment {
                     editTextPhone.getText().clear();
                     editTextPassword.getText().clear();
                 }
-
-                Toast.makeText(getActivity(), succes ? "Account created successfully!":"Your account can't be procced!", Toast.LENGTH_SHORT).show();
+                */
+                Toast.makeText(getActivity(), valid ? "Account created successfully!":"Your account can't be proceed!", Toast.LENGTH_SHORT).show();
             }
         });
 
