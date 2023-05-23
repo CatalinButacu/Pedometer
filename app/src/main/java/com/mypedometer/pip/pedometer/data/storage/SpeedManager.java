@@ -6,9 +6,9 @@ import com.mypedometer.pip.pedometer.sensors.SpeakingTimer;
 import com.mypedometer.pip.pedometer.sensors.Utils;
 
 /**
- * Calculates and displays pace (steps / minute), handles input of desired pace,
+ * This is the class that calculates and displays pace (steps / minute), handles input of desired pace,
  * notifies user if he/she has to go faster or slower.
- * 
+ *
  * Uses {@link StatusManager}, calculates speed as product of pace and step length.
  *
  */

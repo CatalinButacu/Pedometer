@@ -17,7 +17,14 @@ import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
 import com.mypedometer.pip.pedometer.data.model.UserModel;
 
+/**
+ * This is the class that generates the UI for creating the account of a new user when called.
+ */
 public class CreateAccountFragment extends Fragment {
+
+    /**
+     * Instance of a CreateAccountFragment used for switching in between the fragments.
+     */
     CreateAccountFragment caf = this;
 
     EditText editTextFirstName;

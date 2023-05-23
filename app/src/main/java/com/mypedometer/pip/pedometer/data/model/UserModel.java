@@ -2,6 +2,10 @@ package com.mypedometer.pip.pedometer.data.model;
 
 import java.util.List;
 
+/**
+ * This is the class that stores the current user of the app.
+ * Data will localy store here.
+ */
 public class UserModel {
 
     static int usersCreated = 0;
@@ -69,6 +73,9 @@ public class UserModel {
 
     //----------------------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------------------
+    /**
+     * Overridden toString method for debugging and working easier with the DataBase.
+     */
     @Override
     public String toString() {
         return "UserModel{" +

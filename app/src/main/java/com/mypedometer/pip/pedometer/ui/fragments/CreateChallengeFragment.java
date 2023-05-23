@@ -18,6 +18,10 @@ import com.mypedometer.pip.pedometer.data.model.UserModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the class that generates the UI for creating a new challenge when called.
+ */
+
 public class CreateChallengeFragment extends Fragment {
     private EditText createChallengeName;
     private EditText challengeStartDate;

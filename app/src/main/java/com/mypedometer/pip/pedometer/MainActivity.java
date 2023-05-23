@@ -30,7 +30,12 @@ import com.mypedometer.pip.pedometer.databinding.ActivityMainBinding;
 
 import java.util.Objects;
 
+/**
+ * This is the main activity.
+ */
 public class MainActivity extends AppCompatActivity {
+
+
     static Fragment fragmentChallenge = new Fragment();
     static Fragment fragmentProfile = new Fragment();
     static boolean fragmentChangedChallenge = false;

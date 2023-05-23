@@ -6,7 +6,7 @@ import com.mypedometer.pip.pedometer.sensors.StepListener;
 import com.mypedometer.pip.pedometer.sensors.Utils;
 
 /**
- * Calculates and displays the approximate calories.
+ * This is the class that calculates and displays the approximate calories.
  */
 
 public class CaloriesManager implements StepListener, SpeakingTimer.Listener {
@@ -42,6 +42,7 @@ public class CaloriesManager implements StepListener, SpeakingTimer.Listener {
         mCalories = calories;
         notifyListener();
     }
+
     public void reloadSettings() {
         mIsMetric = mSettings.isMetric();
         mIsRunning = mSettings.isRunning();
@@ -59,7 +60,8 @@ public class CaloriesManager implements StepListener, SpeakingTimer.Listener {
     public void setStepLength(float stepLength) {
         mStepLength = stepLength;
     }
-    
+
+
     public void onStep() {
         
         if (mIsMetric) {
@@ -79,6 +81,7 @@ public class CaloriesManager implements StepListener, SpeakingTimer.Listener {
         
         notifyListener();
     }
+
     
     private void notifyListener() {
         mListener.valueChanged((float)mCalories);

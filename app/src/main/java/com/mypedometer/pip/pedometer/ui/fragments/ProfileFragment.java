@@ -15,7 +15,13 @@ import com.mypedometer.pip.pedometer.data.model.UserModel;
 
 import java.text.DecimalFormat;
 
+/**
+ * This is the class that generates the UI of a user profile when called.
+ */
 public class ProfileFragment extends Fragment {
+    /**
+     * Instance of a ProfileFragment used for switching in between the fragments.
+     */
     ProfileFragment pf = this;
     private Button edit_profile_button;
     private Button sing_out_button;
@@ -26,6 +32,10 @@ public class ProfileFragment extends Fragment {
     public ProfileFragment(UserModel userModel) {
         user = userModel;
     }
+
+    /**
+     * Instance of a UserModel that represents the current user of the application.
+     */
     static UserModel user;
 
     @Override

@@ -9,6 +9,9 @@ import androidx.fragment.app.Fragment;
 
 import com.mypedometer.pip.pedometer.R;
 
+/**
+ * This is the class that generates the UI of the selected challenge and it's characteristics when called.
+ */
 public class ViewChallengeFragment extends Fragment {
 
     public ViewChallengeFragment() {

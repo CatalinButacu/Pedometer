@@ -18,6 +18,9 @@ import static com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment.user;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * This is the class that generates the UI for the current status (such as goals and achievements) of the user when called.
+ */
 public class StatusFragment extends Fragment {
     public StatusFragment() {
         // Required empty public constructor

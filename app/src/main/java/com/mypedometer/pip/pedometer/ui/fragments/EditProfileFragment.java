@@ -18,7 +18,15 @@ import androidx.fragment.app.Fragment;
 import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
 
+/**
+ * This is the class that generates the UI for editing an already existent account when called.
+ */
+
+
 public class EditProfileFragment extends Fragment {
+    /**
+     * Instance of an EditProfileFragment used for switching in between the fragments.
+     */
     EditProfileFragment epf = this;
     private Button update_profile;
     private EditText edit_Nume;

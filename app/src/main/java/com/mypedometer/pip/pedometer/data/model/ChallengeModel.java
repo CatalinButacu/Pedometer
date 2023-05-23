@@ -11,6 +11,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * This is the base of every Challenge.
+ * Data will localy store here.
+ */
 public class ChallengeModel {
     static int challengesCreated = 0;
 
@@ -45,6 +50,10 @@ public class ChallengeModel {
     };
 
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * Overridden toString method for debugging and working easier with the DataBase.
+     */
     @Override
     public String toString() {
         return "ChallengeModel{" +
@@ -178,6 +187,12 @@ public class ChallengeModel {
         return OK;
     }
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * Inserts the current user into the candidates list of the selected challenge.
+     * @param user
+     * @return
+     */
     public Boolean insertCandidate(UserModel user){
         boolean OK = true;
         if (m_lCandidates.contains(user)){

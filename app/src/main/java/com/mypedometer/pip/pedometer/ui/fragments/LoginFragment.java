@@ -25,7 +25,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.regex.Pattern;
 
+/**
+ * This is the class that generates the UI for logging into an already existent account when called.
+ */
 public class LoginFragment extends Fragment {
+    /**
+     * Instance of a LoginFragment used for switching in between the fragments.
+     */
     LoginFragment lf = this;
 
     private Button loginButton;

@@ -24,8 +24,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
+ * This is the class that returns a fragment corresponding to one of the sections/tabs/pages.
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
     View fragmentContainer;

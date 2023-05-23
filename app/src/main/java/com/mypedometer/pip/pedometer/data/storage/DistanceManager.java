@@ -6,7 +6,7 @@ import com.mypedometer.pip.pedometer.sensors.StepListener;
 import com.mypedometer.pip.pedometer.sensors.Utils;
 
 /**
- * Calculates and displays the distance walked.
+ * This is the class that calculates and displays the distance walked.
  */
 
 public class DistanceManager implements StepListener, SpeakingTimer.Listener {

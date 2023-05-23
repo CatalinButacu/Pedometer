@@ -13,7 +13,14 @@ import androidx.fragment.app.Fragment;
 import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
 
+/**
+ * This is the class that generates the UI of a challenge when called.
+ */
+
 public class ChallengeFragment extends Fragment {
+    /**
+     * Instance of a ChallengeFragment used for switching in between the fragments.
+     */
     ChallengeFragment cf = this;
     Button createCh;
     public ChallengeFragment() {

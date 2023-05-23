@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * This is the class that helps link the locally stored data to a DataBase.
+ */
 public class DataBaseHelper extends SQLiteOpenHelper {
     enum DBTypes{
         USER_ESSENTIALS,
