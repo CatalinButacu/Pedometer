@@ -2,6 +2,7 @@ package com.mypedometer.pip.pedometer.ui.fragments;
 
 import android.hardware.Sensor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.mypedometer.pip.pedometer.R;
+import static com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment.user;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,24 +22,17 @@ public class StatusFragment extends Fragment {
     public StatusFragment() {
         // Required empty public constructor
     }
-    static final int STEPS = 1000;
+    static final int STEPS = 3000;
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View StatusView = inflater.inflate(R.layout.status_layout, container, false);
 
-        final double CALORIES = 10.3;
+        final Integer CALORIES = 231;
         String MSGCALORIES = CALORIES + "  Kcal";
 
-        final double DISTANCE = 39;
+        final Integer DISTANCE = 985;
         String MSGDISTANCE = DISTANCE + "  m";
-
-        final int TIME = 3;
-        String MSGTIME = TIME + "  min";
-
-        final int SPEED = 1;
-        String MSGSPEED = SPEED + "  Km/h";
 
         final int DAILYAVERAGE = 3000;
         String MSGDAILYAVERAGE = "Daily average: " + DAILYAVERAGE;
@@ -46,7 +41,14 @@ public class StatusFragment extends Fragment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");
         String Date = dateFormat.format(calendar.getTime());
 
-        final int GOAL = 10000;
+        final int GOAL;
+        if(ProfileFragment.user != null){
+            GOAL = ProfileFragment.user.getGoalDailySteps();
+        }
+        else{
+            //valoare default daca user-ul nu a fost initializat
+            GOAL = 8000;
+        }
         final int MONDAY = 10;
         final int TUESDAY = 60;
         final int WEDNESDAY = 80;
@@ -73,7 +75,6 @@ public class StatusFragment extends Fragment {
         TextView infoPBar = StatusView.findViewById(R.id.infoProgressBar);
         infoPBar.setText(STEPS + "/" + GOAL);
 
-
         // afisez in textView-ul pt calorii mesajul MSGCALORIES
         TextView textCalories = StatusView.findViewById(R.id.Calories);
         textCalories.setText(MSGCALORIES);
@@ -81,14 +82,6 @@ public class StatusFragment extends Fragment {
         // afisez in textView-ul pt distanta mesajul MSGDISTANCE
         TextView textDistancce = StatusView.findViewById(R.id.Distance);
         textDistancce.setText(MSGDISTANCE);
-
-        // afisez in textView-ul pt timp mesajul MSGTIME
-        TextView textTime = StatusView.findViewById(R.id.Time);
-        textTime.setText(MSGTIME);
-
-        // afisez in textView-ul pt speed mesajul MSGSPEED
-        TextView textSpeed = StatusView.findViewById(R.id.Speed);
-        textSpeed.setText(MSGSPEED);
 
         // afisez in textView-ul pt daile average mesajul MSGDAILYAVERAGE
         TextView textDailyAverage = StatusView.findViewById(R.id.dailyAverage);

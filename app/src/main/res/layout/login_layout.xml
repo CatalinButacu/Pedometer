@@ -94,7 +94,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:padding="20dp"
-            android:background="@drawable/button_round_edges2"
+            android:background="@drawable/button_round_edges"
             android:text="@string/login"/>
 
         <Button
@@ -105,7 +105,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:padding="20dp"
-            android:background="@drawable/button_round_edges2"
+            android:background="@drawable/button_round_edges"
             android:text="@string/signup" />
 
         </LinearLayout>

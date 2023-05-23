@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-
-    <solid android:color="#1C354F" /> <!-- culoarea fundalului butonului -->
-    <corners android:radius="30dp" /> <!-- valoarea radius definește cât de rotunjite sunt colțurile; aici se definește la 20dp -->
-
+    <solid android:color="@color/butoane" /> <!-- culoarea fundalului butonului -->
+    <corners android:radius="30dp" />
 </shape>
 

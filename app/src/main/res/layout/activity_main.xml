@@ -22,18 +22,19 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/light_dark_blue"
+                android:background="@color/linie"
                 android:gravity="center"
                 android:minHeight="?actionBarSize"
                 android:padding="@dimen/appbar_padding"
-                android:text="@string/app_name"
+                android:text="Pedometer"
                 android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
             <!--Tabs-->
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@color/butoane"
+                app:tabTextColor="@color/white"
                 android:contentDescription=" " />
         </com.google.android.material.appbar.AppBarLayout>
 

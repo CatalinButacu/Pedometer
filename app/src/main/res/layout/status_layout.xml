@@ -16,9 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="115dp"
             android:gravity="center"
-            android:textColor="@color/white"
             android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <!--adaugare linie delimitare-->
         <View
@@ -26,8 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_below="@id/currentDate"
-            android:layout_margin="20dp"
-            android:background="@android:color/black" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/linie" />
 
         <!--adaugare text pasi in tab-ul My Activity-->
         <TextView
@@ -35,17 +37,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/line1"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:text="@string/steps"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold" />
         <!--adaugare icon pasi in tab-ul My Activity-->
         <ImageView
             android:id="@+id/imgSteps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/textSteps"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/steps"
             android:contentDescription="@string/descrSteps"/>
@@ -56,11 +58,10 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/textSteps"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="60dp"
-            android:textColor="@color/white"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="45dp"
             android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <!--adaugare progress bar in tab-ul My Activity-->
         <ProgressBar
@@ -71,12 +72,11 @@
             android:layout_below="@id/imgSteps"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
-            android:progressTint="@color/light_dark_blue"/>
-
-        <!--style="@drawable/progress_bar"-->
-
+            android:progressTint="@color/light_blue"
+            android:progressBackgroundTint="@color/gray_blue"
+            />
 
         <!--adaugare informatii pt progress bar in tab-ul My Activity-->
         <TextView
@@ -86,18 +86,17 @@
             android:layout_below="@id/progressBar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/white"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
         <!--adaugare icon calorii in tab-ul My Activity-->
         <ImageView
             android:id="@+id/imgCalories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/progressBar"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="45dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/calories"
             android:contentDescription="@string/descrCalories"/>
         <!--adaugare calorii in tab-ul My Activity-->
@@ -106,21 +105,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/imgCalories"
-            android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/imgCalories"
-            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
             android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <!--adaugare icon distanta in tab-ul My Activity-->
         <ImageView
             android:id="@+id/imgDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imgCalories"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_alignBottom="@id/imgCalories"
+            android:layout_toEndOf="@id/imgCalories"
+            android:layout_marginLeft="155dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/distance"
             android:contentDescription="@string/descrDistance"/>
         <!--adaugare distanta in tab-ul My Activity-->
@@ -131,53 +129,6 @@
             android:layout_alignTop="@id/imgDistance"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/imgDistance"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <!--adaugare icon time in tab-ul My Activity-->
-        <ImageView
-            android:id="@+id/imgTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imgDistance"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/time"
-            android:contentDescription="@string/descrTime"/>
-        <!--adaugare time in tab-ul My Activity-->
-        <TextView
-            android:id="@+id/Time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/imgTime"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/imgTime"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="25sp"/>
-
-        <!--adaugare icon speed in tab-ul My Activity-->
-        <ImageView
-            android:id="@+id/imgSpeed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imgTime"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/speed"
-            android:contentDescription="@string/descrSpeed"/>
-        <!--adaugare speed in tab-ul My Activity-->
-        <TextView
-            android:id="@+id/Speed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/imgSpeed"
-            android:layout_marginTop="10dp"
-            android:layout_toEndOf="@id/imgSpeed"
-            android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"/>
 
@@ -186,9 +137,12 @@
             android:id="@+id/line2"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_below="@id/imgSpeed"
-            android:layout_margin="20dp"
-            android:background="@android:color/black" />
+            android:layout_below="@id/imgDistance"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/linie" />
 
         <!--adaugare daily average in tab-ul My Activity-->
         <TextView
@@ -196,10 +150,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/line2"
+            android:layout_marginTop="100dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:textColor="@color/white"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <!--adaugare Monday in tab-ul My Activity-->
         <ProgressBar
@@ -211,7 +166,7 @@
             android:layout_marginEnd="6dp"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="15dp"/>
 
         <!--adaugare Tuesday in tab-ul My Activity-->
         <ProgressBar
@@ -282,9 +237,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/white"
             android:text="@string/monday"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <!--adaugare text Tuesday-->
         <TextView
@@ -295,9 +250,9 @@
             android:layout_toEndOf="@id/textMonday"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/white"
             android:text="@string/tuesday"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <!--adaugare text Wednesday-->
         <TextView
@@ -308,9 +263,9 @@
             android:layout_toEndOf="@id/textTuesday"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/white"
             android:text="@string/wednesday"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <!--adaugare text Thursday-->
         <TextView
@@ -321,9 +276,9 @@
             android:layout_toEndOf="@id/textWednesday"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/white"
             android:text="@string/thursday"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <!--adaugare text Friday-->
         <TextView
@@ -334,9 +289,9 @@
             android:layout_toEndOf="@id/textThursday"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/white"
             android:text="@string/friday"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <!--adaugare text Saturday-->
         <TextView
@@ -347,9 +302,9 @@
             android:layout_toEndOf="@id/textFriday"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/white"
             android:text="@string/saturday"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <!--adaugare text Sunday-->
         <TextView
@@ -360,9 +315,9 @@
             android:layout_toEndOf="@id/textSaturday"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/white"
             android:text="@string/sunday"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

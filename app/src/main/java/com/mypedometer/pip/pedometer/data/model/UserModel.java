@@ -54,7 +54,7 @@ public class UserModel {
         protected Integer[] m_iDailySteps = new Integer[6];
         protected Integer[] m_iDailyDistance = new Integer[6];
         protected Integer[] m_iDailyCalories = new Integer[6];
-        private Integer m_iGoalDailySteps = 0;
+        private Integer m_iGoalDailySteps = 10000;
         private Integer m_iGoalDailyCalories = 0;
         private Integer m_iGoalDailyDistance = 0;
         public Integer[] m_iChallengeSteps = new Integer[6];
