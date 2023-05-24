@@ -37,8 +37,14 @@ public class StatusFragment extends Fragment {
         final Integer DISTANCE = 985;
         String MSGDISTANCE = DISTANCE + "  m";
 
-        final int DAILYAVERAGE = 3000;
-        String MSGDAILYAVERAGE = "Daily average: " + DAILYAVERAGE;
+        final int DAILYAVERAGESTEPS = 7000;
+        String MSGDAILYAVERAGESTEPS = "Average activity: " + DAILYAVERAGESTEPS + " steps";
+
+        final int DAILYAVERAGEDISTANCE = 8000;
+        String MSGDAILYAVERAGEDISTANCE = "Average distance: " + DAILYAVERAGEDISTANCE + " m";
+
+        final int DAILYAVERAGECALORIES = 350;
+        String MSGDAILYAVERAGECALORIES = "Average calories: " + DAILYAVERAGECALORIES + " kcal";
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");
@@ -52,13 +58,14 @@ public class StatusFragment extends Fragment {
             //valoare default daca user-ul nu a fost initializat
             GOAL = 8000;
         }
-        final int MONDAY = 10;
-        final int TUESDAY = 60;
-        final int WEDNESDAY = 80;
-        final int THURSDAY = 30;
-        final int FRIDAY = 50;
-        final int SATURDAY = 50;
-        final int SUNDAY = 100;
+        //fie 100(Goal atins), fie 0
+        final int MONDAY = 0;
+        final int TUESDAY = 100;
+        final int WEDNESDAY = 100;
+        final int THURSDAY = 0;
+        final int FRIDAY = 100;
+        final int SATURDAY = 100;
+        final int SUNDAY = 0;
 
 
 
@@ -86,9 +93,17 @@ public class StatusFragment extends Fragment {
         TextView textDistancce = StatusView.findViewById(R.id.Distance);
         textDistancce.setText(MSGDISTANCE);
 
-        // afisez in textView-ul pt daile average mesajul MSGDAILYAVERAGE
-        TextView textDailyAverage = StatusView.findViewById(R.id.dailyAverage);
-        textDailyAverage.setText(MSGDAILYAVERAGE);
+        // afisez in textView-ul pt daily average steps mesajul MSGDAILYAVERAGESTEPS
+        TextView textDailyAverageSteps = StatusView.findViewById(R.id.dailyAverageSteps);
+        textDailyAverageSteps.setText(MSGDAILYAVERAGESTEPS);
+
+        // afisez in textView-ul pt daily average distance mesajul MSGDAILYAVERAGEDISTANCE
+        TextView textDailyAverageDistance = StatusView.findViewById(R.id.dailyAverageDistance);
+        textDailyAverageDistance.setText(MSGDAILYAVERAGEDISTANCE);
+
+        // afisez in textView-ul pt daily average calories mesajul MSGDAILYAVERAGECALORIES
+        TextView textDailyAverageCalories = StatusView.findViewById(R.id.dailyAverageCalories);
+        textDailyAverageCalories.setText(MSGDAILYAVERAGECALORIES);
 
         //setez progresul pentru fiecare zi
         ProgressBar mon = StatusView.findViewById(R.id.monday);

@@ -28,7 +28,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/linie" />
 
         <!--adaugare text pasi in tab-ul My Activity-->
@@ -72,7 +72,7 @@
             android:layout_below="@id/imgSteps"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:progressTint="@color/light_blue"
             android:progressBackgroundTint="@color/gray_blue"
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/progressBar"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="25dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
             android:src="@drawable/calories"
@@ -139,7 +139,7 @@
             android:layout_height="2dp"
             android:layout_below="@id/imgDistance"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:background="@color/linie" />
@@ -368,16 +368,39 @@
             </TableRow>
         </TableLayout>
 
-        <!--adaugare daily average in tab-ul My Activity-->
+        <!--adaugare daily average steps in tab-ul My Activity-->
         <TextView
-            android:id="@+id/dailyAverage"
+            android:id="@+id/dailyAverageSteps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/table"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:textSize="25sp"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+        <!--adaugare daily average distance in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/dailyAverageDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dailyAverageSteps"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+
+        <!--adaugare daily average calories in tab-ul My Activity-->
+        <TextView
+            android:id="@+id/dailyAverageCalories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/dailyAverageDistance"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="20dp"
             android:textStyle="bold"/>
 
         <!--adaugare Monday in tab-ul My Activity-->
@@ -386,11 +409,11 @@
             style="@style/CircularDeterminateProgressBar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_below="@id/dailyAverage"
+            android:layout_below="@id/dailyAverageCalories"
             android:layout_marginEnd="6dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="20dp"/>
 
         <!--adaugare Tuesday in tab-ul My Activity-->
         <ProgressBar
@@ -458,7 +481,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/monday"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="20dp"
             android:text="@string/monday"
