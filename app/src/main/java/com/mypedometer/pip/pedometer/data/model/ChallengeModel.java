@@ -11,11 +11,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * This is the base of every Challenge.
- * Data will localy store here.
- */
 public class ChallengeModel {
     static int challengesCreated = 0;
 
@@ -28,6 +23,7 @@ public class ChallengeModel {
         m_sChallengeStatus = Status.Created;
         m_sDateStart = "";
         m_sDateEnd = "";
+        m_lCandidates = new ArrayList<>();
         challengesCreated++;
     }
     //----------------------------------------------------------------------------------------------
@@ -35,7 +31,7 @@ public class ChallengeModel {
     private String m_sChallengeID;
     private String m_sCreatorID;
     private String m_sChallengeName;
-    public List<UserModel> m_lCandidates = new ArrayList<UserModel>();
+    public List<UserModel> m_lCandidates;
 
     //----------------------------------------------------------------------------------------------
     // DataStats
@@ -47,13 +43,9 @@ public class ChallengeModel {
         Started,
         Finished,
         Deleted
-    };
+    }
 
     //----------------------------------------------------------------------------------------------
-
-    /**
-     * Overridden toString method for debugging and working easier with the DataBase.
-     */
     @Override
     public String toString() {
         return "ChallengeModel{" +
@@ -151,7 +143,7 @@ public class ChallengeModel {
     //----------------------------------------------------------------------------------------------
     public boolean setDateStart(String sDateStart){
         boolean OK = true;
-        if (m_sDateStart.isEmpty()){
+        if (!m_sDateStart.isEmpty()){
             OK = false;
         }
         else{
@@ -162,7 +154,7 @@ public class ChallengeModel {
     //----------------------------------------------------------------------------------------------
     public boolean setDateEnd(String sDateEnd){
         boolean OK = true;
-        if (m_sDateEnd.isEmpty()){
+        if (!m_sDateEnd.isEmpty()){
             OK = false;
         }
         else{
@@ -187,12 +179,6 @@ public class ChallengeModel {
         return OK;
     }
     //----------------------------------------------------------------------------------------------
-
-    /**
-     * Inserts the current user into the candidates list of the selected challenge.
-     * @param user
-     * @return
-     */
     public Boolean insertCandidate(UserModel user){
         boolean OK = true;
         if (m_lCandidates.contains(user)){
@@ -202,7 +188,7 @@ public class ChallengeModel {
             m_lCandidates.add(user);
         }
         return OK;
-    };
+    }
     //----------------------------------------------------------------------------------------------
     public Boolean deleteCandidates(UserModel user){
         boolean OK = true;
@@ -223,7 +209,7 @@ public class ChallengeModel {
         LocalDateTime startDateTime = LocalDateTime.parse(m_sDateStart, formatter);
         LocalDateTime endDateTime = LocalDateTime.parse(m_sDateEnd, formatter);
 
-        Duration duration = null;
+        Duration duration;
         long year = 0;
         long months = 0;
         long days = 0;

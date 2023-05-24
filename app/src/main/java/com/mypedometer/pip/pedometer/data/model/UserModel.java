@@ -1,11 +1,8 @@
 package com.mypedometer.pip.pedometer.data.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This is the class that stores the current user of the app.
- * Data will localy store here.
- */
 public class UserModel {
 
     static int usersCreated = 0;
@@ -26,7 +23,7 @@ public class UserModel {
         this.m_fInaltime = 0f;
         this.m_lFriends = null;
         this.m_bPrivateProfile = false;
-        this.m_lChallenges = null;
+        this.m_lChallenges = new ArrayList<ChallengeModel>();
 
         this.m_cUserStats = new DataStats();
         usersCreated++;
@@ -51,14 +48,14 @@ public class UserModel {
     //----------------------------------------------------------------------------------------------
     // DataStats
     private DataStats m_cUserStats;
-    public static class DataStats {
+    public class DataStats {
         protected Integer m_iTotalSteps = 0;
         protected Integer m_iTotalDistance = 0;
         protected Integer m_iTotalCalories = 0;
         protected Integer[] m_iDailySteps = new Integer[6];
         protected Integer[] m_iDailyDistance = new Integer[6];
         protected Integer[] m_iDailyCalories = new Integer[6];
-        private Integer m_iGoalDailySteps = 10000;
+        private Integer m_iGoalDailySteps = 0;
         private Integer m_iGoalDailyCalories = 0;
         private Integer m_iGoalDailyDistance = 0;
         public Integer[] m_iChallengeSteps = new Integer[6];
@@ -68,14 +65,11 @@ public class UserModel {
 
     //----------------------------------------------------------------------------------------------
     // Extra Data
-    private List<UserModel> m_lFriends;
-    private List<ChallengeModel> m_lChallenges;
+    private List<UserModel> m_lFriends = new ArrayList<UserModel>();
+    private List<ChallengeModel> m_lChallenges = new ArrayList<ChallengeModel>();
 
     //----------------------------------------------------------------------------------------------
     //----------------------------------------------------------------------------------------------
-    /**
-     * Overridden toString method for debugging and working easier with the DataBase.
-     */
     @Override
     public String toString() {
         return "UserModel{" +
@@ -140,6 +134,10 @@ public class UserModel {
         return this.m_lChallenges.get(i);
     }
     //----------------------------------------------------------------------------------------------
+    public boolean addChallenge(ChallengeModel i){
+        if(i.getChallengeID().isEmpty()) return false;
+        return this.m_lChallenges.add(i);
+    }
     public String getEmail(){
         return this.m_sEmail;
     }
@@ -415,7 +413,10 @@ public class UserModel {
         return true;
     }
 
-    protected Boolean addFriend(UserModel user){
+    public Boolean addFriend(UserModel user){
+        if (m_lFriends == null) {
+            m_lFriends = new ArrayList<>();
+        }
         for (UserModel u:m_lFriends){
             if(u==user)
                 return false;
@@ -423,7 +424,7 @@ public class UserModel {
         return m_lFriends.add(user);
     }
     //----------------------------------------------------------------------------------------------
-    protected Boolean deleteFriend(UserModel user){
+    public Boolean deleteFriend(UserModel user){
         for (UserModel u:m_lFriends){
             if(u==user)
                 return m_lFriends.remove(u);
@@ -431,13 +432,11 @@ public class UserModel {
         return false;
     }
     //----------------------------------------------------------------------------------------------
-    protected Boolean addDailySteps(Integer i){
+    public Boolean addDailySteps(Integer i){
         this.m_cUserStats.m_iDailySteps[0] += i;
         this.m_cUserStats.m_iTotalSteps += i;
         return true;
     }
     //----------------------------------------------------------------------------------------------
-
-
 
 }
