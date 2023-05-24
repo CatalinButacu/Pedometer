@@ -18,6 +18,8 @@ import java.util.List;
 
 /**
  * This is the class that helps link the locally stored data to a DataBase.
+ * The class provides methods to insert, update, and delete data for UserModel and ChallengeModel objects.
+ * There are also methods to execute custom SQL statements, create and drop tables, and fetch data from the database.
  */
 public class DataBaseHelper extends SQLiteOpenHelper {
     enum DBTypes{
@@ -34,6 +36,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //this.updateDataChallenges(this.getReadableDatabase());
     }
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * This method is called when the database is created for the first time. It executes SQL statements to create the required tables based on the DBTypes enumeration.
+     * @param sqLiteDatabase
+     */
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
@@ -47,9 +54,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(createTableStatement);
     }
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * This method is called when the database needs to be upgraded to a new version. It can be implemented to handle the migration of data from the old schema to the new schema.
+     * @param sqLiteDatabase
+     * @param i
+     * @param i1
+     */
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        //TODO:
     }
     //----------------------------------------------------------------------------------------------
     public boolean insertDataUser(UserModel user){
@@ -199,6 +213,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(specialTableStatement);
     }
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * This method returns the SQL statement for creating a specific table based on the DBTypes enumeration.
+     * @param dbType
+     * @return
+     */
     public String getDBCreateStatement(DBTypes dbType)
     {
         String createTableStatement = "";
@@ -268,6 +288,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return createTableStatement;
     }
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * This method checks if a table exists in the database. If it doesn't exist, it executes the SQL statement to create the table.
+     * @param dbType
+     * @return
+     */
     public boolean ensureTableExist(DBTypes dbType) {
         boolean tableExists = false;
 
@@ -289,12 +315,26 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return tableExists;
     }
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * This method checks if a user already exists in the respective table.
+     * @param user
+     * @param dbType
+     * @return
+     */
     public boolean checkIsUserExists(@NonNull UserModel user, DBTypes dbType) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+ dbType.toString() + " WHERE UserID = ?", new String[]{user.getUserID()});
         return (cursor.getCount() != 0) ? true : false;
     }
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * This method checks if a challenge already exists in the respective table.
+     * @param challenge
+     * @param dbType
+     * @return
+     */
     public boolean checkIsChallengeExists(@NonNull ChallengeModel challenge, DBTypes dbType) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM "+ dbType.toString() + " WHERE ChallengeID = ?", new String[]{challenge.getChallengeID()});
@@ -333,6 +373,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return true;
     }
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * This method retrieves data from the corresponding table and return a list of UserModel object.
+     * @param sqLiteDatabase
+     * @return
+     */
     public List<UserModel> getUsers(SQLiteDatabase sqLiteDatabase){
         boolean tableExists = ensureTableExist(DBTypes.USER_ESSENTIALS);
         if(!tableExists)
@@ -404,6 +450,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return users;
     }
     //----------------------------------------------------------------------------------------------
+
+    /**
+     * This method retrieves data from the corresponding table and returns a list of ChallengeModel object.
+     * @param sqLiteDatabase
+     * @return
+     */
     public List<ChallengeModel> getChallanges(SQLiteDatabase sqLiteDatabase){
         List<ChallengeModel> challenges = new ArrayList<>();
         String selectStatement = "SELECT * FROM CHALLENGE";

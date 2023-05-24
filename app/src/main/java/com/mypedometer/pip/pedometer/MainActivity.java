@@ -31,7 +31,8 @@ import com.mypedometer.pip.pedometer.databinding.ActivityMainBinding;
 import java.util.Objects;
 
 /**
- * This is the main activity.
+ * The MainActivity class is the main activity of the application.
+ * It is responsible for managing the main user interface and handling navigation between fragments.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
     static public SectionsPagerAdapter sectionsPagerAdapter;
 
     static public DataBaseHelper db;
+    /**
+     * Called when the activity is starting. Initializes the activity and sets up the user interface.
+     *
+     * @param savedInstanceState The saved instance state Bundle.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +117,12 @@ public class MainActivity extends AppCompatActivity {
         dropAllTables(db.getWritableDatabase());
     }
 
+    /**
+     * Changes the challenge fragment with a new fragment.
+     *
+     * @param fragment     The current fragment.
+     * @param newFragment  The new fragment to replace the current fragment.
+     */
     public static void changeChallengeFragment(Fragment fragment, Fragment newFragment) {
         fragmentChallenge = newFragment;
         fragmentChangedChallenge = true;
@@ -120,6 +132,12 @@ public class MainActivity extends AppCompatActivity {
         ft.addToBackStack(null);
         ft.commit();
     }
+    /**
+     * Changes the profile fragment with a new fragment.
+     *
+     * @param fragment     The current fragment.
+     * @param newFragment  The new fragment to replace the current fragment.
+     */
     public static void changeProfileFragment(Fragment fragment, Fragment newFragment) {
         fragmentProfile = newFragment;
         fragmentChangedProfile = true;
@@ -129,6 +147,9 @@ public class MainActivity extends AppCompatActivity {
         ft.addToBackStack(null);
         ft.commit();
     }
+    /**
+     * Handles the back button press. Checks the current fragment and performs the necessary action.
+     */
     @Override
     public void onBackPressed() {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -146,6 +167,9 @@ public class MainActivity extends AppCompatActivity {
             changeChallengeFragment(currentFragment, new ChallengeFragment());
         }
     }
+    /**
+     * Initializes the database by creating a new instance of the DataBaseHelper class.
+     */
     void initDatabase() {
         db = new DataBaseHelper(MainActivity.this, "PedometerDB.sqlite", null, 1);
         //db.createTable(Database);
