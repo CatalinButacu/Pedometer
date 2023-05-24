@@ -87,15 +87,17 @@ public class ProfileFragment extends Fragment {
         TextView textHeight = profileView.findViewById(R.id.height);
         textHeight.setText(user.getInaltime() + " m");
 
-        //afisez lungimea pasului
-        TextView textStepLength = profileView.findViewById(R.id.stepLength);
-        DecimalFormat df = new DecimalFormat("##.##");
-        String stepL = df.format(0.415 * user.getInaltime());
-        textStepLength.setText(stepL + " cm");
-
         //afisez step goal
         TextView textStepGoal = profileView.findViewById(R.id.stepGoal);
         textStepGoal.setText(Integer.toString(user.getGoalDailySteps()));
+
+        //afisez distance goal
+        TextView textDistanceGoal = profileView.findViewById(R.id.distanceGoal);
+        textDistanceGoal.setText(Integer.toString(user.getGoalDailyDistance()) + " m");
+
+        //afisez calories goal
+        TextView textCaloriesGoal = profileView.findViewById(R.id.caloriesGoal);
+        textCaloriesGoal.setText(Integer.toString(user.getGoalDailyCalories()) + " kcal");
 
         return profileView;
     }

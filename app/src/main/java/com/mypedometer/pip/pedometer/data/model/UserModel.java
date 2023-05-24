@@ -18,9 +18,9 @@ public class UserModel {
         this.m_sNume = "";
         this.m_sPrenume = "";
         this.m_sGen = "not set";
-        this.m_iVarsta = 0;
-        this.m_fGreutate = 0f;
-        this.m_fInaltime = 0f;
+        this.m_iVarsta = 18;
+        this.m_fGreutate = 60f;
+        this.m_fInaltime = 1.8f;
         this.m_lFriends = null;
         this.m_bPrivateProfile = false;
         this.m_lChallenges = new ArrayList<ChallengeModel>();
@@ -58,6 +58,9 @@ public class UserModel {
         private Integer m_iGoalDailySteps = 0;
         private Integer m_iGoalDailyCalories = 0;
         private Integer m_iGoalDailyDistance = 0;
+        private Integer m_iGoalDailySteps = 10000;
+        private Integer m_iGoalDailyCalories = 350;
+        private Integer m_iGoalDailyDistance = 8000;
         public Integer[] m_iChallengeSteps = new Integer[6];
         public Integer[] m_iChallengeCalories = new Integer[6];
         public Integer[] m_iChallengeDistance = new Integer[6];

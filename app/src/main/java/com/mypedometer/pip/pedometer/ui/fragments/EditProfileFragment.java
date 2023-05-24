@@ -37,6 +37,8 @@ public class EditProfileFragment extends Fragment {
     private EditText edit_Email;
     private EditText edit_Phone;
     private EditText edit_StepGoal;
+    private EditText edit_DistanceGoal;
+    private EditText edit_CaloriesGoal;
     private RadioGroup radioGroupGender;
     private RadioButton radioButtonMale;
     private RadioButton radioButtonFemale;
@@ -64,6 +66,8 @@ public class EditProfileFragment extends Fragment {
         edit_Email = (EditText) editProfileView.findViewById(R.id.editEmail);
         edit_Phone = (EditText) editProfileView.findViewById(R.id.editPhone);
         edit_StepGoal = (EditText) editProfileView.findViewById(R.id.editStepGoal);
+        edit_DistanceGoal = (EditText) editProfileView.findViewById(R.id.editDistanceGoal);
+        edit_CaloriesGoal = (EditText) editProfileView.findViewById(R.id.editCaloriesGoal);
 
         radioGroupGender = editProfileView.findViewById(R.id.editGender);
         radioButtonMale = editProfileView.findViewById(R.id.radioMale);
@@ -81,6 +85,8 @@ public class EditProfileFragment extends Fragment {
         edit_Email.setText(user.getEmail());
         edit_Phone.setText(user.getPhone());
         edit_StepGoal.setText(Integer.toString(user.getGoalDailySteps()));
+        edit_DistanceGoal.setText(Integer.toString(user.getGoalDailyDistance()));
+        edit_CaloriesGoal.setText(Integer.toString(user.getGoalDailyCalories()));
 
         //cand dai click pe text sa dispara, daca treci mai departe sa completezi o sa tina minte ce date ai pus
         edit_Nume.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -188,6 +194,36 @@ public class EditProfileFragment extends Fragment {
                 }
             }
         });
+        edit_DistanceGoal.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_DistanceGoal.getText().toString();
+                if (hasFocus) {
+                    edit_DistanceGoal.setText("");
+                } else if (!hasFocus) {
+                    if (TextUtils.isEmpty(currentText)) {
+                        edit_DistanceGoal.setText(Integer.toString(user.getGoalDailyDistance()));
+                    } else {
+                        edit_DistanceGoal.setText(String.valueOf(Integer.parseInt(currentText)));
+                    }
+                }
+            }
+        });
+        edit_CaloriesGoal.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                String currentText = edit_CaloriesGoal.getText().toString();
+                if (hasFocus) {
+                    edit_CaloriesGoal.setText("");
+                } else if (!hasFocus) {
+                    if (TextUtils.isEmpty(currentText)) {
+                        edit_CaloriesGoal.setText(Integer.toString(user.getGoalDailyCalories()));
+                    } else {
+                        edit_CaloriesGoal.setText(String.valueOf(Integer.parseInt(currentText)));
+                    }
+                }
+            }
+        });
         edit_Phone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -238,8 +274,10 @@ public class EditProfileFragment extends Fragment {
                 String EmailValid = String.valueOf(edit_Email.getText());
                 String PhoneValid = String.valueOf(edit_Phone.getText());
                 Integer GoalStepsValid = Integer.valueOf(String.valueOf(edit_StepGoal.getText()));
+                Integer GoalDistanceValid = Integer.valueOf(String.valueOf(edit_DistanceGoal.getText()));
+                Integer GoalCaloriesValid = Integer.valueOf(String.valueOf(edit_CaloriesGoal.getText()));
 
-                boolean success = (LastNameValid.length() >=0 && LastNameValid.length() <=15 && FirstNameValid.length() >=0 && FirstNameValid.length() <=20 && AgeValid>0 && AgeValid<=120 && HeightValid>0.5 && HeightValid<=3 && WeightValid>5 && WeightValid<=400 && EmailValid.length() >=2 && EmailValid.length()<=30 && GoalStepsValid>0 && PhoneValid.length()==10);
+                boolean success = (LastNameValid.length() >=0 && LastNameValid.length() <=15 && FirstNameValid.length() >=0 && FirstNameValid.length() <=20 && AgeValid>0 && AgeValid<=120 && HeightValid>0.5 && HeightValid<=3 && WeightValid>5 && WeightValid<=400 && EmailValid.length() >=2 && EmailValid.length()<=30 && GoalStepsValid>0 && PhoneValid.length()==10 && GoalDistanceValid>0 && GoalCaloriesValid>0);
                     if(success){
                     user.setLastName(LastNameValid);
                     user.setFirstName(FirstNameValid);
@@ -249,6 +287,8 @@ public class EditProfileFragment extends Fragment {
                     user.setEmail(EmailValid);
                     user.setPhone(PhoneValid);
                     user.setGoalDailySteps(GoalStepsValid);
+                    user.setGoalDailyDistance(GoalDistanceValid);
+                    user.setGoalDailyCalories(GoalCaloriesValid);
                     user.setGender(edit_gender);
                     user.setIsPrivateProfile(private_profile);
 

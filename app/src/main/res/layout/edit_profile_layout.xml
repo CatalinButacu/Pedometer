@@ -143,6 +143,34 @@
                     android:inputType="number"
                     android:textSize="20sp"/>
 
+                <EditText
+                    android:id="@+id/editDistanceGoal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Distance Goal(in meters)"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:background="@drawable/input_round"
+                    android:inputType="number"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/editCaloriesGoal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Calories Goal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:background="@drawable/input_round"
+                    android:inputType="number"
+                    android:textSize="20sp"/>
+
                     <RadioGroup
                         android:id="@+id/editGender"
                         android:layout_width="match_parent"

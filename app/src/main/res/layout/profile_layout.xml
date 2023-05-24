@@ -177,12 +177,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:color="@color/black"
-                    android:text="@string/stepLength"
+                    android:text="@string/stepGoal"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/stepLength"
+                    android:id="@+id/stepGoal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -194,12 +194,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:color="@color/black"
-                    android:text="@string/stepGoal"
+                    android:text="Distance Goal"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/stepGoal"
+                    android:id="@+id/distanceGoal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:color="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:color="@color/black"
+                    android:text="Calories Goal"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/caloriesGoal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
