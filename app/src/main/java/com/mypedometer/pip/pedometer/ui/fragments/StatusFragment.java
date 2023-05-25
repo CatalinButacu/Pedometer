@@ -91,7 +91,7 @@ public class StatusFragment extends Fragment {
         textCalories.setText(LocalManager.getInstance().getLocalUser().getTodayCalories() + "  Kcal");
 
         TextView textDistancce = view.findViewById(R.id.Distance);
-        textDistancce.setText(LocalManager.getInstance().getLocalUser().getTodayDistance() + " m");
+        textDistancce.setText(String.format("%.02f", LocalManager.getInstance().getLocalUser().getTodayDistance()) + " m");
 
         TextView textDailyAverageSteps = view.findViewById(R.id.dailyAverageSteps);
         textDailyAverageSteps.setText("Average activity: " + LocalManager.getInstance().getLocalUser().calculateAverageDailySteps() + " steps");

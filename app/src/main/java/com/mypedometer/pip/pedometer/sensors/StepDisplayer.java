@@ -6,7 +6,6 @@ import com.mypedometer.pip.pedometer.data.storage.LocalManager;
 import java.util.ArrayList;
 
 public class StepDisplayer implements StepListener, SpeakingTimer.Listener {
-
     private int mCount = 0;
     private PedometerSettings mSettings;
     private Utils mUtils;
@@ -28,6 +27,8 @@ public class StepDisplayer implements StepListener, SpeakingTimer.Listener {
 
     public void onStep() {
         LocalManager.getInstance().getLocalUser().incrementSteps();
+        LocalManager.getInstance().getLocalUser().incrementCalories();
+        LocalManager.getInstance().getLocalUser().incrementDistance();
         mCount = LocalManager.getInstance().getLocalUser().getTodaySteps();
         notifyListeners();
     }
@@ -39,7 +40,6 @@ public class StepDisplayer implements StepListener, SpeakingTimer.Listener {
     public void passValue() {
     }
 
-    //-----------------------------------------------------
     // Listener
 
     public interface Listener {
@@ -50,8 +50,12 @@ public class StepDisplayer implements StepListener, SpeakingTimer.Listener {
 
     private ArrayList<Listener> mListeners = new ArrayList<>();
 
-    public void addListener(Listener l) {
-        mListeners.add(l);
+    public void addListener(Listener listener) {
+        mListeners.add(listener);
+    }
+
+    public void removeListener(Listener listener) {
+        mListeners.remove(listener);
     }
 
     public void notifyListeners() {
@@ -60,7 +64,6 @@ public class StepDisplayer implements StepListener, SpeakingTimer.Listener {
         }
     }
 
-    //-----------------------------------------------------
     // Speaking
 
     public void speak() {

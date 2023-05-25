@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mypedometer.pip.pedometer.data.storage.LocalManager;
+import com.mypedometer.pip.pedometer.sensors.StepService;
 import com.mypedometer.pip.pedometer.ui.fragments.ChallengeFragment;
 import com.mypedometer.pip.pedometer.ui.fragments.CreateAccountFragment;
 import com.mypedometer.pip.pedometer.ui.fragments.CreateChallengeFragment;
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
         showLoadingScreen();
         new LocalManager();
+        startService(new Intent(this, StepService.class));
+
 
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
 

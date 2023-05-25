@@ -35,7 +35,7 @@ public class UserModelTest {
     @Test
     public void getPrenume_isCorrect() {
         UserModel user = new UserModel();
-        user.setPrenume("Vasile cel mic");
+        user.setFirstName("Vasile cel mic");
         assertEquals("Vasile cel mic", user.getFirstName());
     }
     //----------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ public class UserModelTest {
     @Test
     public void getPrenume3_isCorrect() {
         UserModel user = new UserModel();
-        user.setPrenume("Vasile cel mic");
+        user.setFirstName("Vasile cel mic");
         assertEquals("Vasile cel mic", user.getFirstName());
     }
     //----------------------------------------------------------------------------------------------
@@ -181,7 +181,7 @@ public class UserModelTest {
     @Test
     public void getTotalDistance_isCorrect(){
         UserModel user = new UserModel();
-        user.setTotalDistance(1000);
+        user.setTotalDistance(1000f);
         assertEquals((Integer) 1000, user.getTotalDistance());
     }
     //----------------------------------------------------------------------------------------------
@@ -189,7 +189,7 @@ public class UserModelTest {
     public void getTotalCalories_isCorrect(){
         UserModel user = new UserModel();
         DataStats dataStats = new UserModel().new DataStats();
-        user.setTotalCalories(14);
+        user.setTotalCalories(14f);
         assertEquals((Integer) 14, user.getTotalCalories());
     }
     //----------------------------------------------------------------------------------------------
@@ -224,7 +224,7 @@ public class UserModelTest {
         UserModel user = new UserModel();
         ChallengeModel challenge = new ChallengeModel();
         user.addChallenge(challenge);
-        user.setDailyCalories(0, 300);
+        user.setDailyCalories(0, 300f);
 
         assertEquals((Integer) 300, user.getDailyCalories()[0]);
     }
@@ -233,11 +233,11 @@ public class UserModelTest {
     public void setDailyDistance_isCorrect(){
         UserModel user = new UserModel();
         ChallengeModel challenge = new ChallengeModel();
-        Integer[] dailyDistance = {100,130,150};
-        user.setDailyDistance(1, 300);
+        Float[] dailyDistance = {100f,130f,150f};
+        user.setDailyDistance(1, 300f);
 
-        Integer[] retrievedDistance = user.getDailyDistance();
-        assertEquals(Integer.valueOf(300), retrievedDistance[1]);
+        Float[] retrievedDistance = user.getDailyDistance();
+        assertEquals(Float.valueOf(300f), retrievedDistance[1]);
     }
     @Test
     public void getDailySteps2_isCorrect(){
@@ -250,7 +250,7 @@ public class UserModelTest {
     @Test
     public void getDailyDistance_isCorrect(){
         UserModel user = new UserModel();
-        Integer[] dailyDistance = {100,130,150};
+        Float[] dailyDistance = {100f,130f,150f};
         user.setDailyDistance(dailyDistance);
         assertEquals(dailyDistance, user.getDailyDistance());
     }
@@ -265,7 +265,7 @@ public class UserModelTest {
     @Test
     public void getDailyCalories_isCorrect(){
         UserModel user = new UserModel();
-        Integer[] dailyCalories = {100,103,105};
+        Float[] dailyCalories = {100f,103f,105f};
         user.setDailyCalories(dailyCalories);
         assertEquals(dailyCalories, user.getDailyCalories());
     }
@@ -280,7 +280,7 @@ public class UserModelTest {
     @Test
     public void getDailyDistance2_isCorrect(){
         UserModel user = new UserModel();
-        Integer[] dailyDistance = {100,130,150};
+        Float[] dailyDistance = {100f,130f,150f};
         user.setDailyDistance(dailyDistance);
         assertEquals(dailyDistance, user.getDailyDistance(0));
     }
@@ -288,7 +288,7 @@ public class UserModelTest {
     @Test
     public void getDailyCalories2_isCorrect(){
         UserModel user = new UserModel();
-        Integer[] dailyCalories = {100,103,105};
+        Float[] dailyCalories = {100f,103f,105f};
         user.setDailyCalories(dailyCalories);
         assertEquals(dailyCalories, user.getDailyCalories(0));
     }
@@ -357,7 +357,7 @@ public class UserModelTest {
     @Test
     public void getChallengeCalories_isCorrect(){
         UserModel user = new UserModel();
-        Integer[] challengeCalories = {1020,1203,1205};
+        Float[] challengeCalories = {1020f,1203f,1205f};
         user.setChallengeCalories(challengeCalories);
         assertEquals(challengeCalories, user.getChallengeCalories());
     }
@@ -372,7 +372,7 @@ public class UserModelTest {
     @Test
     public void setChallengeCalories22_isCorrect(){
         UserModel user = new UserModel();
-        user.setChallengeCalories(0, 3000);
+        user.setChallengeCalories(0, 3000f);
 
         assertEquals((Integer)3000, user.getChallengeCalories()[0]);
     }
@@ -380,7 +380,7 @@ public class UserModelTest {
     @Test
     public void getChallengeDistance_isCorrect(){
         UserModel user = new UserModel();
-        Integer[] challengeDistance = {1007,1703,1075};
+        Float[] challengeDistance = {1007f,1703f,1075f};
         user.setChallengeDistance(challengeDistance);
         assertEquals(challengeDistance, user.getChallengeDistance());
     }
@@ -396,8 +396,8 @@ public class UserModelTest {
     public void setChallengeDistance22_isCorrect(){
         UserModel user = new UserModel();
         ChallengeModel challenge = new ChallengeModel();
-        Integer[] challengeDistance = {1000, 2000, 1500};
-        user.setChallengeDistance(1, 3000);
+        Float[] challengeDistance = {1000f, 2000f, 1500f};
+        user.setChallengeDistance(1, 3000f);
 
         assertEquals((Integer)3000, user.getChallengeDistance()[1]);
     }
@@ -419,8 +419,8 @@ public class UserModelTest {
     public void testToString() {
         UserModel user = new UserModel();
         user.setUserID("U001");
-        user.setLastName("John");
-        user.setPrenume("Doe");
+        user.setFirstName("John");
+        user.setLastName("Doe");
         user.setGender("M");
         user.setEmail("john.doe@example.com");
         user.setPhone("1234567890");

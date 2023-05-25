@@ -84,8 +84,8 @@ public class EditProfileFragment extends Fragment {
         edit_Email.setText(LocalManager.getInstance().getLocalUser().getEmail());
         edit_Phone.setText(LocalManager.getInstance().getLocalUser().getPhone());
         edit_StepGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailySteps()));
-        edit_DistanceGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyDistance()));
-        edit_CaloriesGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyCalories()));
+        edit_DistanceGoal.setText(Float.toString(LocalManager.getInstance().getLocalUser().getGoalDailyDistance()));
+        edit_CaloriesGoal.setText(Float.toString(LocalManager.getInstance().getLocalUser().getGoalDailyCalories()));
 
         //cand dai click pe text sa dispara, daca treci mai departe sa completezi o sa tina minte ce date ai pus
         edit_Nume.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -201,7 +201,7 @@ public class EditProfileFragment extends Fragment {
                     edit_DistanceGoal.setText("");
                 } else if (!hasFocus) {
                     if (TextUtils.isEmpty(currentText)) {
-                        edit_DistanceGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyDistance()));
+                        edit_DistanceGoal.setText(Float.toString(LocalManager.getInstance().getLocalUser().getGoalDailyDistance()));
                     } else {
                         edit_DistanceGoal.setText(String.valueOf(Integer.parseInt(currentText)));
                     }
@@ -216,7 +216,7 @@ public class EditProfileFragment extends Fragment {
                     edit_CaloriesGoal.setText("");
                 } else if (!hasFocus) {
                     if (TextUtils.isEmpty(currentText)) {
-                        edit_CaloriesGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyCalories()));
+                        edit_CaloriesGoal.setText(Float.toString(LocalManager.getInstance().getLocalUser().getGoalDailyCalories()));
                     } else {
                         edit_CaloriesGoal.setText(String.valueOf(Integer.parseInt(currentText)));
                     }
@@ -273,8 +273,8 @@ public class EditProfileFragment extends Fragment {
                 String EmailValid = String.valueOf(edit_Email.getText());
                 String PhoneValid = String.valueOf(edit_Phone.getText());
                 Integer GoalStepsValid = Integer.valueOf(String.valueOf(edit_StepGoal.getText()));
-                Integer GoalDistanceValid = Integer.valueOf(String.valueOf(edit_DistanceGoal.getText()));
-                Integer GoalCaloriesValid = Integer.valueOf(String.valueOf(edit_CaloriesGoal.getText()));
+                Float GoalDistanceValid = Float.valueOf(String.valueOf(edit_DistanceGoal.getText()));
+                Float GoalCaloriesValid = Float.valueOf(String.valueOf(edit_CaloriesGoal.getText()));
 
                 boolean success = (LastNameValid.length() >=0 && LastNameValid.length() <=15 && FirstNameValid.length() >=0 && FirstNameValid.length() <=20 && AgeValid>0 && AgeValid<=120 && HeightValid>0.5 && HeightValid<=3 && WeightValid>5 && WeightValid<=400 && EmailValid.length() >=2 && EmailValid.length()<=30 && GoalStepsValid>0 && PhoneValid.length()==10 && GoalDistanceValid>0 && GoalCaloriesValid>0);
                     if(success){

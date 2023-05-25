@@ -52,36 +52,36 @@ public class UserModel {
 
         DataStats() {
             m_iTotalSteps = 0;
-            m_iTotalDistance = 0;
-            m_iTotalCalories = 0;
+            m_iTotalDistance = 0f;
+            m_iTotalCalories = 0f;
             m_iGoalDailySteps = 10000;
-            m_iGoalDailyCalories = 350;
-            m_iGoalDailyDistance = 8000;
+            m_iGoalDailyCalories = 350f;
+            m_iGoalDailyDistance = 8000f;
 
             for(int i = 0; i < 7; ++i )
             {
                 m_iDailySteps[i] = 0;
-                m_iDailyDistance[i] = 0;
-                m_iDailyCalories[i] = 0;
+                m_iDailyDistance[i] = 0f;
+                m_iDailyCalories[i] = 0f;
 
                 m_iChallengeSteps[i]=0;
-                m_iChallengeCalories[i]=0;
-                m_iChallengeDistance[i]=0;
+                m_iChallengeCalories[i]=0f;
+                m_iChallengeDistance[i]=0f;
             }
         }
 
         protected Integer m_iTotalSteps;
-        protected Integer m_iTotalDistance;
-        protected Integer m_iTotalCalories;
+        protected Float m_iTotalDistance;
+        protected Float m_iTotalCalories;
         protected Integer[] m_iDailySteps = new Integer[7];
-        protected Integer[] m_iDailyDistance = new Integer[7];
-        protected Integer[] m_iDailyCalories = new Integer[7];
+        protected Float[] m_iDailyDistance = new Float[7];
+        protected Float[] m_iDailyCalories = new Float[7];
         private Integer m_iGoalDailySteps;
-        private Integer m_iGoalDailyCalories;
-        private Integer m_iGoalDailyDistance;
+        private Float m_iGoalDailyCalories;
+        private Float m_iGoalDailyDistance;
         public Integer[] m_iChallengeSteps = new Integer[7];
-        public Integer[] m_iChallengeCalories = new Integer[7];
-        public Integer[] m_iChallengeDistance = new Integer[7];
+        public Float[] m_iChallengeCalories = new Float[7];
+        public Float[] m_iChallengeDistance = new Float[7];
     }
 
     //----------------------------------------------------------------------------------------------
@@ -115,6 +115,18 @@ public class UserModel {
         this.m_cUserStats.m_iTotalSteps++;
         this.m_cUserStats.m_iDailySteps[0]++;
         this.m_cUserStats.m_iChallengeSteps[0]++;
+    }
+    //----------------------------------------------------------------------------------------------
+    public void incrementCalories(){
+        this.m_cUserStats.m_iTotalCalories+=0.045f;
+        this.m_cUserStats.m_iDailyCalories[0]++;
+        this.m_cUserStats.m_iChallengeCalories[0]++;
+    }
+    //----------------------------------------------------------------------------------------------
+    public void incrementDistance(){
+        this.m_cUserStats.m_iTotalDistance +=0.67f;
+        this.m_cUserStats.m_iDailyDistance[0]+=0.67f;
+        this.m_cUserStats.m_iChallengeDistance[0]+=0.67f;
     }
     //----------------------------------------------------------------------------------------------
     public String getUserID(){
@@ -189,11 +201,11 @@ public class UserModel {
         return this.m_cUserStats.m_iTotalSteps;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer getTotalDistance(){
+    public Float getTotalDistance(){
         return this.m_cUserStats.m_iTotalDistance;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer getTotalCalories(){
+    public Float getTotalCalories(){
         return this.m_cUserStats.m_iTotalCalories;
     }
     //----------------------------------------------------------------------------------------------
@@ -201,11 +213,11 @@ public class UserModel {
         return this.m_cUserStats.m_iDailySteps;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer[] getDailyDistance(){
+    public Float[] getDailyDistance(){
         return this.m_cUserStats.m_iDailyDistance;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer[] getDailyCalories(){
+    public Float[] getDailyCalories(){
         return this.m_cUserStats.m_iDailyCalories;
     }
     //----------------------------------------------------------------------------------------------
@@ -213,11 +225,11 @@ public class UserModel {
         return this.m_cUserStats.m_iDailySteps[0];
     }
     //----------------------------------------------------------------------------------------------
-    public Integer getTodayDistance(){
+    public Float getTodayDistance(){
         return this.m_cUserStats.m_iDailyDistance[0];
     }
     //----------------------------------------------------------------------------------------------
-    public Integer getTodayCalories(){
+    public Float getTodayCalories(){
         return this.m_cUserStats.m_iDailyCalories[0];
     }
     //----------------------------------------------------------------------------------------------
@@ -225,11 +237,11 @@ public class UserModel {
         return this.m_cUserStats.m_iDailySteps;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer[] getDailyDistance(int i){
+    public Float[] getDailyDistance(int i){
         return this.m_cUserStats.m_iDailyDistance;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer[] getDailyCalories(int i){
+    public Float[] getDailyCalories(int i){
         return this.m_cUserStats.m_iDailyCalories;
     }
     //----------------------------------------------------------------------------------------------
@@ -237,11 +249,11 @@ public class UserModel {
         return this.m_cUserStats.m_iGoalDailySteps;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer getGoalDailyCalories(){
+    public Float getGoalDailyCalories(){
         return this.m_cUserStats.m_iGoalDailyCalories;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer getGoalDailyDistance(){
+    public Float getGoalDailyDistance(){
         return this.m_cUserStats.m_iGoalDailyDistance;
     }
     //----------------------------------------------------------------------------------------------
@@ -249,11 +261,11 @@ public class UserModel {
         return this.m_cUserStats.m_iChallengeSteps;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer[] getChallengeCalories(){
+    public Float[] getChallengeCalories(){
         return this.m_cUserStats.m_iChallengeCalories;
     }
     //----------------------------------------------------------------------------------------------
-    public Integer[] getChallengeDistance(){
+    public Float[] getChallengeDistance(){
         return this.m_cUserStats.m_iChallengeDistance;
     }
     //----------------------------------------------------------------------------------------------
@@ -313,11 +325,11 @@ public class UserModel {
         this.m_cUserStats.m_iTotalSteps = i;
     }
     //----------------------------------------------------------------------------------------------
-    public void setTotalDistance(Integer i){
+    public void setTotalDistance(Float i){
         this.m_cUserStats.m_iTotalDistance = i;
     }
     //----------------------------------------------------------------------------------------------
-    public void setTotalCalories(Integer i){
+    public void setTotalCalories(Float i){
         this.m_cUserStats.m_iTotalCalories = i;
     }
     //----------------------------------------------------------------------------------------------
@@ -334,29 +346,29 @@ public class UserModel {
         this.m_cUserStats.m_iDailySteps = i;
     }
     //----------------------------------------------------------------------------------------------
-    public void setDailyDistance(Integer[] i){
+    public void setDailyDistance(Float[] i){
         this.m_cUserStats.m_iDailyDistance = i;
     }
     //----------------------------------------------------------------------------------------------
     public void setDailyDistance(String s){
         String[] sSplit = s.split(",");
-        Integer[] i = new Integer[m_cUserStats.m_iDailySteps.length];
+        Float[] i = new Float[m_cUserStats.m_iDailySteps.length];
         for(int j = 0; j < m_cUserStats.m_iDailySteps.length; j++){
-            i[j] = Integer.parseInt(sSplit[j]);
+            i[j] = Float.parseFloat(sSplit[j]);
         }
         this.m_cUserStats.m_iDailyDistance = i;
     }
     //----------------------------------------------------------------------------------------------
-    public void setDailyCalories(Integer[] i){
+    public void setDailyCalories(Float[] i){
         this.m_cUserStats.m_iDailyCalories = i;
     }
 
     //----------------------------------------------------------------------------------------------
     public void setDailyCalories(String s){
         String[] sSplit = s.split(",");
-        Integer[] i = new Integer[m_cUserStats.m_iDailyCalories.length];
+        Float[] i = new Float[m_cUserStats.m_iDailyCalories.length];
         for(int j = 0; j < sSplit.length; j++){
-            i[j] = Integer.parseInt(sSplit[j]);
+            i[j] = Float.parseFloat(sSplit[j]);
         }
         this.m_cUserStats.m_iDailyCalories = i;
     }
@@ -365,11 +377,11 @@ public class UserModel {
         this.m_cUserStats.m_iGoalDailySteps = i;
     }
     //----------------------------------------------------------------------------------------------
-    public void setGoalDailyCalories(Integer i){
+    public void setGoalDailyCalories(Float i){
         this.m_cUserStats.m_iGoalDailyCalories = i;
     }
     //----------------------------------------------------------------------------------------------
-    public void setGoalDailyDistance(Integer i){
+    public void setGoalDailyDistance(Float i){
         this.m_cUserStats.m_iGoalDailyDistance = i;
     }
     //----------------------------------------------------------------------------------------------
@@ -387,30 +399,30 @@ public class UserModel {
         this.m_cUserStats.m_iChallengeSteps = i;
     }
     //----------------------------------------------------------------------------------------------
-    public void setChallengeCalories(Integer[] i){
+    public void setChallengeCalories(Float[] i){
         this.m_cUserStats.m_iChallengeCalories = i;
     }
 
     //----------------------------------------------------------------------------------------------
     public void setChallengeCalories(String s){
         String[] sSplit = s.split(",");
-        Integer[] i = new Integer[m_cUserStats.m_iChallengeCalories.length];
+        Float[] i = new Float[m_cUserStats.m_iChallengeCalories.length];
         for(int j = 0; j < sSplit.length; j++){
-            i[j] = Integer.parseInt(sSplit[j]);
+            i[j] = Float.parseFloat(sSplit[j]);
         }
         this.m_cUserStats.m_iChallengeCalories = i;
     }
     //----------------------------------------------------------------------------------------------
-    public void setChallengeDistance(Integer[] i){
+    public void setChallengeDistance(Float[] i){
         this.m_cUserStats.m_iChallengeDistance = i;
     }
 
     //----------------------------------------------------------------------------------------------
     public void setChallengeDistance(String s){
         String[] sSplit = s.split(",");
-        Integer[] i = new Integer[m_cUserStats.m_iChallengeDistance.length];
+        Float[] i = new Float[m_cUserStats.m_iChallengeDistance.length];
         for(int j = 0; j < sSplit.length; j++){
-            i[j] = Integer.parseInt(sSplit[j]);
+            i[j] = Float.parseFloat(sSplit[j]);
         }
         this.m_cUserStats.m_iChallengeDistance = i;
     }
@@ -419,11 +431,11 @@ public class UserModel {
         this.m_cUserStats.m_iChallengeSteps[i] = j;
     }
     //----------------------------------------------------------------------------------------------
-    public void setChallengeCalories(Integer i, Integer j){
+    public void setChallengeCalories(Integer i, Float j){
         this.m_cUserStats.m_iChallengeCalories[i] = j;
     }
     //----------------------------------------------------------------------------------------------
-    public void setChallengeDistance(Integer i, Integer j){
+    public void setChallengeDistance(Integer i, Float j){
         this.m_cUserStats.m_iChallengeDistance[i] = j;
     }
     //----------------------------------------------------------------------------------------------
@@ -431,11 +443,11 @@ public class UserModel {
         this.m_cUserStats.m_iDailySteps[i] = j;
     }
     //----------------------------------------------------------------------------------------------
-    public void setDailyCalories(Integer i, Integer j){
+    public void setDailyCalories(Integer i, Float j){
         this.m_cUserStats.m_iDailyCalories[i] = j;
     }
     //----------------------------------------------------------------------------------------------
-    public void setDailyDistance(Integer i, Integer j){
+    public void setDailyDistance(Integer i, Float j){
         this.m_cUserStats.m_iDailyDistance[i] = j;
     }
     //----------------------------------------------------------------------------------------------
@@ -489,6 +501,13 @@ public class UserModel {
         list[0]=0;
     }
     //----------------------------------------------------------------------------------------------
+    public void oneDayAfter(Float[] list){
+        for(int i=6;i>0;--i){
+            list[i] = list[i-1];
+        }
+        list[0]=0f;
+    }
+    //----------------------------------------------------------------------------------------------
     public double calculateAverageDailySteps() {
         int sum = 0;
         int count = 0;
@@ -511,7 +530,7 @@ public class UserModel {
         int sum = 0;
         int count = 0;
 
-        for (Integer element : this.m_cUserStats.m_iDailyDistance) {
+        for (Float element : this.m_cUserStats.m_iDailyDistance) {
             if (element != null && element != 0) {
                 sum += element;
                 count++;
@@ -529,7 +548,7 @@ public class UserModel {
         int sum = 0;
         int count = 0;
 
-        for (Integer element : this.m_cUserStats.m_iDailyCalories) {
+        for (Float element : this.m_cUserStats.m_iDailyCalories) {
             if (element != null && element != 0) {
                 sum += element;
                 count++;
@@ -565,7 +584,7 @@ public class UserModel {
         int sum = 0;
         int count = 0;
 
-        for (Integer element : this.m_cUserStats.m_iChallengeCalories) {
+        for (Float element : this.m_cUserStats.m_iChallengeCalories) {
             if (element != null && element != 0) {
                 sum += element;
                 count++;
@@ -583,7 +602,7 @@ public class UserModel {
         int sum = 0;
         int count = 0;
 
-        for (Integer element : this.m_cUserStats.m_iChallengeDistance) {
+        for (Float element : this.m_cUserStats.m_iChallengeDistance) {
             if (element != null && element != 0) {
                 sum += element;
                 count++;

@@ -92,11 +92,11 @@ public class ProfileFragment extends Fragment {
 
         //afisez distance goal
         TextView textDistanceGoal = profileView.findViewById(R.id.distanceGoal);
-        textDistanceGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyDistance()) + " m");
+        textDistanceGoal.setText(Float.toString(LocalManager.getInstance().getLocalUser().getGoalDailyDistance()) + " m");
 
         //afisez calories goal
         TextView textCaloriesGoal = profileView.findViewById(R.id.caloriesGoal);
-        textCaloriesGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyCalories()) + " kcal");
+        textCaloriesGoal.setText(Float.toString(LocalManager.getInstance().getLocalUser().getGoalDailyCalories()) + " kcal");
 
         return profileView;
     }
