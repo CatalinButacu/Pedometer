@@ -39,7 +39,7 @@ public class StepDetector implements SensorEventListener {
                         LocalManager.getInstance().getLocalUser().incrementDistance();
                         notifyStepListener();
                         try {
-                            Thread.currentThread().sleep(2000);
+                            Thread.currentThread().sleep(290);
                         } catch (InterruptedException e) {
                             throw new RuntimeException(e);
                         }
