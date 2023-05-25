@@ -94,8 +94,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         {
             // Insert user info
             cv.put("UserID", user.getUserID());
-            cv.put("Nume", user.getNume());
-            cv.put("Prenume", user.getPrenume());
+            cv.put("Nume", user.getLastName());
+            cv.put("Prenume", user.getFirstName());
             cv.put("Gen", user.getGen());
             cv.put("Varsta", user.getVarsta());
             cv.put("Greutate", user.getGreutate());
@@ -413,7 +413,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 user.setPassword(cursor.getString(3));
 
                 user.setFirstName(cursorInfo.getString(1));
-                user.setPrenume(cursorInfo.getString(2));
+                user.setLastName(cursorInfo.getString(2));
                 user.setGender(cursorInfo.getString(3));
                 user.setVarsta(Integer.parseInt(cursorInfo.getString(4)));
                 user.setGreutate(Float.parseFloat(cursorInfo.getString(5)));

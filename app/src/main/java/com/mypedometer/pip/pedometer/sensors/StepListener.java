@@ -5,7 +5,6 @@ package com.mypedometer.pip.pedometer.sensors;
  * These classes can be passed to StepDetector.
  */
 public interface StepListener {
-    public void onStep();
-    public void passValue();
+    void onStep();
+    void passValue();
 }
-

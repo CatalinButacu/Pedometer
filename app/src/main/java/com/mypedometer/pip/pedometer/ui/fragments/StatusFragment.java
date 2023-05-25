@@ -1,8 +1,8 @@
 package com.mypedometer.pip.pedometer.ui.fragments;
 
-import android.hardware.Sensor;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,120 +13,117 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.mypedometer.pip.pedometer.R;
-import static com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment.user;
+import com.mypedometer.pip.pedometer.data.storage.LocalManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-/**
- * This is the class that generates the UI for the current status (such as goals and achievements) of the user when called.
- */
 public class StatusFragment extends Fragment {
+    private Handler mHandler;
+    private Runnable mRunnable;
+
     public StatusFragment() {
         // Required empty public constructor
     }
-    static final int STEPS = 3000;
+
+    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View StatusView = inflater.inflate(R.layout.status_layout, container, false);
 
-        final Integer CALORIES = 231;
-        String MSGCALORIES = CALORIES + "  Kcal";
-
-        final Integer DISTANCE = 985;
-        String MSGDISTANCE = DISTANCE + "  m";
-
-        final int DAILYAVERAGESTEPS = 7000;
-        String MSGDAILYAVERAGESTEPS = "Average activity: " + DAILYAVERAGESTEPS + " steps";
-
-        final int DAILYAVERAGEDISTANCE = 8000;
-        String MSGDAILYAVERAGEDISTANCE = "Average distance: " + DAILYAVERAGEDISTANCE + " m";
-
-        final int DAILYAVERAGECALORIES = 350;
-        String MSGDAILYAVERAGECALORIES = "Average calories: " + DAILYAVERAGECALORIES + " kcal";
-
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");
         String Date = dateFormat.format(calendar.getTime());
 
-        final int GOAL;
-        if(ProfileFragment.user != null){
-            GOAL = ProfileFragment.user.getGoalDailySteps();
-        }
-        else{
-            //valoare default daca user-ul nu a fost initializat
-            GOAL = 8000;
-        }
-        //fie 100(Goal atins), fie 0
-        final int MONDAY = 0;
-        final int TUESDAY = 100;
-        final int WEDNESDAY = 100;
-        final int THURSDAY = 0;
-        final int FRIDAY = 100;
-        final int SATURDAY = 100;
-        final int SUNDAY = 0;
+        // Initialize the handler and the runnable
+        mHandler = new Handler();
+        mRunnable = new Runnable() {
+            @Override
+            public void run() {
+                updateUI();
+                mHandler.postDelayed(this, 5000); // Schedule the next update after 5 seconds
+            }
+        };
 
+        // Update the UI elements initially
+        updateUI();
 
-
-        //afisez data curenta dateFormat
+        // Set the current date
         TextView textData = StatusView.findViewById(R.id.currentDate);
         textData.setText(Date);
 
-        // afisez pasii in textView-ul pt steps
-        TextView textPasi = StatusView.findViewById(R.id.steps);
-        textPasi.setText(Integer.toString(STEPS));
-
-        //detalii progress bar
-        ProgressBar pBar = StatusView.findViewById(R.id.progressBar);
-        pBar.setProgress(STEPS*100/GOAL);
-
-        //afisare detalii progress bar
-        TextView infoPBar = StatusView.findViewById(R.id.infoProgressBar);
-        infoPBar.setText(STEPS + "/" + GOAL);
-
-        // afisez in textView-ul pt calorii mesajul MSGCALORIES
-        TextView textCalories = StatusView.findViewById(R.id.Calories);
-        textCalories.setText(MSGCALORIES);
-
-        // afisez in textView-ul pt distanta mesajul MSGDISTANCE
-        TextView textDistancce = StatusView.findViewById(R.id.Distance);
-        textDistancce.setText(MSGDISTANCE);
-
-        // afisez in textView-ul pt daily average steps mesajul MSGDAILYAVERAGESTEPS
-        TextView textDailyAverageSteps = StatusView.findViewById(R.id.dailyAverageSteps);
-        textDailyAverageSteps.setText(MSGDAILYAVERAGESTEPS);
-
-        // afisez in textView-ul pt daily average distance mesajul MSGDAILYAVERAGEDISTANCE
-        TextView textDailyAverageDistance = StatusView.findViewById(R.id.dailyAverageDistance);
-        textDailyAverageDistance.setText(MSGDAILYAVERAGEDISTANCE);
-
-        // afisez in textView-ul pt daily average calories mesajul MSGDAILYAVERAGECALORIES
-        TextView textDailyAverageCalories = StatusView.findViewById(R.id.dailyAverageCalories);
-        textDailyAverageCalories.setText(MSGDAILYAVERAGECALORIES);
-
-        //setez progresul pentru fiecare zi
-        ProgressBar mon = StatusView.findViewById(R.id.monday);
-        mon.setProgress(MONDAY);
-
-        ProgressBar tue = StatusView.findViewById(R.id.tuesday);
-        tue.setProgress(TUESDAY);
-
-        ProgressBar wed = StatusView.findViewById(R.id.wednesday);
-        wed.setProgress(WEDNESDAY);
-
-        ProgressBar thu = StatusView.findViewById(R.id.thursday);
-        thu.setProgress(THURSDAY);
-
-        ProgressBar fri = StatusView.findViewById(R.id.friday);
-        fri.setProgress(FRIDAY);
-
-        ProgressBar sat = StatusView.findViewById(R.id.saturday);
-        sat.setProgress(SATURDAY);
-
-        ProgressBar sun = StatusView.findViewById(R.id.sunday);
-        sun.setProgress(SUNDAY);
-
         return StatusView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Start the UI update
+        mHandler.postDelayed(mRunnable, 0); // Start immediately
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        // Stop the UI update
+        mHandler.removeCallbacks(mRunnable);
+    }
+
+    private void updateUI() {
+        View view = getView();
+        if (view == null) {
+            return;
+        }
+
+        // Update the UI elements
+        TextView textPasi = view.findViewById(R.id.steps);
+        textPasi.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getTodaySteps()));
+
+        ProgressBar pBar = view.findViewById(R.id.progressBar);
+        final int GOAL = LocalManager.getInstance().getLocalUser().getGoalDailySteps();
+        pBar.setProgress(LocalManager.getInstance().getLocalUser().getTodaySteps() * 100 / GOAL);
+
+        TextView infoPBar = view.findViewById(R.id.infoProgressBar);
+        infoPBar.setText(LocalManager.getInstance().getLocalUser().getTodaySteps() + "/" + GOAL);
+
+        TextView textCalories = view.findViewById(R.id.Calories);
+        textCalories.setText(LocalManager.getInstance().getLocalUser().getTodayCalories() + "  Kcal");
+
+        TextView textDistancce = view.findViewById(R.id.Distance);
+        textDistancce.setText(LocalManager.getInstance().getLocalUser().getTodayDistance() + " m");
+
+        TextView textDailyAverageSteps = view.findViewById(R.id.dailyAverageSteps);
+        textDailyAverageSteps.setText("Average activity: " + LocalManager.getInstance().getLocalUser().calculateAverageDailySteps() + " steps");
+
+        TextView textDailyAverageDistance = view.findViewById(R.id.dailyAverageDistance);
+        textDailyAverageDistance.setText("Average distance: " + LocalManager.getInstance().getLocalUser().calculateAverageDailyDistance() + " m");
+
+        TextView textDailyAverageCalories = view.findViewById(R.id.dailyAverageCalories);
+        textDailyAverageCalories.setText("Average calories: " + LocalManager.getInstance().getLocalUser().calculateAverageDailyCalories() + " kcal");
+
+        ProgressBar mon = view.findViewById(R.id.monday);
+        mon.setProgress(0);
+
+        ProgressBar tue = view.findViewById(R.id.tuesday);
+        tue.setProgress(100);
+
+        ProgressBar wed = view.findViewById(R.id.wednesday);
+        wed.setProgress(100);
+
+        ProgressBar thu = view.findViewById(R.id.thursday);
+        thu.setProgress(0);
+
+        ProgressBar fri = view.findViewById(R.id.friday);
+        fri.setProgress(100);
+
+        ProgressBar sat = view.findViewById(R.id.saturday);
+        sat.setProgress(100);
+
+        ProgressBar sun = view.findViewById(R.id.sunday);
+        sun.setProgress(0);
+
+        // Refresh the Fragment's view
+        view.invalidate();
     }
 }

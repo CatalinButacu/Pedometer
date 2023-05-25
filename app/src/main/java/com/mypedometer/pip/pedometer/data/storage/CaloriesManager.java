@@ -6,31 +6,29 @@ import com.mypedometer.pip.pedometer.sensors.StepListener;
 import com.mypedometer.pip.pedometer.sensors.Utils;
 
 /**
- * This is the class that calculates and displays the approximate calories.
+ * This class calculates and displays the approximate calories burned.
  */
-
 public class CaloriesManager implements StepListener, SpeakingTimer.Listener {
 
     public interface Listener {
-        public void valueChanged(float value);
-        public void passValue();
+        void onValueChanged(float value);
     }
+
+    private static final double METRIC_RUNNING_FACTOR = 1.02784823;
+    private static final double IMPERIAL_RUNNING_FACTOR = 0.75031498;
+    private static final double METRIC_WALKING_FACTOR = 0.708;
+    private static final double IMPERIAL_WALKING_FACTOR = 0.517;
+
     private Listener mListener;
-    private static double METRIC_RUNNING_FACTOR = 1.02784823;
-    private static double IMPERIAL_RUNNING_FACTOR = 0.75031498;
+    private double mCalories;
 
-    private static double METRIC_WALKING_FACTOR = 0.708;
-    private static double IMPERIAL_WALKING_FACTOR = 0.517;
+    private PedometerSettings mSettings;
+    private Utils mUtils;
 
-    private double mCalories = 0;
-    
-    PedometerSettings mSettings;
-    Utils mUtils;
-    
-    boolean mIsMetric;
-    boolean mIsRunning;
-    float mStepLength;
-    float mBodyWeight;
+    private boolean mIsMetric;
+    private boolean mIsRunning;
+    private float mStepLength;
+    private float mBodyWeight;
 
     public CaloriesManager(Listener listener, PedometerSettings settings, Utils utils) {
         mListener = listener;
@@ -38,6 +36,7 @@ public class CaloriesManager implements StepListener, SpeakingTimer.Listener {
         mSettings = settings;
         reloadSettings();
     }
+
     public void setCalories(float calories) {
         mCalories = calories;
         notifyListener();
@@ -50,54 +49,41 @@ public class CaloriesManager implements StepListener, SpeakingTimer.Listener {
         mBodyWeight = mSettings.getBodyWeight();
         notifyListener();
     }
+
     public void resetValues() {
         mCalories = 0;
     }
-    
-    public void isMetric(boolean isMetric) {
+
+    public void setMetric(boolean isMetric) {
         mIsMetric = isMetric;
     }
+
     public void setStepLength(float stepLength) {
         mStepLength = stepLength;
     }
 
-
     public void onStep() {
-        
-        if (mIsMetric) {
-            mCalories += 
-                (mBodyWeight * (mIsRunning ? METRIC_RUNNING_FACTOR : METRIC_WALKING_FACTOR))
-                // Distance:
-                * mStepLength // centimeters
-                / 100000.0; // centimeters/kilometer
-        }
-        else {
-            mCalories += 
-                (mBodyWeight * (mIsRunning ? IMPERIAL_RUNNING_FACTOR : IMPERIAL_WALKING_FACTOR))
-                // Distance:
-                * mStepLength // inches
-                / 63360.0; // inches/mile            
-        }
-        
+        double caloriesFactor = mIsMetric ?
+                (mIsRunning ? METRIC_RUNNING_FACTOR : METRIC_WALKING_FACTOR) :
+                (mIsRunning ? IMPERIAL_RUNNING_FACTOR : IMPERIAL_WALKING_FACTOR);
+
+        mCalories += (mBodyWeight * caloriesFactor * mStepLength) /
+                (mIsMetric ? 100000.0 : 63360.0);
+
         notifyListener();
     }
 
-    
     private void notifyListener() {
-        mListener.valueChanged((float)mCalories);
+        mListener.onValueChanged((float) mCalories);
     }
-    
+
     public void passValue() {
-        
+        // No implementation needed
     }
-    
+
     public void speak() {
-        if (mSettings.shouldTellCalories()) {
-            if (mCalories > 0) {
-                mUtils.say("" + (int)mCalories + " calories burned");
-            }
+        if (mSettings.shouldTellCalories() && mCalories > 0) {
+            mUtils.say((int) mCalories + " calories burned");
         }
-        
     }
 }
-

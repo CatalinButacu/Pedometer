@@ -1,72 +1,71 @@
 package com.mypedometer.pip.pedometer.sensors;
 
 import com.mypedometer.pip.pedometer.PedometerSettings;
+import com.mypedometer.pip.pedometer.data.storage.LocalManager;
 
 import java.util.ArrayList;
 
-/**
- * Counts steps provided by StepDetector and passes the current
- * step count to the activity.
- */
 public class StepDisplayer implements StepListener, SpeakingTimer.Listener {
 
     private int mCount = 0;
-    PedometerSettings mSettings;
-    Utils mUtils;
+    private PedometerSettings mSettings;
+    private Utils mUtils;
 
     public StepDisplayer(PedometerSettings settings, Utils utils) {
         mUtils = utils;
         mSettings = settings;
-        notifyListener();
+        notifyListeners();
     }
+
     public void setUtils(Utils utils) {
         mUtils = utils;
     }
 
     public void setSteps(int steps) {
         mCount = steps;
-        notifyListener();
+        notifyListeners();
     }
+
     public void onStep() {
-        mCount ++;
-        notifyListener();
+        LocalManager.getInstance().getLocalUser().incrementSteps();
+        mCount = LocalManager.getInstance().getLocalUser().getTodaySteps();
+        notifyListeners();
     }
+
     public void reloadSettings() {
-        notifyListener();
+        notifyListeners();
     }
+
     public void passValue() {
     }
-    
-    
 
     //-----------------------------------------------------
     // Listener
-    
+
     public interface Listener {
-        public void stepsChanged(int value);
-        public void passValue();
+        void stepsChanged(int value);
+
+        void passValue();
     }
-    private ArrayList<Listener> mListeners = new ArrayList<Listener>();
+
+    private ArrayList<Listener> mListeners = new ArrayList<>();
 
     public void addListener(Listener l) {
         mListeners.add(l);
     }
-    public void notifyListener() {
+
+    public void notifyListeners() {
         for (Listener listener : mListeners) {
-            listener.stepsChanged((int)mCount);
+            listener.stepsChanged(mCount);
         }
     }
-    
+
     //-----------------------------------------------------
     // Speaking
-    
+
     public void speak() {
-        if (mSettings.shouldTellSteps()) { 
-            if (mCount > 0) {
-                mUtils.say("" + mCount + " steps");
-            }
+        if (mSettings.shouldTellSteps() && mCount > 0) {
+            mUtils.say(mCount + " steps");
         }
     }
-    
-    
 }

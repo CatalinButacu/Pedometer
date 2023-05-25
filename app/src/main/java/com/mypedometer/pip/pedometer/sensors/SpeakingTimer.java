@@ -5,7 +5,7 @@ import com.mypedometer.pip.pedometer.PedometerSettings;
 import java.util.ArrayList;
 
 /**
- * Call all listening objects repeatedly. 
+ * Call all listening objects repeatedly.
  * The interval is defined by the user settings.
  */
 public class SpeakingTimer implements StepListener {
@@ -15,44 +15,47 @@ public class SpeakingTimer implements StepListener {
     boolean mShouldSpeak;
     float mInterval;
     long mLastSpeakTime;
-    
+
     public SpeakingTimer(PedometerSettings settings, Utils utils) {
         mLastSpeakTime = System.currentTimeMillis();
         mSettings = settings;
         mUtils = utils;
         reloadSettings();
     }
+
     public void reloadSettings() {
         mShouldSpeak = mSettings.shouldSpeak();
         mInterval = mSettings.getSpeakingInterval();
     }
-    
+
     public void onStep() {
         long now = System.currentTimeMillis();
         long delta = now - mLastSpeakTime;
-        
-        if (delta / 60000.0 >= mInterval) {
+
+        if (delta / 60000.0f >= mInterval) {
             mLastSpeakTime = now;
             notifyListeners();
         }
     }
-    
+
     public void passValue() {
         // not used
     }
 
-    
+
     //-----------------------------------------------------
     // Listener
-    
+
     public interface Listener {
-        public void speak();
+        void speak();
     }
-    private ArrayList<Listener> mListeners = new ArrayList<Listener>();
+
+    private ArrayList<Listener> mListeners = new ArrayList<>();
 
     public void addListener(Listener l) {
         mListeners.add(l);
     }
+
     public void notifyListeners() {
         mUtils.ding();
         for (Listener listener : mListeners) {
@@ -62,9 +65,8 @@ public class SpeakingTimer implements StepListener {
 
     //-----------------------------------------------------
     // Speaking
-    
+
     public boolean isSpeaking() {
         return mUtils.isSpeakingNow();
     }
 }
-

@@ -11,9 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
+import com.mypedometer.pip.pedometer.data.storage.LocalManager;
 import com.mypedometer.pip.pedometer.data.model.UserModel;
-
-import java.text.DecimalFormat;
 
 /**
  * This is the class that generates the UI of a user profile when called.
@@ -30,13 +29,12 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
     public ProfileFragment(UserModel userModel) {
-        user = userModel;
+        LocalManager.getInstance().updateLocalUser(userModel);
     }
 
     /**
      * Instance of a UserModel that represents the current user of the application.
      */
-    static UserModel user;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,39 +63,40 @@ public class ProfileFragment extends Fragment {
 
         //afisez nume
         TextView textName = profileView.findViewById(R.id.name);
-        textName.setText(user.getNume() + " " + user.getPrenume());
+        textName.setText(LocalManager.getInstance().getLocalUser().getLastName() + " "
+                + LocalManager.getInstance().getLocalUser().getFirstName());
 
         //afisez email
         TextView textEmail= profileView.findViewById(R.id.email);
-        textEmail.setText(user.getEmail());
+        textEmail.setText(LocalManager.getInstance().getLocalUser().getEmail());
 
         //afisez varsta
         TextView textAge = profileView.findViewById(R.id.age);
-        textAge.setText(Integer.toString(user.getVarsta()));
+        textAge.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getVarsta()));
 
         //afisez gen
         TextView textGender = profileView.findViewById(R.id.gender);
-        textGender.setText(user.getGen());
+        textGender.setText(LocalManager.getInstance().getLocalUser().getGen());
 
         //afisez greutate
         TextView textWeight = profileView.findViewById(R.id.weight);
-        textWeight.setText(user.getGreutate() + " kg");
+        textWeight.setText(LocalManager.getInstance().getLocalUser().getGreutate() + " kg");
 
         //afisez inaltime
         TextView textHeight = profileView.findViewById(R.id.height);
-        textHeight.setText(user.getInaltime() + " m");
+        textHeight.setText(LocalManager.getInstance().getLocalUser().getInaltime() + " m");
 
         //afisez step goal
         TextView textStepGoal = profileView.findViewById(R.id.stepGoal);
-        textStepGoal.setText(Integer.toString(user.getGoalDailySteps()));
+        textStepGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailySteps()));
 
         //afisez distance goal
         TextView textDistanceGoal = profileView.findViewById(R.id.distanceGoal);
-        textDistanceGoal.setText(Integer.toString(user.getGoalDailyDistance()) + " m");
+        textDistanceGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyDistance()) + " m");
 
         //afisez calories goal
         TextView textCaloriesGoal = profileView.findViewById(R.id.caloriesGoal);
-        textCaloriesGoal.setText(Integer.toString(user.getGoalDailyCalories()) + " kcal");
+        textCaloriesGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyCalories()) + " kcal");
 
         return profileView;
     }

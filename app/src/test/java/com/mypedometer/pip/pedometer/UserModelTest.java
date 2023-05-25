@@ -5,8 +5,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
-import static java.util.Optional.*;
-
 import com.mypedometer.pip.pedometer.data.model.ChallengeModel;
 import com.mypedometer.pip.pedometer.data.model.UserModel;
 import com.mypedometer.pip.pedometer.data.model.UserModel.DataStats;
@@ -31,28 +29,28 @@ public class UserModelTest {
     public void getNume_isCorrect() {
         UserModel user = new UserModel();
         user.setLastName("Vasile");
-        assertEquals("Vasile", user.getNume());
+        assertEquals("Vasile", user.getLastName());
     }
     //----------------------------------------------------------------------------------------------
     @Test
     public void getPrenume_isCorrect() {
         UserModel user = new UserModel();
         user.setPrenume("Vasile cel mic");
-        assertEquals("Vasile cel mic", user.getPrenume());
+        assertEquals("Vasile cel mic", user.getFirstName());
     }
     //----------------------------------------------------------------------------------------------
     @Test
     public void getPrenume2_isCorrect() {
         UserModel user = new UserModel();
         user.setFirstName("Vasile cel mic");
-        assertEquals("Vasile cel mic", user.getPrenume());
+        assertEquals("Vasile cel mic", user.getFirstName());
     }
     //----------------------------------------------------------------------------------------------
     @Test
     public void getPrenume3_isCorrect() {
         UserModel user = new UserModel();
         user.setPrenume("Vasile cel mic");
-        assertEquals("Vasile cel mic", user.getPrenume());
+        assertEquals("Vasile cel mic", user.getFirstName());
     }
     //----------------------------------------------------------------------------------------------
     @Test
@@ -106,7 +104,7 @@ public class UserModelTest {
         UserModel friend = user.getFriend(0);
 
         // Verificați dacă prietenul returnat este cel așteptat
-        assertEquals("", friend.getNume());
+        assertEquals("", friend.getLastName());
     }
     //----------------------------------------------------------------------------------------------
     @Test

@@ -1,7 +1,5 @@
 package com.mypedometer.pip.pedometer.ui.fragments;
 
-import static com.mypedometer.pip.pedometer.ui.fragments.ProfileFragment.user;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.mypedometer.pip.pedometer.MainActivity;
 import com.mypedometer.pip.pedometer.R;
+import com.mypedometer.pip.pedometer.data.storage.LocalManager;
 
 /**
  * This is the class that generates the UI for editing an already existent account when called.
@@ -77,16 +76,16 @@ public class EditProfileFragment extends Fragment {
         radioButtonPrivateProfile = editProfileView.findViewById(R.id.PrivateProfile);
         radioButtonPublicProfile = editProfileView.findViewById(R.id.PublicProfile);
 
-        edit_Nume.setText(user.getNume());
-        edit_Prenume.setText(user.getPrenume());
-        edit_Varsta.setText(Integer.toString(user.getVarsta()));
-        edit_Inaltime.setText(Float.toString(user.getInaltime()));
-        edit_Greutate.setText(Float.toString(user.getGreutate()));
-        edit_Email.setText(user.getEmail());
-        edit_Phone.setText(user.getPhone());
-        edit_StepGoal.setText(Integer.toString(user.getGoalDailySteps()));
-        edit_DistanceGoal.setText(Integer.toString(user.getGoalDailyDistance()));
-        edit_CaloriesGoal.setText(Integer.toString(user.getGoalDailyCalories()));
+        edit_Nume.setText(LocalManager.getInstance().getLocalUser().getLastName());
+        edit_Prenume.setText(LocalManager.getInstance().getLocalUser().getFirstName());
+        edit_Varsta.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getVarsta()));
+        edit_Inaltime.setText(Float.toString(LocalManager.getInstance().getLocalUser().getInaltime()));
+        edit_Greutate.setText(Float.toString(LocalManager.getInstance().getLocalUser().getGreutate()));
+        edit_Email.setText(LocalManager.getInstance().getLocalUser().getEmail());
+        edit_Phone.setText(LocalManager.getInstance().getLocalUser().getPhone());
+        edit_StepGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailySteps()));
+        edit_DistanceGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyDistance()));
+        edit_CaloriesGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyCalories()));
 
         //cand dai click pe text sa dispara, daca treci mai departe sa completezi o sa tina minte ce date ai pus
         edit_Nume.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -97,7 +96,7 @@ public class EditProfileFragment extends Fragment {
                     edit_Nume.setText("");
                 }else if(!hasFocus){
                     if(currentText.isEmpty()){
-                        edit_Nume.setText(user.getNume());
+                        edit_Nume.setText(LocalManager.getInstance().getLocalUser().getLastName());
                     }else{
                         edit_Nume.setText(currentText);
                     }
@@ -112,7 +111,7 @@ public class EditProfileFragment extends Fragment {
                     edit_Prenume.setText("");
                 }else if(!hasFocus){
                     if(currentText.isEmpty()){
-                        edit_Prenume.setText(user.getPrenume());
+                        edit_Prenume.setText(LocalManager.getInstance().getLocalUser().getFirstName());
                     }else{
                         edit_Prenume.setText(currentText);
                     }
@@ -127,7 +126,7 @@ public class EditProfileFragment extends Fragment {
                     edit_Email.setText("");
                 }else if(!hasFocus){
                     if(currentText.isEmpty()){
-                        edit_Email.setText(user.getEmail());
+                        edit_Email.setText(LocalManager.getInstance().getLocalUser().getEmail());
                     }else{
                         edit_Email.setText(currentText);
                     }
@@ -142,7 +141,7 @@ public class EditProfileFragment extends Fragment {
                     edit_Varsta.setText("");
                 } else if (!hasFocus) {
                     if (TextUtils.isEmpty(currentText)) {
-                        edit_Varsta.setText(Integer.toString(user.getVarsta()));
+                        edit_Varsta.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getVarsta()));
                     } else {
                         edit_Varsta.setText(String.valueOf(Integer.parseInt(currentText)));
                     }
@@ -157,7 +156,7 @@ public class EditProfileFragment extends Fragment {
                     edit_Inaltime.setText("");
                 } else if (!hasFocus) {
                     if (TextUtils.isEmpty(currentText)) {
-                        edit_Inaltime.setText(Float.toString(user.getInaltime()));
+                        edit_Inaltime.setText(Float.toString(LocalManager.getInstance().getLocalUser().getInaltime()));
                     } else {
                         edit_Inaltime.setText(String.valueOf(Float.parseFloat(currentText)));
                     }
@@ -172,7 +171,7 @@ public class EditProfileFragment extends Fragment {
                     edit_Greutate.setText("");
                 } else if (!hasFocus) {
                     if (TextUtils.isEmpty(currentText)) {
-                        edit_Greutate.setText(Float.toString(user.getGreutate()));
+                        edit_Greutate.setText(Float.toString(LocalManager.getInstance().getLocalUser().getGreutate()));
                     } else {
                         edit_Greutate.setText(String.valueOf(Float.parseFloat(currentText)));
                     }
@@ -187,7 +186,7 @@ public class EditProfileFragment extends Fragment {
                     edit_StepGoal.setText("");
                 } else if (!hasFocus) {
                     if (TextUtils.isEmpty(currentText)) {
-                        edit_StepGoal.setText(Integer.toString(user.getGoalDailySteps()));
+                        edit_StepGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailySteps()));
                     } else {
                         edit_StepGoal.setText(String.valueOf(Integer.parseInt(currentText)));
                     }
@@ -202,7 +201,7 @@ public class EditProfileFragment extends Fragment {
                     edit_DistanceGoal.setText("");
                 } else if (!hasFocus) {
                     if (TextUtils.isEmpty(currentText)) {
-                        edit_DistanceGoal.setText(Integer.toString(user.getGoalDailyDistance()));
+                        edit_DistanceGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyDistance()));
                     } else {
                         edit_DistanceGoal.setText(String.valueOf(Integer.parseInt(currentText)));
                     }
@@ -217,7 +216,7 @@ public class EditProfileFragment extends Fragment {
                     edit_CaloriesGoal.setText("");
                 } else if (!hasFocus) {
                     if (TextUtils.isEmpty(currentText)) {
-                        edit_CaloriesGoal.setText(Integer.toString(user.getGoalDailyCalories()));
+                        edit_CaloriesGoal.setText(Integer.toString(LocalManager.getInstance().getLocalUser().getGoalDailyCalories()));
                     } else {
                         edit_CaloriesGoal.setText(String.valueOf(Integer.parseInt(currentText)));
                     }
@@ -232,7 +231,7 @@ public class EditProfileFragment extends Fragment {
                     edit_Phone.setText("");
                 }else if(!hasFocus){
                     if(currentText.isEmpty()){
-                        edit_Phone.setText(user.getPhone());
+                        edit_Phone.setText(LocalManager.getInstance().getLocalUser().getPhone());
                     }else{
                         edit_Phone.setText(currentText);
                     }
@@ -279,22 +278,20 @@ public class EditProfileFragment extends Fragment {
 
                 boolean success = (LastNameValid.length() >=0 && LastNameValid.length() <=15 && FirstNameValid.length() >=0 && FirstNameValid.length() <=20 && AgeValid>0 && AgeValid<=120 && HeightValid>0.5 && HeightValid<=3 && WeightValid>5 && WeightValid<=400 && EmailValid.length() >=2 && EmailValid.length()<=30 && GoalStepsValid>0 && PhoneValid.length()==10 && GoalDistanceValid>0 && GoalCaloriesValid>0);
                     if(success){
-                    user.setLastName(LastNameValid);
-                    user.setFirstName(FirstNameValid);
-                    user.setVarsta(AgeValid);
-                    user.setInaltime(HeightValid);
-                    user.setGreutate(WeightValid);
-                    user.setEmail(EmailValid);
-                    user.setPhone(PhoneValid);
-                    user.setGoalDailySteps(GoalStepsValid);
-                    user.setGoalDailyDistance(GoalDistanceValid);
-                    user.setGoalDailyCalories(GoalCaloriesValid);
-                    user.setGender(edit_gender);
-                    user.setIsPrivateProfile(private_profile);
+                        LocalManager.getInstance().getLocalUser().setLastName(LastNameValid);
+                        LocalManager.getInstance().getLocalUser().setFirstName(FirstNameValid);
+                        LocalManager.getInstance().getLocalUser().setVarsta(AgeValid);
+                        LocalManager.getInstance().getLocalUser().setInaltime(HeightValid);
+                        LocalManager.getInstance().getLocalUser().setGreutate(WeightValid);
+                        LocalManager.getInstance().getLocalUser().setEmail(EmailValid);
+                        LocalManager.getInstance().getLocalUser().setPhone(PhoneValid);
+                        LocalManager.getInstance().getLocalUser().setGoalDailyDistance(GoalDistanceValid);
+                        LocalManager.getInstance().getLocalUser().setGoalDailyCalories(GoalCaloriesValid);
+                        LocalManager.getInstance().getLocalUser().setGender(edit_gender);
+                        LocalManager.getInstance().getLocalUser().setIsPrivateProfile(private_profile);
 
-                    MainActivity mainActivity = new MainActivity();
-                    mainActivity.changeProfileFragment(epf,new ProfileFragment());
-
+                        MainActivity mainActivity = new MainActivity();
+                        mainActivity.changeProfileFragment(epf,new ProfileFragment());
                     }
                 Toast.makeText(getActivity(), success ? "Account edited successfully!":"Something is not correct!", Toast.LENGTH_SHORT).show();
             }

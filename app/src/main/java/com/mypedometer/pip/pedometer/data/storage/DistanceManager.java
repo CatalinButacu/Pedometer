@@ -6,24 +6,22 @@ import com.mypedometer.pip.pedometer.sensors.StepListener;
 import com.mypedometer.pip.pedometer.sensors.Utils;
 
 /**
- * This is the class that calculates and displays the distance walked.
+ * This class calculates and displays the distance walked.
  */
-
 public class DistanceManager implements StepListener, SpeakingTimer.Listener {
 
     public interface Listener {
-        public void valueChanged(float value);
-        public void passValue();
+        void onValueChanged(float value);
     }
+
     private Listener mListener;
-    
-    float mDistance = 0;
-    
-    PedometerSettings mSettings;
-    Utils mUtils;
-    
-    boolean mIsMetric;
-    float mStepLength;
+    private float mDistance;
+
+    private PedometerSettings mSettings;
+    private Utils mUtils;
+
+    private boolean mIsMetric;
+    private float mStepLength;
 
     public DistanceManager(Listener listener, PedometerSettings settings, Utils utils) {
         mListener = listener;
@@ -31,50 +29,41 @@ public class DistanceManager implements StepListener, SpeakingTimer.Listener {
         mSettings = settings;
         reloadSettings();
     }
+
     public void setDistance(float distance) {
         mDistance = distance;
         notifyListener();
     }
-    
+
     public void reloadSettings() {
         mIsMetric = mSettings.isMetric();
         mStepLength = mSettings.getStepLength();
         notifyListener();
     }
-    
+
     public void onStep() {
-        
-        if (mIsMetric) {
-            mDistance += (float)(// kilometers
-                mStepLength // centimeters
-                / 100000.0); // centimeters/kilometer
-        }
-        else {
-            mDistance += (float)(// miles
-                mStepLength // inches
-                / 63360.0); // inches/mile
-        }
-        
+        float distanceIncrement = mIsMetric ?
+                mStepLength / 100000.0f : // centimeters/kilometer
+                mStepLength / 63360.0f; // inches/mile
+
+        mDistance += distanceIncrement;
+
         notifyListener();
     }
-    
+
     private void notifyListener() {
-        mListener.valueChanged(mDistance);
+        mListener.onValueChanged(mDistance);
     }
-    
+
     public void passValue() {
-        // Callback of StepListener - Not implemented
+        // No implementation needed
     }
 
     public void speak() {
-        if (mSettings.shouldTellDistance()) {
-            if (mDistance >= .001f) {
-                mUtils.say(("" + (mDistance + 0.000001f)).substring(0, 4) + (mIsMetric ? " kilometers" : " miles"));
-                // TODO: format numbers (no "." at the end)
-            }
+        if (mSettings.shouldTellDistance() && mDistance >= 0.001f) {
+            String distanceText = String.format("%.3f", mDistance + 0.000001f);
+            String unit = mIsMetric ? " kilometers" : " miles";
+            mUtils.say(distanceText + unit);
         }
     }
-    
-
 }
-

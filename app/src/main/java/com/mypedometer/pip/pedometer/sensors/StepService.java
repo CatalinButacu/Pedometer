@@ -1,9 +1,12 @@
 package com.mypedometer.pip.pedometer.sensors;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -21,7 +24,6 @@ import com.mypedometer.pip.pedometer.PedometerSettings;
 import com.mypedometer.pip.pedometer.R;
 import com.mypedometer.pip.pedometer.data.storage.CaloriesManager;
 import com.mypedometer.pip.pedometer.data.storage.DistanceManager;
-import com.mypedometer.pip.pedometer.data.storage.SpeedManager;
 import com.mypedometer.pip.pedometer.data.storage.StatusManager;
 
 public class StepService extends Service {
@@ -38,7 +40,6 @@ public class StepService extends Service {
     private StepDisplayer mStepDisplayer;
     private StatusManager mPaceNotifier;
     private DistanceManager mDistanceNotifier;
-    private SpeedManager mSpeedNotifier;
     private CaloriesManager mCaloriesNotifier;
     private SpeakingTimer mSpeakingTimer;
     
@@ -105,10 +106,6 @@ public class StepService extends Service {
         mDistanceNotifier.setDistance(mDistance = mState.getFloat("distance", 0));
         mStepDetector.addStepListener(mDistanceNotifier);
         
-        mSpeedNotifier    = new SpeedManager(mSpeedListener,    mPedometerSettings, mUtils);
-        mSpeedNotifier.setSpeed(mSpeed = mState.getFloat("speed", 0));
-        mPaceNotifier.addListener(mSpeedNotifier);
-        
         mCaloriesNotifier = new CaloriesManager(mCaloriesListener, mPedometerSettings, mUtils);
         mCaloriesNotifier.setCalories(mCalories = mState.getFloat("calories", 0));
         mStepDetector.addStepListener(mCaloriesNotifier);
@@ -117,7 +114,6 @@ public class StepService extends Service {
         mSpeakingTimer.addListener(mStepDisplayer);
         mSpeakingTimer.addListener(mPaceNotifier);
         mSpeakingTimer.addListener(mDistanceNotifier);
-        mSpeakingTimer.addListener(mSpeedNotifier);
         mSpeakingTimer.addListener(mCaloriesNotifier);
         mStepDetector.addStepListener(mSpeakingTimer);
         
@@ -223,18 +219,7 @@ public class StepService extends Service {
             mPaceNotifier.setDesiredPace(mDesiredPace);
         }
     }
-    /**
-     * Called by activity to pass the desired speed value, 
-     * whenever it is modified by the user.
-     * @param desiredSpeed
-     */
-    public void setDesiredSpeed(float desiredSpeed) {
-        mDesiredSpeed = desiredSpeed;
-        if (mSpeedNotifier != null) {
-            mSpeedNotifier.setDesiredSpeed(mDesiredSpeed);
-        }
-    }
-    
+
     public void reloadSettings() {
         mSettings = PreferenceManager.getDefaultSharedPreferences(this);
         
@@ -247,7 +232,6 @@ public class StepService extends Service {
         if (mStepDisplayer    != null) mStepDisplayer.reloadSettings();
         if (mPaceNotifier     != null) mPaceNotifier.reloadSettings();
         if (mDistanceNotifier != null) mDistanceNotifier.reloadSettings();
-        if (mSpeedNotifier    != null) mSpeedNotifier.reloadSettings();
         if (mCaloriesNotifier != null) mCaloriesNotifier.reloadSettings();
         if (mSpeakingTimer    != null) mSpeakingTimer.reloadSettings();
     }
@@ -256,7 +240,6 @@ public class StepService extends Service {
         mStepDisplayer.setSteps(0);
         mPaceNotifier.setPace(0);
         mDistanceNotifier.setDistance(0);
-        mSpeedNotifier.setSpeed(0);
         mCaloriesNotifier.setCalories(0);
     }
     
@@ -278,6 +261,11 @@ public class StepService extends Service {
      * Forwards pace values from PaceNotifier to the activity. 
      */
     private StatusManager.Listener mPaceListener = new StatusManager.Listener() {
+        @Override
+        public void onPaceChanged(int value) {
+
+        }
+
         public void paceChanged(int value) {
             mPace = value;
             passValue();
@@ -292,6 +280,11 @@ public class StepService extends Service {
      * Forwards distance values from DistanceNotifier to the activity. 
      */
     private DistanceManager.Listener mDistanceListener = new DistanceManager.Listener() {
+        @Override
+        public void onValueChanged(float value) {
+
+        }
+
         public void valueChanged(float value) {
             mDistance = value;
             passValue();
@@ -302,24 +295,16 @@ public class StepService extends Service {
             }
         }
     };
-    /**
-     * Forwards speed values from SpeedNotifier to the activity. 
-     */
-    private SpeedManager.Listener mSpeedListener = new SpeedManager.Listener() {
-        public void valueChanged(float value) {
-            mSpeed = value;
-            passValue();
-        }
-        public void passValue() {
-            if (mCallback != null) {
-                mCallback.speedChanged(mSpeed);
-            }
-        }
-    };
+
     /**
      * Forwards calories values from CaloriesNotifier to the activity. 
      */
     private CaloriesManager.Listener mCaloriesListener = new CaloriesManager.Listener() {
+        @Override
+        public void onValueChanged(float value) {
+
+        }
+
         public void valueChanged(float value) {
             mCalories = value;
             passValue();
@@ -335,21 +320,8 @@ public class StepService extends Service {
      * Show a notification while this service is running.
      */
     private void showNotification() {
-//        CharSequence text = getText(R.string.app_name);
-//        Notification notification = new Notification(R.drawable.ic_notification, null,
-//                System.currentTimeMillis());
-//        notification.flags = Notification.FLAG_NO_CLEAR | Notification.FLAG_ONGOING_EVENT;
-//        Intent pedometerIntent = new Intent();
-//        pedometerIntent.setComponent(new ComponentName(this, Pedometer.class));
-//        pedometerIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-//                pedometerIntent, 0);
-//        notification.setLatestEventInfo(this, text,
-//                getText(R.string.notification_subtitle), contentIntent);
-//
-//        mNM.notify(R.string.app_name, notification);
+        //todo: implement notification persistence
     }
-
 
     // BroadcastReceiver for handling ACTION_SCREEN_OFF.
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
