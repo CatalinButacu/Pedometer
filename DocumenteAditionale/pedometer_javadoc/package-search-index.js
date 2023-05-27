@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.mypedometer.pip.pedometer"},{"l":"com.mypedometer.pip.pedometer.data.model"},{"l":"com.mypedometer.pip.pedometer.data.storage"},{"l":"com.mypedometer.pip.pedometer.sensors"},{"l":"com.mypedometer.pip.pedometer.ui.fragments"},{"l":"com.mypedometer.pip.pedometer.ui.main"}]

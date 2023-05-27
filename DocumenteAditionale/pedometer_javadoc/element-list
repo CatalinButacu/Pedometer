@@ -1,0 +1,6 @@
+com.mypedometer.pip.pedometer
+com.mypedometer.pip.pedometer.data.model
+com.mypedometer.pip.pedometer.data.storage
+com.mypedometer.pip.pedometer.sensors
+com.mypedometer.pip.pedometer.ui.fragments
+com.mypedometer.pip.pedometer.ui.main

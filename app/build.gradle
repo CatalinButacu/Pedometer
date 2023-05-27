@@ -109,6 +109,14 @@ tasks.withType(Test) {
     jacoco.excludes = ['jdk.internal.*']
 }
 
+task generatePmdReport(type: Pmd) {
+    sourceSets = files('src/main/java') // Modify this if your source code is located elsewhere
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
 task codeCoverageReport(type: JacocoReport) {
     group = "Reporting"
     description = "Generates Jacoco code coverage report"
